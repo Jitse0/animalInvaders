@@ -1,6 +1,5 @@
-package nl.saxion.game.shapesgame.screens;
+package nl.saxion.game.animalInvaders.game;
 
-import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.*;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 

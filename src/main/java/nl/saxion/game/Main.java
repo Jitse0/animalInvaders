@@ -1,6 +1,6 @@
 package nl.saxion.game;
 
-import nl.saxion.game.shapesgame.screens.Game;
+import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
 
 public class Main {
