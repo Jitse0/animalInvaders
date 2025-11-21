@@ -1,5 +1,6 @@
 package nl.saxion.game.animalInvaders.game;
 
+import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
 public class Ship {
@@ -16,9 +17,25 @@ public class Ship {
     }
 
     public void drawShip() {
+        moveship(speed);
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(255,0,0);
         GameApp.drawRoundedRectCentered(xPos, yPos, 70, 140, 30);
         GameApp.endShapeRendering();
+    }
+
+    private void moveship(int speed) {
+        if (GameApp.isKeyPressed(Input.Keys.LEFT)) {
+            this.xPos -= speed;
+        }
+        if (GameApp.isKeyPressed(Input.Keys.RIGHT)) {
+            this.xPos += speed;
+        }
+        if (GameApp.isKeyPressed(Input.Keys.UP)) {
+            this.yPos += speed;
+        }
+        if (GameApp.isKeyPressed(Input.Keys.DOWN)) {
+            this.yPos -= speed;
+        }
     }
 }
