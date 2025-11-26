@@ -2,6 +2,8 @@ package nl.saxion.game.animalInvaders.game;
 
 import nl.saxion.gameapp.GameApp;
 
+import java.util.ArrayList;
+
 public class Enemy {
     private int healthpoints;
     private int posX;
@@ -9,6 +11,8 @@ public class Enemy {
     private int speed;
     private String direction;
     private int fireRate;
+    private int timer;
+    private ArrayList<Bullet> bullets = new ArrayList<>();
 
     public Enemy(int healthpoints, int posX, int posY, int speed, String direction, int fireRate) {
         this.healthpoints = healthpoints;
@@ -17,10 +21,12 @@ public class Enemy {
         this.speed = speed;
         this.direction = direction;
         this.fireRate = fireRate;
+        this.timer = fireRate;
     }
 
     public void drawEnemy() {
         moveEnemy(speed);
+        shoot();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(0,255,0);
         GameApp.drawCircle(posX, posY, 20);
@@ -43,8 +49,16 @@ public class Enemy {
     }
 
     public void shoot() {
-        if (fireRate <= 0) {
+        if (this.timer <= 0) {
             //Schieten
+            bullets.add(new Bullet(posX, posY, 1, 1));
+            this.timer = this.fireRate;
+        }
+        else {
+            this.timer--;
+        }
+        for (Bullet bullet : bullets) {
+            bullet.drawBullet();
         }
     }
 }
