@@ -6,6 +6,7 @@ import nl.saxion.gameapp.screens.ScalableGameScreen;
 
 public class Game extends ScalableGameScreen {
 
+    private Ship ship = new Ship(10, 640, 100);
 
     public Game() {
         super(1280, 720);
@@ -13,6 +14,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void show() {
+
     }
 
     @Override
@@ -24,6 +26,7 @@ public class Game extends ScalableGameScreen {
 
         //Veeg het scherm schoon voor het volgende frame
         GameApp.clearScreen();
+        ship.drawShip();
         GameApp.endShapeRendering();
     }
 
