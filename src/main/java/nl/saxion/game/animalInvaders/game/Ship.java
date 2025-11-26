@@ -32,7 +32,7 @@ public class Ship {
         if (GameApp.isKeyPressed(Input.Keys.LEFT) && xPos > width/2 + 10) {
             this.xPos -= speed;
         }
-        if (GameApp.isKeyPressed(Input.Keys.RIGHT) && xPos < 1270 - width/2) {
+        if (GameApp.isKeyPressed(Input.Keys.RIGHT) && xPos < GameApp.getWorldWidth() - 10 - width/2) {
             this.xPos += speed;
         }
         if (GameApp.isKeyPressed(Input.Keys.UP) && yPos < 710 - height/2) {
