@@ -12,9 +12,9 @@ public class Enemy {
     private String direction;
     private int fireRate;
     private int timer;
-    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private Game game;
 
-    public Enemy(int healthpoints, int posX, int posY, int speed, String direction, int fireRate) {
+    public Enemy(int healthpoints, int posX, int posY, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = healthpoints;
         this.posX = posX;
         this.posY = posY;
@@ -22,6 +22,7 @@ public class Enemy {
         this.direction = direction;
         this.fireRate = fireRate;
         this.timer = fireRate;
+        this.game = game;
     }
 
     public void drawEnemy() {
@@ -51,14 +52,11 @@ public class Enemy {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            bullets.add(new Bullet(posX, posY, 1, 1));
+            game.bullets.add(new Bullet(posX, posY, 1, 1));
             this.timer = this.fireRate;
         }
         else {
             this.timer--;
-        }
-        for (Bullet bullet : bullets) {
-            bullet.drawBullet();
         }
     }
 }

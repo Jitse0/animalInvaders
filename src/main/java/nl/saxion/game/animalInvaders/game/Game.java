@@ -10,6 +10,7 @@ public class Game extends ScalableGameScreen {
 
     private Ship ship = new Ship(10, 640, 100);
     private ArrayList<Enemy> enemies = new ArrayList<>();
+    public ArrayList<Bullet> bullets = new ArrayList<>();
 
     public Game() {
         super(1280, 720);
@@ -17,7 +18,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void show() {
-        enemies.add(new Enemy(10, 640, 680, 5, "right", 60));
+        enemies.add(new Enemy(10, 640, 680, 1, "right", 165, this));
     }
 
     @Override
@@ -28,6 +29,9 @@ public class Game extends ScalableGameScreen {
         //Teken alle entities, ship als laatste!
         for (Enemy enemy : enemies) {
             enemy.drawEnemy();
+        }
+        for (Bullet bullet : bullets) {
+            bullet.drawBullet();
         }
         ship.drawShip();
         GameApp.endShapeRendering();
