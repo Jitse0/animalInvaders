@@ -36,7 +36,8 @@ public class Projectile {
         for (Enemy enemy : game.getEnemies()) {
             if (GameApp.rectCircleOverlap(xPos, yPos, 10, 20, enemy.getPosX(), enemy.getPosY(), enemy.getSize())) {
                 game.removeProjectile(this);
-                //enemy.takeDamage(damage);
+                enemy.takeDamage(damage);
+                break;
             }
         }
     }
