@@ -10,8 +10,8 @@ public class Game extends ScalableGameScreen {
 
     private Ship ship = new Ship(10, 640, 100, this);
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    public ArrayList<Bullet> bullets = new ArrayList<>();
-    public ArrayList<Projectile> projectiles = new ArrayList<>();
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private ArrayList<Projectile> projectiles = new ArrayList<>();
 
     public Game() {
         super(1280, 720);
@@ -19,7 +19,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void show() {
-        enemies.add(new Enemy(10, 640, 680, 1, "right", 165, this));
+        addEnemy(new Enemy(1, 640, 680, 20,1, "right", 165, this));
     }
 
     @Override
@@ -44,5 +44,36 @@ public class Game extends ScalableGameScreen {
     @Override
     public void hide() {
 
+    }
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
+    }
+    public ArrayList<Bullet> getBullets() {
+        return bullets;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void addProjectile(Projectile projectile) {
+        projectiles.add(projectile);
+    }
+    public void addBullet(Bullet bullet) {
+        bullets.add(bullet);
+    }
+
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+    }
+
+    public void removeProjectile(Projectile projectile) {
+        projectiles.remove(projectile);
+    }
+    public void removeBullet(Bullet bullet) {
+        bullets.remove(bullet);
+    }
+    public void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
     }
 }

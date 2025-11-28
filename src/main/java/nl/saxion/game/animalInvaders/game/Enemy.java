@@ -8,16 +8,18 @@ public class Enemy {
     private int healthpoints;
     private int posX;
     private int posY;
+    private int size;
     private int speed;
     private String direction;
     private int fireRate;
     private int timer;
     private Game game;
 
-    public Enemy(int healthpoints, int posX, int posY, int speed, String direction, int fireRate, Game game) {
+    public Enemy(int healthpoints, int posX, int posY, int size, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = healthpoints;
         this.posX = posX;
         this.posY = posY;
+        this.size = size;
         this.speed = speed;
         this.direction = direction;
         this.fireRate = fireRate;
@@ -30,7 +32,7 @@ public class Enemy {
         shoot();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(0,255,0);
-        GameApp.drawCircle(posX, posY, 20);
+        GameApp.drawCircle(posX, posY, size);
         GameApp.endShapeRendering();
     }
 
@@ -52,11 +54,30 @@ public class Enemy {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.bullets.add(new Bullet(posX, posY, 1, 1));
+            game.addBullet(new Bullet(posX, posY, 1, 1));
             this.timer = this.fireRate;
         }
         else {
             this.timer--;
         }
+    }
+
+    public void takeDamage(int damage) {
+        healthpoints -= damage;
+        if (healthpoints <= 0) {
+            game.removeEnemy(this);
+        }
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public int getSize() {
+        return size;
     }
 }
