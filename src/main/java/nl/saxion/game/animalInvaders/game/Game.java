@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Game extends ScalableGameScreen {
 
-    private Ship ship = new Ship(10, 640, 100);
+    private Ship ship = new Ship(10, 640, 100, this);
     private ArrayList<Enemy> enemies = new ArrayList<>();
     public ArrayList<Bullet> bullets = new ArrayList<>();
     public ArrayList<Projectile> projectiles = new ArrayList<>();

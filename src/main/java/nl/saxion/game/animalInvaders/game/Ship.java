@@ -3,6 +3,8 @@ package nl.saxion.game.animalInvaders.game;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
+import java.security.Key;
+
 public class Ship {
     private int healthpoints;
     private int speed;
@@ -10,14 +12,16 @@ public class Ship {
     private int yPos;
     private int height;
     private int width;
+    private Game game;
 
-    public Ship(int healthpoints, int startingX, int startingY) {
+    public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
         this.speed = 5;
         this.xPos = startingX;
         this.yPos = startingY;
         this.height = 40;
         this.width = 20;
+        this.game = game;
     }
 
     public void drawShip() {
@@ -50,6 +54,9 @@ public class Ship {
 
     private void shoot(){
         //Voeg hier de code toe om te schieten
+        if (GameApp.isKeyJustPressed(Input.Keys.SPACE)){
         Projectile projectile = new Projectile(xPos,yPos,1);
+        game.projectiles.add(projectile);
+        }
     }
 }
