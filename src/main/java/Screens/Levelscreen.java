@@ -34,7 +34,7 @@ public class Levelscreen extends ScalableGameScreen {
             }
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0) {
-            GameApp.quit();
+            GameApp.switchScreen("AnimalGame");
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
             GameApp.switchScreen("HomeMenu");
