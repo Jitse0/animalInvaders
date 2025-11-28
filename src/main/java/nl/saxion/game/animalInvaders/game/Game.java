@@ -11,6 +11,7 @@ public class Game extends ScalableGameScreen {
     private Ship ship = new Ship(10, 640, 100);
     private ArrayList<Enemy> enemies = new ArrayList<>();
     public ArrayList<Bullet> bullets = new ArrayList<>();
+    public ArrayList<Projectile> projectiles = new ArrayList<>();
 
     public Game() {
         super(1280, 720);
@@ -32,6 +33,9 @@ public class Game extends ScalableGameScreen {
         }
         for (Bullet bullet : bullets) {
             bullet.drawBullet();
+        }
+        for (Projectile projectile : projectiles) {
+            projectile.drawProjectile();
         }
         ship.drawShip();
         GameApp.endShapeRendering();

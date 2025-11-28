@@ -22,6 +22,7 @@ public class Ship {
 
     public void drawShip() {
         moveship(speed);
+        shoot();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(255,0,0);
         GameApp.drawRoundedRectCentered(xPos, yPos, 20, 40, 5);
@@ -49,5 +50,6 @@ public class Ship {
 
     private void shoot(){
         //Voeg hier de code toe om te schieten
+        Projectile projectile = new Projectile(xPos,yPos,1);
     }
 }
