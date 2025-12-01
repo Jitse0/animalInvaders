@@ -59,4 +59,7 @@ public class Ship {
         game.addProjectile(projectile);
         }
     }
+    public int getHealthPoints() {
+        return healthpoints;
+    }
 }

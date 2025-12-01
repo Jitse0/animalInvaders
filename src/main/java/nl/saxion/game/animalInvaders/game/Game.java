@@ -2,6 +2,9 @@ package nl.saxion.game.animalInvaders.game;
 
 import nl.saxion.gameapp.*;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
+import nl.saxion.game.animalInvaders.game.HUD;
+
+
 
 import java.nio.channels.Pipe;
 import java.util.ArrayList;
@@ -9,7 +12,8 @@ import java.util.ArrayList;
 
 public class Game extends ScalableGameScreen {
 
-    private Ship ship = new Ship(10, 640, 100, this);
+    private Ship ship = new Ship(5, 640, 100, this);
+    private HUD hud = new HUD(ship);
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Bullet> bullets = new ArrayList<>();
     private ArrayList<Projectile> projectiles = new ArrayList<>();
@@ -17,6 +21,7 @@ public class Game extends ScalableGameScreen {
 
     public Game() {
         super(1280, 720);
+
     }
 
     @Override
@@ -31,6 +36,7 @@ public class Game extends ScalableGameScreen {
         GameApp.clearScreen();
         //Teken alle entities, denk aan de volgorde!
         killProjectiles();
+
         for (Enemy enemy : enemies) {
             enemy.drawEnemy();
         }
@@ -41,6 +47,7 @@ public class Game extends ScalableGameScreen {
             projectile.drawProjectile();
         }
         ship.drawShip();
+        hud.draw();
         GameApp.endShapeRendering();
     }
 
