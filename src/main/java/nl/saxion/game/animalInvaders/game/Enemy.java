@@ -30,7 +30,7 @@ public class Enemy {
         shoot();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(0,255,0);
-        GameApp.drawCircle(posX, posY, 20);
+        GameApp.drawCircle(posX, posY, 10);
         GameApp.endShapeRendering();
     }
 
@@ -51,8 +51,7 @@ public class Enemy {
 
     public void shoot() {
         if (this.timer <= 0) {
-            //Schieten
-            game.bullets.add(new Bullet(posX, posY, 1, 1));
+            game.bullets.add(new Bullet(posX, posY, 10, 1,0,game));
             this.timer = this.fireRate;
         }
         else {

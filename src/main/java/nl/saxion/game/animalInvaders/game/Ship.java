@@ -53,10 +53,22 @@ public class Ship {
     }
 
     private void shoot(){
-        //Voeg hier de code toe om te schieten
         if (GameApp.isKeyJustPressed(Input.Keys.SPACE)){
         Projectile projectile = new Projectile(xPos,yPos,1);
         game.projectiles.add(projectile);
         }
     }
+    public int getxPosShip(){
+        return xPos;
+    }
+    public int getyPosShip(){
+        return yPos;
+    }
+    public int getWidthShip(){
+        return width;
+    }
+    public int getHeightShip(){
+        return height;
+    }
+
 }

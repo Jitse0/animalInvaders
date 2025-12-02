@@ -26,6 +26,13 @@ public class Game extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
         //Veeg het scherm schoon voor het volgende frame
+
+        // voeg collission toe tussen bullet en ship
+        //if (GameApp.rectOverlap(,)){
+
+        //}
+
+
         GameApp.clearScreen();
         //Teken alle entities, ship als laatste!
         for (Enemy enemy : enemies) {
@@ -44,5 +51,9 @@ public class Game extends ScalableGameScreen {
     @Override
     public void hide() {
 
+    }
+
+    public ArrayList<Bullet> getBullets(){
+        return bullets;
     }
 }
