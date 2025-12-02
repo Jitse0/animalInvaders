@@ -22,8 +22,8 @@ public class Enemy {
         this.size = size;
         this.speed = speed;
         this.direction = direction;
-        this.fireRate = fireRate;
-        this.timer = fireRate;
+        this.fireRate = (int) (fireRate / GameApp.getDeltaTime());
+        this.timer = this.fireRate;
         this.game = game;
     }
 
@@ -41,20 +41,20 @@ public class Enemy {
             if (posX > GameApp.getWorldWidth() - 10) {
                 direction = "left";
             }
-            posX += speed;
+            posX += speed * GameApp.getDeltaTime();
         }
         else if (direction.equals("left")) {
             if (posX < 10) {
                 direction = "right";
             }
-            posX -= speed;
+            posX -= speed * GameApp.getDeltaTime();
         }
     }
 
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addBullet(new Bullet(posX, posY, 1, 1));
+            game.addBullet(new Bullet(posX, posY, 20, 1));
             this.timer = this.fireRate;
         }
         else {

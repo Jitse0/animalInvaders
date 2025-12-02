@@ -29,7 +29,7 @@ public class Projectile {
     }
 
     public void moveProjectile() {
-        yPos += speed;
+        yPos += speed * GameApp.getDeltaTime();
     }
 
     public void hitEnemy(){

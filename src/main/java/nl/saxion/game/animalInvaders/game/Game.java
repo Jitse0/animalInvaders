@@ -26,7 +26,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void show() {
-        addEnemy(new Enemy(1, 640, 680, 20,1, "right", 165, this));
+        addEnemy(new Enemy(1, 640, 680, 20,100, "right", 1, this));
     }
 
     @Override

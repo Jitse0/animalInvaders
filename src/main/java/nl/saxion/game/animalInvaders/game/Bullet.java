@@ -24,6 +24,6 @@ public class Bullet {
     }
 
     public void move() {
-        this.yPos -= speed;
+        this.yPos -= speed * GameApp.getDeltaTime();
     }
 }

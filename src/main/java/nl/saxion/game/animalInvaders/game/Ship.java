@@ -3,8 +3,6 @@ package nl.saxion.game.animalInvaders.game;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
-import java.security.Key;
-
 public class Ship {
     private int healthpoints;
     private int speed;
@@ -16,7 +14,7 @@ public class Ship {
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
-        this.speed = 5;
+        this.speed = 250; //Niet te laag maken, want dan kan hij niet meer naar boven en naar rechts
         this.xPos = startingX;
         this.yPos = startingY;
         this.height = 40;
@@ -25,7 +23,7 @@ public class Ship {
     }
 
     public void drawShip() {
-        moveship(speed);
+        moveShip(speed);
         shoot();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(255,0,0);
@@ -33,18 +31,19 @@ public class Ship {
         GameApp.endShapeRendering();
     }
 
-    private void moveship(int speed) {
+    //Snelheid naar rechts en naar boven is lager dan naar links en naar beneden vanwege float > int casting, weet niet wat ik daar aan kan doen
+    private void moveShip(int speed) {
         if (GameApp.isKeyPressed(Input.Keys.LEFT) && xPos > width/2 + 10) {
-            this.xPos -= speed;
+            this.xPos -= (speed * GameApp.getDeltaTime());
         }
         if (GameApp.isKeyPressed(Input.Keys.RIGHT) && xPos < GameApp.getWorldWidth() - 10 - width/2) {
-            this.xPos += speed;
+            this.xPos += (speed * GameApp.getDeltaTime());
         }
         if (GameApp.isKeyPressed(Input.Keys.UP) && yPos < 710 - height/2) {
-            this.yPos += speed;
+            this.yPos += (speed * GameApp.getDeltaTime());
         }
         if (GameApp.isKeyPressed(Input.Keys.DOWN) && yPos > 10 + height/2) {
-            this.yPos -= speed;
+            this.yPos -= (speed * GameApp.getDeltaTime());
         }
     }
 
@@ -55,7 +54,7 @@ public class Ship {
     private void shoot(){
         //Voeg hier de code toe om te schieten
         if (GameApp.isKeyJustPressed(Input.Keys.SPACE)){
-        Projectile projectile = new Projectile(xPos,yPos,1, 1,this.game);
+        Projectile projectile = new Projectile(xPos,yPos,300, 1,this.game);
         game.addProjectile(projectile);
         }
     }
