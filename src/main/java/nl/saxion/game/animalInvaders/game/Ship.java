@@ -25,6 +25,7 @@ public class Ship {
     public void drawShip() {
         moveShip(speed);
         shoot();
+        damageTest();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(255,0,0);
         GameApp.drawRoundedRectCentered(xPos, yPos, 20, 40, 5);
@@ -47,8 +48,18 @@ public class Ship {
         }
     }
 
+    public void damageTest() {
+        if (GameApp.isKeyJustPressed(Input.Keys.U)) {
+            takeDamage(1);
+        }
+    }
+
     public void takeDamage(int damage) {
         this.healthpoints -= damage;
+
+        if (this.healthpoints <= 0) {
+            GameApp.switchScreen("Levelscreen");
+        }
     }
 
     private void shoot(){

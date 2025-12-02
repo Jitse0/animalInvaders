@@ -1,6 +1,7 @@
 package Screens;
 
 import com.badlogic.gdx.Input;
+import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
@@ -34,6 +35,7 @@ public class Levelscreen extends ScalableGameScreen {
             }
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0) {
+            GameApp.addScreen("AnimalGame", new Game());
             GameApp.switchScreen("AnimalGame");
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {

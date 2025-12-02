@@ -7,7 +7,6 @@ import nl.saxion.gameapp.GameApp;
 public class Main {
     public static void main(String[] args) {
         // Add screens
-        GameApp.addScreen("AnimalGame", new Game());
         GameApp.addScreen("HomeMenu", new HomeMenu());
         GameApp.addScreen("Levelscreen", new Levelscreen());
         GameApp.addScreen("Optionscreen", new Optionscreen());
