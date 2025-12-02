@@ -1,6 +1,7 @@
 package nl.saxion.game.animalInvaders.game;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.gameapp.GameApp;
 
 public class Ship {
@@ -10,6 +11,7 @@ public class Ship {
     private int yPos;
     private int height;
     private int width;
+    private Rectangle hitbox;
     private Game game;
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
@@ -19,6 +21,7 @@ public class Ship {
         this.yPos = startingY;
         this.height = 40;
         this.width = 20;
+        this.hitbox = new Rectangle(xPos-width/2, yPos-height/2, width, height);
         this.game = game;
     }
 
@@ -46,6 +49,7 @@ public class Ship {
         if (GameApp.isKeyPressed(Input.Keys.DOWN) && yPos > 10 + height/2) {
             this.yPos -= (speed * GameApp.getDeltaTime());
         }
+        hitbox.setPosition(xPos, yPos);
     }
 
     public void damageTest() {
@@ -71,5 +75,9 @@ public class Ship {
     }
     public int getHealthPoints() {
         return healthpoints;
+    }
+
+    public Rectangle getHitbox() {
+        return hitbox;
     }
 }
