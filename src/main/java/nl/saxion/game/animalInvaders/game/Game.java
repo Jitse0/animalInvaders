@@ -18,6 +18,7 @@ public class Game extends ScalableGameScreen {
     private ArrayList<Bullet> bullets = new ArrayList<>();
     private ArrayList<Projectile> projectiles = new ArrayList<>();
     private ArrayList<Projectile> killedProjectiles = new ArrayList<>();
+    private ArrayList<Bullet> killedBullets = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Item> killedItems = new ArrayList<>();
 
@@ -35,18 +36,13 @@ public class Game extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
         //Veeg het scherm schoon voor het volgende frame
-
-        // voeg collission toe tussen bullet en ship
-        //if (GameApp.rectOverlap(,)){
-
-        //}
-
-
         GameApp.clearScreen();
         //Teken alle entities, denk aan de volgorde!
         killProjectiles();
         killItems();
+        killBullets();
 
+        //Teken alle entities, denk aan de volgorde!
         for (Enemy enemy : enemies) {
             enemy.drawEnemy();
         }
@@ -112,11 +108,18 @@ public class Game extends ScalableGameScreen {
     public void removeItem(Item item) {
         killedItems.add(item);
     }
+    public void removeBullet(Bullet bullet){killedBullets.add(bullet);}
+
 
 
     public void killProjectiles() {
         for (Projectile projectile : killedProjectiles) {
             projectiles.remove(projectile);
+        }
+    }
+    public void killBullets(){
+        for (Bullet bullet : killedBullets){
+            bullets.remove(bullet);
         }
     }
 

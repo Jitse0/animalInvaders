@@ -35,11 +35,11 @@ public class Bullet {
     }
 
     public void collideWithShip(){
-        game.getBullets();
-        for (Bullet bullet : game.getBullets()){
-            if (GameApp.rectCircleOverlap(game.getShip().getxPosShip(), ship.getyPosShip(), ship.getWidthShip(), ship.getHeightShip(), bullet.xPos, bullet.yPos, bullet.radius)){
-                ship.takeDamage(1);
+        //for (Bullet bullet : game.getBullets()){
+            if (GameApp.rectCircleOverlap(game.getShip().getxPosShip(), ship.getyPosShip(), ship.getWidthShip(), ship.getHeightShip(), this.xPos, this.yPos, this.radius)){
+                game.removeBullet(this);
+                ship.takeDamage(damage);
             }
-        }
+       // }
     }
 }
