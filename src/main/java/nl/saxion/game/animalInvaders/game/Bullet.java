@@ -35,6 +35,7 @@ public class Bullet {
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
+        hitbox.setPosition(xPos, yPos);
     }
 
     public void collideWithShip(){
