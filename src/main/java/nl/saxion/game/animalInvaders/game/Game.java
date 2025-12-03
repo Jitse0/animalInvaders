@@ -35,6 +35,13 @@ public class Game extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
         //Veeg het scherm schoon voor het volgende frame
+
+        // voeg collission toe tussen bullet en ship
+        //if (GameApp.rectOverlap(,)){
+
+        //}
+
+
         GameApp.clearScreen();
         //Teken alle entities, denk aan de volgorde!
         killProjectiles();
