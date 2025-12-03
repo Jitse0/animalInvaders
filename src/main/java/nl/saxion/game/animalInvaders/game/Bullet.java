@@ -18,11 +18,12 @@ public class Bullet {
         this.speed = speed;
         this.damage = damage;
         this.game = game;
-        this.ship = ship;
+        this.ship = game.getShip();
     }
 
     public void drawBullet() {
         this.move();
+        collideWithShip();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(100,100,100);
         GameApp.drawCircle(xPos, yPos, radius);
@@ -36,7 +37,7 @@ public class Bullet {
     public void collideWithShip(){
         game.getBullets();
         for (Bullet bullet : game.getBullets()){
-            if (GameApp.rectCircleOverlap(ship.getxPosShip(), ship.getyPosShip(), ship.getWidthShip(), ship.getHeightShip(), bullet.xPos, bullet.yPos, bullet.radius)){
+            if (GameApp.rectCircleOverlap(game.getShip().getxPosShip(), ship.getyPosShip(), ship.getWidthShip(), ship.getHeightShip(), bullet.xPos, bullet.yPos, bullet.radius)){
                 ship.takeDamage(1);
             }
         }

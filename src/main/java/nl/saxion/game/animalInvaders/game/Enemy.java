@@ -58,7 +58,7 @@ public class Enemy {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addBullet(new Bullet(xPos, yPos, 20, 1));
+            game.addBullet(new Bullet(xPos, yPos, 15, 20, 1, game));
             this.timer = this.fireRate;
         }
         else {
