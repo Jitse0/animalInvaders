@@ -61,12 +61,19 @@ public class Game extends ScalableGameScreen {
         }
         ship.drawShip();
         hud.draw();
+        checkGameOver();
         GameApp.endShapeRendering();
     }
 
     @Override
     public void hide() {
 
+    }
+
+    private void checkGameOver() {
+        if (enemies.isEmpty()) {
+            GameApp.switchScreen("Levelscreen");
+        }
     }
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
