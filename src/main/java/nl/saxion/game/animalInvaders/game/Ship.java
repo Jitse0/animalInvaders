@@ -13,6 +13,8 @@ public class Ship {
     private int width;
     private Rectangle hitbox;
     private Game game;
+    private float shootCooldown = 0.3f;
+    private float timeSinceShot = 0;
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
@@ -66,11 +68,20 @@ public class Ship {
         }
     }
 
+
     private void shoot(){
         //Voeg hier de code toe om te schieten
+        timeSinceShot += GameApp.getDeltaTime();
         if (GameApp.isKeyJustPressed(Input.Keys.SPACE)){
-        Projectile projectile = new Projectile(xPos,yPos,300, 1,this.game);
-        game.addProjectile(projectile);
+            Projectile projectile = new Projectile(xPos,yPos,600, 1,this.game);
+            game.addProjectile(projectile);
+            timeSinceShot = 0;
+        }
+        if (GameApp.isKeyPressed(Input.Keys.SPACE) && timeSinceShot >= shootCooldown){
+            Projectile projectile = new Projectile(xPos, yPos, 600, 1, this.game);
+            game.addProjectile(projectile);
+            timeSinceShot = 0;
+
         }
     }
     public int getHealthPoints() {
