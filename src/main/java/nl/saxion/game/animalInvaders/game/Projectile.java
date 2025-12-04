@@ -1,6 +1,5 @@
 package nl.saxion.game.animalInvaders.game;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.gameapp.GameApp;
 
@@ -29,6 +28,7 @@ public class Projectile {
     public void drawProjectile() {
         moveProjectile();
         hitEnemy();
+        hitBullet();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(255, 0, 0);
         GameApp.drawRoundedRectCentered(xPos, yPos, width, height, 5);
@@ -48,5 +48,19 @@ public class Projectile {
                 break;
             }
         }
+    }
+
+    public void hitBullet() {
+        for (Bullet bullet : game.getBullets()) {
+            if (GameApp.rectCircleOverlap(hitbox, bullet.getHitbox())) {
+                game.removeProjectile(this);
+                bullet.takeDamage();
+                break;
+            }
+        }
+    }
+
+    public Rectangle getHitbox() {
+        return hitbox;
     }
 }

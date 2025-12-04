@@ -1,5 +1,6 @@
 package nl.saxion.game.animalInvaders.game;
 
+import com.badlogic.gdx.math.Circle;
 import nl.saxion.gameapp.GameApp;
 
 public class Bullet {
@@ -8,6 +9,7 @@ public class Bullet {
     private int radius;
     private int speed;
     private int damage;
+    private Circle hitbox;
     private Game game;
     private Ship ship;
 
@@ -17,6 +19,7 @@ public class Bullet {
         this.radius = 10;
         this.speed = speed;
         this.damage = damage;
+        this.hitbox = new Circle(xPos, yPos, radius);
         this.game = game;
         this.ship = game.getShip();
     }
@@ -32,14 +35,22 @@ public class Bullet {
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
+        hitbox.setPosition(xPos, yPos);
     }
 
     public void collideWithShip(){
-        game.getBullets();
-        for (Bullet bullet : game.getBullets()){
-            if (GameApp.rectCircleOverlap(game.getShip().getxPosShip(), ship.getyPosShip(), ship.getWidthShip(), ship.getHeightShip(), bullet.xPos, bullet.yPos, bullet.radius)){
-                ship.takeDamage(1);
-            }
+        if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)){
+            game.removeBullet(this);
+            ship.takeDamage(damage);
         }
+    }
+
+    public void takeDamage() {
+        game.removeBullet(this);
+        //TODO implement score
+    }
+
+    public Circle getHitbox() {
+        return hitbox;
     }
 }
