@@ -13,8 +13,7 @@ public class Ship {
     private int width;
     private Rectangle hitbox;
     private Game game;
-    private float shootCooldown = 0.3f;
-    private float timeSinceShot = 0;
+
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
@@ -67,22 +66,60 @@ public class Ship {
             GameApp.switchScreen("Levelscreen");
         }
     }
+    private float shootCooldown = 0.3f;
+    private float timeSinceShot = 0;
+    private boolean overheated = false;
+    private float overheatTimer = 0;
+    private float overheatLevel = 0f;
+    private final float HEAT_PER_SECOND = 0.10f;
+    private final float COOL_PER_SECOND = 0.20f;
+    private final float OVERHEAT_DURATION = 5f;
 
-    private void shoot(){
-        //Voeg hier de code toe om te schieten
-        timeSinceShot += GameApp.getDeltaTime();
-        if (GameApp.isKeyJustPressed(Input.Keys.SPACE)){
-            Projectile projectile = new Projectile(xPos,yPos,600, 1,this.game);
-            game.addProjectile(projectile);
+    private void shoot() {
+
+        float delta = GameApp.getDeltaTime();
+
+        if (!overheated && GameApp.isKeyPressed(Input.Keys.SPACE)) {
+            overheatLevel += HEAT_PER_SECOND * delta;
+            if (overheatLevel > 1f) {
+                overheatLevel = 1f;
+                overheated = true;
+                overheatTimer = 0;
+            }
+        }
+
+        if (!GameApp.isKeyPressed(Input.Keys.SPACE) || overheated) {
+            overheatLevel -= COOL_PER_SECOND * delta;
+            if (overheatLevel < 0f) overheatLevel = 0f;
+        }
+
+        if (overheated) {
+            overheatTimer += delta;
+            if (overheatTimer >= OVERHEAT_DURATION) {
+                overheated = false;
+            }
+            return;
+        }
+
+        timeSinceShot += delta;
+
+        if (GameApp.isKeyJustPressed(Input.Keys.SPACE)) {
+            game.addProjectile(new Projectile(xPos, yPos, 600, 1, this.game));
             timeSinceShot = 0;
         }
-        if (GameApp.isKeyPressed(Input.Keys.SPACE) && timeSinceShot >= shootCooldown){
-            Projectile projectile = new Projectile(xPos, yPos, 600, 1, this.game);
-            game.addProjectile(projectile);
-            timeSinceShot = 0;
 
+        if (GameApp.isKeyPressed(Input.Keys.SPACE) && timeSinceShot >= shootCooldown) {
+            game.addProjectile(new Projectile(xPos, yPos, 600, 1, this.game));
+            timeSinceShot = 0;
         }
     }
+
+    public float getOverheatLevel() {
+        return overheatLevel;
+    }
+
+
+
     public int getHealthPoints() {
         return healthpoints;
     }
