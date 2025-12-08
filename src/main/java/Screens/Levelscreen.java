@@ -7,9 +7,11 @@ import nl.saxion.gameapp.screens.ScalableGameScreen;
 
 public class Levelscreen extends ScalableGameScreen {
     int selectedItem = 0;
+    private Highscorescreen highscorescreen;
 
-    public Levelscreen (){
+    public Levelscreen (Highscorescreen highscorescreen){
         super(1280, 720);
+        this.highscorescreen = highscorescreen;
     }
 
 
@@ -35,7 +37,7 @@ public class Levelscreen extends ScalableGameScreen {
             }
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0) {
-            GameApp.addScreen("AnimalGame", new Game());
+            GameApp.addScreen("AnimalGame", new Game(highscorescreen));
             GameApp.switchScreen("AnimalGame");
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
