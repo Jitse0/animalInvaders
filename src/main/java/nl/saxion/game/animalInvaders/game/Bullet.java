@@ -16,7 +16,7 @@ public class Bullet {
     public Bullet(int xPos, int yPos, int radius, int speed, int damage, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
-        this.radius = 10;
+        this.radius = radius;
         this.speed = speed;
         this.damage = damage;
         this.hitbox = new Circle(xPos, yPos, radius);
@@ -47,7 +47,7 @@ public class Bullet {
 
     public void takeDamage() {
         game.removeBullet(this);
-        //TODO implement score
+        game.addPoints(100);
     }
 
     public Circle getHitbox() {

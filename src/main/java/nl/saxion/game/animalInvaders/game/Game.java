@@ -1,6 +1,5 @@
 package nl.saxion.game.animalInvaders.game;
 
-import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.*;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 import nl.saxion.game.animalInvaders.game.HUD;
@@ -22,11 +21,6 @@ public class Game extends ScalableGameScreen {
     private ArrayList<Bullet> killedBullets = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Item> killedItems = new ArrayList<>();
-    private Pausemenu pauseMenu = new Pausemenu();
-
-
-
-
 
     public Game() {
         super(1280, 720);
@@ -41,12 +35,6 @@ public class Game extends ScalableGameScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        pauseMenu.update();
-
-        if (pauseMenu.isPaused()) {
-            pauseMenu.draw();
-            return;
-        }
         //Veeg het scherm schoon voor het volgende frame
         GameApp.clearScreen();
         //Teken alle entities, denk aan de volgorde!

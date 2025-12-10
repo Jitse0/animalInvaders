@@ -4,9 +4,10 @@ import nl.saxion.gameapp.GameApp;
 
 public class HUD {
     private Ship ship;
-
-    public HUD (Ship ship) {
+    private Game game;
+    public HUD (Ship ship, Game game) {
         this.ship = ship;
+        this.game = game;
     }
 
     public void draw() {
@@ -35,13 +36,11 @@ public class HUD {
 
         GameApp.startSpriteRendering();
 
+        GameApp.drawTextHorizontallyCentered("basic", "Score: " + game.getHighscore(), 50, 710, "white");
         GameApp.drawTextHorizontallyCentered("basic", "" + ship.getHealthPoints(), 40, 30, "white");
         GameApp.drawTexture("heart", 5, -5, 30, 60);
 
         GameApp.endSpriteRendering();
-
-
-
     }
-    
+
 }

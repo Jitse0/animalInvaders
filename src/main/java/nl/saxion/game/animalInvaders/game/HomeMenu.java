@@ -1,12 +1,12 @@
 package nl.saxion.game.animalInvaders.game;
 
+import Screens.Highscorescreen;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
 public class HomeMenu extends ScalableGameScreen {
     int selectedItem = 0;
-
     public HomeMenu (){
         super(1280, 720);
     }
@@ -38,7 +38,7 @@ public class HomeMenu extends ScalableGameScreen {
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0){
              GameApp.switchScreen("Levelscreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
-            GameApp.quit();
+            GameApp.switchScreen("Highscorescreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
             GameApp.switchScreen("Optionscreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 3) {
