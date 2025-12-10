@@ -24,7 +24,7 @@ public class Enemy {
         this.size = size;
         this.speed = speed;
         this.direction = direction;
-        this.fireRate = (int) (fireRate / GameApp.getDeltaTime());
+        this.fireRate =  (int) (fireRate / GameApp.getDeltaTime());
         this.timer = this.fireRate;
         this.hitbox = new Circle(xPos, yPos, size);
         this.game = game;

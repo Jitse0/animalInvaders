@@ -14,8 +14,8 @@ public class HUD {
         GameApp.addTexture("heart", "Photos/heart.png");
 
         GameApp.startShapeRenderingFilled();
-        GameApp.addColor("hudcolor", 30, 30, 30, 200);
-        GameApp.addColor("white", 255, 255, 255, 200);
+        GameApp.addColor("hudcolor", 30, 30, 30);
+        GameApp.addColor("white", 255, 255, 255);
         GameApp.drawRoundedRect(-10, -10, 205, 55, 10, "white");
         GameApp.drawRoundedRect(-10, -10, 200, 50, 10, "hudcolor");
         GameApp.drawRoundedRect(-10, 625, 340, 60 , 10, "white");

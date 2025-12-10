@@ -22,7 +22,7 @@ public class Ship {
         this.yPos = startingY;
         this.height = 40;
         this.width = 20;
-        this.hitbox = new Rectangle(xPos-width/2, yPos-height/2, width, height);
+        this.hitbox = new Rectangle(xPos - width / 2, yPos - height / 2, width, height);
         this.game = game;
     }
 
@@ -31,23 +31,23 @@ public class Ship {
         shoot();
         damageTest();
         GameApp.startShapeRenderingFilled();
-        GameApp.setColor(255,0,0);
+        GameApp.setColor(255, 0, 0);
         GameApp.drawRoundedRectCentered(xPos, yPos, 20, 40, 5);
         GameApp.endShapeRendering();
     }
 
     //Snelheid naar rechts en naar boven is lager dan naar links en naar beneden vanwege float > int casting, weet niet wat ik daar aan kan doen
     private void moveShip(int speed) {
-        if (GameApp.isKeyPressed(Input.Keys.LEFT) && xPos > width/2 + 10) {
+        if (GameApp.isKeyPressed(Input.Keys.LEFT) && xPos > width / 2 + 10) {
             this.xPos -= (speed * GameApp.getDeltaTime());
         }
-        if (GameApp.isKeyPressed(Input.Keys.RIGHT) && xPos < GameApp.getWorldWidth() - 10 - width/2) {
+        if (GameApp.isKeyPressed(Input.Keys.RIGHT) && xPos < GameApp.getWorldWidth() - 10 - width / 2) {
             this.xPos += (speed * GameApp.getDeltaTime());
         }
-        if (GameApp.isKeyPressed(Input.Keys.UP) && yPos < 710 - height/2) {
+        if (GameApp.isKeyPressed(Input.Keys.UP) && yPos < 710 - height / 2) {
             this.yPos += (speed * GameApp.getDeltaTime());
         }
-        if (GameApp.isKeyPressed(Input.Keys.DOWN) && yPos > 10 + height/2) {
+        if (GameApp.isKeyPressed(Input.Keys.DOWN) && yPos > 10 + height / 2) {
             this.yPos -= (speed * GameApp.getDeltaTime());
         }
         hitbox.setPosition(xPos, yPos);
@@ -66,6 +66,7 @@ public class Ship {
             GameApp.switchScreen("Levelscreen");
         }
     }
+
     private float shootCooldown = 0.3f;
     private float timeSinceShot = 0;
     private boolean overheated = false;
@@ -119,7 +120,6 @@ public class Ship {
     }
 
 
-
     public int getHealthPoints() {
         return healthpoints;
     }
@@ -127,16 +127,20 @@ public class Ship {
     public Rectangle getHitbox() {
         return hitbox;
     }
-    public int getxPosShip(){
+
+    public int getxPosShip() {
         return xPos;
     }
-    public int getyPosShip(){
+
+    public int getyPosShip() {
         return yPos;
     }
-    public int getWidthShip(){
+
+    public int getWidthShip() {
         return width;
     }
-    public int getHeightShip(){
+
+    public int getHeightShip() {
         return height;
     }
 
