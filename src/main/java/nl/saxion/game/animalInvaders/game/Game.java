@@ -162,4 +162,7 @@ public class Game extends ScalableGameScreen {
     public int getHighscore(){
         return highscore;
     }
+    public Highscorescreen getHighscorescreen(){
+        return highscorescreen;
+    }
 }

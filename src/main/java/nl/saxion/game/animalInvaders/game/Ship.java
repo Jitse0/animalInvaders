@@ -1,5 +1,7 @@
 package nl.saxion.game.animalInvaders.game;
 
+import Screens.Highscorescreen;
+import Screens.Scoreinputscreen;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.gameapp.GameApp;
@@ -13,6 +15,7 @@ public class Ship {
     private int width;
     private Rectangle hitbox;
     private Game game;
+    private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
 
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
@@ -63,7 +66,10 @@ public class Ship {
         this.healthpoints -= damage;
 
         if (this.healthpoints <= 0) {
-            GameApp.switchScreen("Levelscreen");
+            scoreinputscreen.setHighScore(game.getHighscore());
+            scoreinputscreen.setHighscoreScreen(game.getHighscorescreen());
+            GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
+            GameApp.switchScreen("Scoreinputscreen");
         }
     }
 
