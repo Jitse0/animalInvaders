@@ -1,4 +1,5 @@
 package nl.saxion.game.animalInvaders.game;
+import Screens.Highscorescreen;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
@@ -33,7 +34,7 @@ public class Pausemenu {
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0){
             paused = !paused;
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
-            GameApp.addScreen("AnimalGame", new Game());
+            GameApp.addScreen("AnimalGame", new Game(new Highscorescreen()));
             GameApp.switchScreen("AnimalGame");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
             GameApp.switchScreen("HomeMenu");

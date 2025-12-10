@@ -1,19 +1,18 @@
 package nl.saxion.game.animalInvaders.game;
 
+import Screens.Highscorescreen;
+import Screens.Scoreinputscreen;
 import nl.saxion.gameapp.*;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
-import nl.saxion.game.animalInvaders.game.HUD;
 
 
-
-import java.nio.channels.Pipe;
 import java.util.ArrayList;
 
 
 public class Game extends ScalableGameScreen {
 
     private Ship ship = new Ship(5, 640, 100, this);
-    private HUD hud = new HUD(ship);
+    private HUD hud = new HUD(ship, this);
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Bullet> bullets = new ArrayList<>();
     private ArrayList<Projectile> projectiles = new ArrayList<>();
@@ -21,10 +20,15 @@ public class Game extends ScalableGameScreen {
     private ArrayList<Bullet> killedBullets = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Item> killedItems = new ArrayList<>();
+    private int highscore = 0;
+    private ArrayList <String> highscoreNames = new ArrayList<>();
+    private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
+    private Highscorescreen highscorescreen;
+    private Pausemenu pauseMenu = new Pausemenu();
 
-    public Game() {
+    public Game(Highscorescreen highscorescreen) {
         super(1280, 720);
-
+        this.highscorescreen = highscorescreen;
     }
 
     @Override
@@ -35,9 +39,15 @@ public class Game extends ScalableGameScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+        pauseMenu.update();
+
+        if (pauseMenu.isPaused()) {
+            pauseMenu.draw();
+            return;
+        }
         //Veeg het scherm schoon voor het volgende frame
         GameApp.clearScreen();
-        //Teken alle entities, denk aan de volgorde!
+
         killProjectiles();
         killItems();
         killBullets();
@@ -55,6 +65,7 @@ public class Game extends ScalableGameScreen {
         for (Item item : items) {
             item.drawItem();
         }
+
         ship.drawShip();
         hud.draw();
         checkGameOver();
@@ -65,10 +76,17 @@ public class Game extends ScalableGameScreen {
     public void hide() {
 
     }
-
     private void checkGameOver() {
         if (enemies.isEmpty()) {
-            GameApp.switchScreen("Levelscreen");
+            //GameApp.switchScreen("Levelscreen");
+            scoreinputscreen.setHighScore(highscore);
+            scoreinputscreen.setHighscoreScreen(highscorescreen);
+            GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
+            GameApp.switchScreen("Scoreinputscreen");
+            //Hier moet hij naar scoreinput-screen en daarna terug naar main menu.
+            //Hierna naar highscore-screen
+            //Daarna naar homemenu-screen
+
         }
     }
     public ArrayList<Projectile> getProjectiles() {
@@ -122,10 +140,26 @@ public class Game extends ScalableGameScreen {
             bullets.remove(bullet);
         }
     }
+    public void addNameHighscores(String name){
+        highscoreNames.add(name);
+    }
+
+    public String showHighscoreNameList(String name ){
+        for (int i = 0; i < highscoreNames.size(); i++) {
+            name = highscoreNames.get(i);
+            System.out.println(name);
+        }return name;
+    }
 
     public void killItems() {
         for (Item item : killedItems) {
             items.remove(item);
         }
+    }
+    public void addPoints(int score){
+        highscore += score;
+    }
+    public int getHighscore(){
+        return highscore;
     }
 }
