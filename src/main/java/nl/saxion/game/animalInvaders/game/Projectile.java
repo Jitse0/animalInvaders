@@ -1,5 +1,11 @@
 package nl.saxion.game.animalInvaders.game;
 
+import Bullets.Egg;
+import Bullets.Milk;
+import Enemies.Chicken;
+import Enemies.Cow;
+import Bullets.Mud;
+import Enemies.Pig;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.gameapp.GameApp;
 
@@ -28,7 +34,9 @@ public class Projectile {
     public void drawProjectile() {
         moveProjectile();
         hitEnemy();
-        hitBullet();
+        hitEgg();
+        hitMilk();
+        hitMud();
         GameApp.startShapeRenderingFilled();
         GameApp.setColor(255, 0, 0);
         GameApp.drawRoundedRectCentered(xPos, yPos, width, height, 5);
@@ -41,20 +49,52 @@ public class Projectile {
     }
 
     public void hitEnemy(){
-        for (Enemy enemy : game.getEnemies()) {
-            if (GameApp.rectCircleOverlap(hitbox, enemy.getHitbox())) {
+        for (Chicken chicken : game.getEnemies()) {
+            if (GameApp.rectCircleOverlap(hitbox, chicken.getHitbox())) {
                 game.removeProjectile(this);
-                enemy.takeDamage(damage);
+                chicken.takeDamage(damage);
+                break;
+            }
+        }
+        for (Pig pig : game.getPigs()) {
+            if (GameApp.rectCircleOverlap(hitbox, pig.getHitbox())) {
+                game.removeProjectile(this);
+                pig.takeDamage(damage);
+                break;
+            }
+        }
+        for (Cow cow : game.getCows()) {
+            if (GameApp.rectCircleOverlap(hitbox, cow.getHitbox())) {
+                game.removeProjectile(this);
+                cow.takeDamage(damage);
                 break;
             }
         }
     }
 
-    public void hitBullet() {
-        for (Bullet bullet : game.getBullets()) {
-            if (GameApp.rectCircleOverlap(hitbox, bullet.getHitbox())) {
+    public void hitEgg() {
+        for (Egg egg : game.getEggs()) {
+            if (GameApp.rectCircleOverlap(hitbox, egg.getHitbox())) {
                 game.removeProjectile(this);
-                bullet.takeDamage();
+                egg.takeDamage();
+                break;
+            }
+        }
+    }
+    public void hitMilk() {
+        for (Milk milk : game.getMilks()) {
+            if (GameApp.rectCircleOverlap(hitbox, milk.getHitbox())) {
+                game.removeProjectile(this);
+                milk.takeDamage();
+                break;
+            }
+        }
+    }
+    public void hitMud() {
+        for (Mud mud : game.getMuds()) {
+            if (GameApp.rectCircleOverlap(hitbox, mud.getHitbox())) {
+                game.removeProjectile(this);
+                mud.takeDamage();
                 break;
             }
         }

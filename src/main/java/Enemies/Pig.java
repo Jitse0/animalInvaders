@@ -1,11 +1,12 @@
-package nl.saxion.game.animalInvaders.game;
+package Enemies;
 
+import Bullets.Mud;
 import com.badlogic.gdx.math.Circle;
+import Items.Bacon;
+import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
 
-import java.util.ArrayList;
-
-public class Enemy {
+public class Pig {
     private int healthpoints;
     private int xPos;
     private int yPos;
@@ -17,7 +18,7 @@ public class Enemy {
     private Circle hitbox;
     private Game game;
 
-    public Enemy(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
+    public Pig(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = healthpoints;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -30,16 +31,16 @@ public class Enemy {
         this.game = game;
     }
 
-    public void drawEnemy() {
-        moveEnemy(speed);
+    public void drawPig() {
+        movePig(speed);
         shoot();
         GameApp.startShapeRenderingFilled();
-        GameApp.setColor(0,255,0);
+        GameApp.setColor(255,255,0);
         GameApp.drawCircle(xPos, yPos, size);
         GameApp.endShapeRendering();
     }
 
-    public void moveEnemy(int speed) {
+    public void movePig(int speed) {
         if (direction.equals("right")) {
             if (xPos > GameApp.getWorldWidth() - 10) {
                 direction = "left";
@@ -58,7 +59,7 @@ public class Enemy {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addBullet(new Bullet(xPos, yPos, 15, 20, 1, game));
+            game.addMud(new Mud(xPos, yPos, 15, 20, 1, game));
             this.timer = this.fireRate;
         }
         else {
@@ -70,9 +71,9 @@ public class Enemy {
         healthpoints -= damage;
         game.addPoints(1500); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
         if (healthpoints <= 0) {
-            Item item = new Item(this.xPos, this.yPos, 5, this.game);
-            game.addItem(item);
-            game.removeEnemy(this);
+            Bacon bacon = new Bacon(this.xPos, this.yPos, 5, this.game);
+            game.addBacon(bacon);
+            game.removePigs(this);
         }
     }
 
@@ -92,3 +93,5 @@ public class Enemy {
         return hitbox;
     }
 }
+
+

@@ -1,9 +1,11 @@
-package nl.saxion.game.animalInvaders.game;
+package Bullets;
 
 import com.badlogic.gdx.math.Circle;
+import nl.saxion.game.animalInvaders.game.Game;
+import nl.saxion.game.animalInvaders.game.Ship;
 import nl.saxion.gameapp.GameApp;
 
-public class Bullet {
+public class Mud {
     private int xPos;
     private int yPos;
     private int radius;
@@ -13,7 +15,7 @@ public class Bullet {
     private Game game;
     private Ship ship;
 
-    public Bullet(int xPos, int yPos, int radius, int speed, int damage, Game game) {
+    public Mud(int xPos, int yPos, int radius, int speed, int damage, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.radius = radius;
@@ -24,11 +26,11 @@ public class Bullet {
         this.ship = game.getShip();
     }
 
-    public void drawBullet() {
+    public void drawMud() {
         this.move();
         collideWithShip();
         GameApp.startShapeRenderingFilled();
-        GameApp.setColor(100,100,100);
+        GameApp.setColor(300,300,300);
         GameApp.drawCircle(xPos, yPos, radius);
         GameApp.endShapeRendering();
     }
@@ -40,13 +42,13 @@ public class Bullet {
 
     public void collideWithShip(){
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)){
-            game.removeBullet(this);
+            game.removeMud(this);
             ship.takeDamage(damage);
         }
     }
 
     public void takeDamage() {
-        game.removeBullet(this);
+        game.removeMud(this);
         game.addPoints(100);
     }
 
@@ -54,3 +56,4 @@ public class Bullet {
         return hitbox;
     }
 }
+

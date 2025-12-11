@@ -1,5 +1,14 @@
 package nl.saxion.game.animalInvaders.game;
 
+import Bullets.Egg;
+import Bullets.Milk;
+import Enemies.Chicken;
+import Enemies.Cow;
+import Bullets.Mud;
+import Enemies.Pig;
+import Items.Bacon;
+import Items.Burger;
+import Items.Steak;
 import Screens.Highscorescreen;
 import Screens.Scoreinputscreen;
 import nl.saxion.gameapp.*;
@@ -13,13 +22,23 @@ public class Game extends ScalableGameScreen {
 
     private Ship ship = new Ship(5, 640, 100, this);
     private HUD hud = new HUD(ship, this);
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private ArrayList<Chicken> chickens = new ArrayList<>();
+    private ArrayList<Pig> pigs = new ArrayList<>();
+    private ArrayList<Cow> cows = new ArrayList<>();
+    private ArrayList<Egg> eggs = new ArrayList<>();
+    private ArrayList<Milk> milks = new ArrayList<>();
+    private ArrayList<Mud> muds = new ArrayList<>();
     private ArrayList<Projectile> projectiles = new ArrayList<>();
     private ArrayList<Projectile> killedProjectiles = new ArrayList<>();
-    private ArrayList<Bullet> killedBullets = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
-    private ArrayList<Item> killedItems = new ArrayList<>();
+    private ArrayList<Egg> killedEggs = new ArrayList<>();
+    private ArrayList<Milk> killedMilks = new ArrayList<>();
+    private ArrayList<Mud> killedMuds = new ArrayList<>();
+    private ArrayList<Burger> burgers = new ArrayList<>();
+    private ArrayList<Bacon> bacons = new ArrayList<>();
+    private ArrayList<Steak> steaks = new ArrayList<>();
+    private ArrayList<Burger> killedBurgers = new ArrayList<>();
+    private ArrayList<Bacon> killedBacons = new ArrayList<>();
+    private ArrayList<Steak> killedSteaks = new ArrayList<>();
     private int highscore = 0;
     private ArrayList <String> highscoreNames = new ArrayList<>();
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
@@ -33,7 +52,9 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void show() {
-        addEnemy(new Enemy(1, 640, 680, 20,100, "right", 1, this));
+        addEnemy(new Chicken(1, 640, 680, 20,100, "right", 1, this));
+        addPig(new Pig(1, 300, 680, 20,100, "right", 1, this));
+        addCow(new Cow(1, 100, 680, 20,100, "right", 1, this));
     }
 
     @Override
@@ -49,21 +70,43 @@ public class Game extends ScalableGameScreen {
         GameApp.clearScreen();
 
         killProjectiles();
-        killItems();
-        killBullets();
+        killBurgers();
+        killBacons();
+        killSteaks();
+        killEggs();
+        killMilks();
+        killMuds();
 
         //Teken alle entities, denk aan de volgorde!
-        for (Enemy enemy : enemies) {
-            enemy.drawEnemy();
+        for (Chicken chicken : chickens) {
+            chicken.drawChicken();
         }
-        for (Bullet bullet : bullets) {
-            bullet.drawBullet();
+        for (Pig pig : pigs) {
+            pig.drawPig();
+        }
+        for (Cow cow : cows) {
+            cow.drawCow();
+        }
+        for (Egg egg : eggs) {
+            egg.drawEgg();
+        }
+        for (Milk milk : milks) {
+            milk.drawMilk();
+        }
+        for (Mud mud : muds) {
+            mud.drawMud();
         }
         for (Projectile projectile : projectiles) {
             projectile.drawProjectile();
         }
-        for (Item item : items) {
-            item.drawItem();
+        for (Burger burger : burgers) {
+            burger.drawBurger();
+        }
+        for (Bacon bacon : bacons) {
+            bacon.drawBacon();
+        }
+        for (Steak steak : steaks) {
+            steak.drawSteak();
         }
 
         ship.drawShip();
@@ -77,7 +120,7 @@ public class Game extends ScalableGameScreen {
 
     }
     private void checkGameOver() {
-        if (enemies.isEmpty()) {
+        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
             //GameApp.switchScreen("Levelscreen");
             scoreinputscreen.setHighScore(highscore);
             scoreinputscreen.setHighscoreScreen(highscorescreen);
@@ -92,13 +135,27 @@ public class Game extends ScalableGameScreen {
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
     }
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
+    public ArrayList<Egg> getEggs() {
+        return eggs;
+    }
+    public ArrayList<Milk> getMilks() {
+        return milks;
+    }
+    public ArrayList<Mud> getMuds() {
+        return muds;
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
+
+    public ArrayList<Chicken> getEnemies() {
+        return chickens;
     }
+    public ArrayList<Pig> getPigs() {
+        return pigs;
+    }
+    public ArrayList<Cow> getCows() {
+        return cows;
+    }
+
 
     public Ship getShip() {
         return ship;
@@ -107,26 +164,58 @@ public class Game extends ScalableGameScreen {
     public void addProjectile(Projectile projectile) {
         projectiles.add(projectile);
     }
-    public void addBullet(Bullet bullet) {
-        bullets.add(bullet);
+    public void addEgg(Egg egg) {
+        eggs.add(egg);
     }
-    public void addItem(Item item) {
-        items.add(item);
+    public void addMud(Mud mud) {
+        muds.add(mud);
     }
-    public void addEnemy(Enemy enemy) {
-        enemies.add(enemy);
+    public void addMilk(Milk milk) {
+        milks.add(milk);
+    }
+    public void addBurger(Burger burger) {
+        burgers.add(burger);
+    }
+    public void addBacon(Bacon bacon) {
+        bacons.add(bacon);
+    }
+    public void addSteak(Steak steak) {
+        steaks.add(steak);
+    }
+    public void addEnemy(Chicken chicken) {
+        chickens.add(chicken);
+    }
+    public void addPig(Pig pig) {
+        pigs.add(pig);
+    }
+    public void addCow(Cow cow) {
+        cows.add(cow);
     }
 
     public void removeProjectile(Projectile projectile) {
         killedProjectiles.add(projectile);
     }
-    public void removeEnemy(Enemy enemy) {
-        enemies.remove(enemy);
+    public void removeChicken(Chicken chicken) {
+        chickens.remove(chicken);
     }
-    public void removeItem(Item item) {
-        killedItems.add(item);
+    public void removePigs(Pig pig) {
+        pigs.remove(pig);
     }
-    public void removeBullet(Bullet bullet){killedBullets.add(bullet);}
+    public void removeCows(Cow cow) {
+        cows.remove(cow);
+    }
+    public void removeBurger(Burger burger) {
+        killedBurgers.add(burger);
+    }
+    public void removeBacon(Bacon bacon) {
+        killedBacons.add(bacon);
+    }
+    public void removeSteak(Steak steak) {killedSteaks.add(steak);}
+    public void removeEgg(Egg egg){killedEggs.add(egg);}
+    public void removeMilk(Milk milk){killedMilks.add(milk);}
+    public void removeMud(Mud mud){killedMuds.add(mud);}
+
+
 
 
 
@@ -135,9 +224,19 @@ public class Game extends ScalableGameScreen {
             projectiles.remove(projectile);
         }
     }
-    public void killBullets(){
-        for (Bullet bullet : killedBullets){
-            bullets.remove(bullet);
+    public void killEggs(){
+        for (Egg egg : killedEggs){
+            eggs.remove(egg);
+        }
+    }
+    public void killMilks(){
+        for (Milk milk : killedMilks){
+            milks.remove(milk);
+        }
+    }
+    public void killMuds(){
+        for (Mud mud : killedMuds){
+            muds.remove(mud);
         }
     }
     public void addNameHighscores(String name){
@@ -151,9 +250,19 @@ public class Game extends ScalableGameScreen {
         }return name;
     }
 
-    public void killItems() {
-        for (Item item : killedItems) {
-            items.remove(item);
+    public void killBurgers() {
+        for (Burger burger : killedBurgers) {
+            burgers.remove(burger);
+        }
+    }
+    public void killBacons() {
+        for (Bacon bacon : killedBacons) {
+            bacons.remove(bacon);
+        }
+    }
+    public void killSteaks() {
+        for (Steak steak : killedSteaks) {
+            steaks.remove(steak);
         }
     }
     public void addPoints(int score){

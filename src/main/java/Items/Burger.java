@@ -1,11 +1,10 @@
-package nl.saxion.game.animalInvaders.game;
+package Items;
 
 import com.badlogic.gdx.math.Circle;
+import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
 
-import java.util.Random;
-
-public class Item {
+public class Burger {
     private int xPos;
     private int yPos;
     private int xVel;
@@ -14,7 +13,7 @@ public class Item {
     private Circle hitbox;
     private Game game;
 
-    public Item(int xPos, int yPos, int size, Game game) {
+    public Burger(int xPos, int yPos, int size, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
@@ -24,26 +23,26 @@ public class Item {
         this.xVel = (int ) (-15 + Math.random() * 30);
     }
 
-    public void drawItem() {
-        pickUpItem();
-        moveItem();
+    public void drawBurger() {
+        pickUpBurger();
+        moveBurger();
         GameApp.startShapeRenderingFilled();
-        GameApp.setColor(255,255,0);
+        GameApp.setColor(0,255,0);
         GameApp.drawCircle(xPos, yPos, size);
         GameApp.endShapeRendering();
     }
 
-    public void moveItem () {
+    public void moveBurger () {
         this.xPos += xVel * GameApp.getDeltaTime();
         this.yPos += yVel * GameApp.getDeltaTime();
         hitbox.setPosition(xPos, yPos);
     }
 
-    public void pickUpItem() {
+    public void pickUpBurger() {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
             //add effect
 
-            game.removeItem(this);
+            game.removeBurger(this);
         }
     }
 }
