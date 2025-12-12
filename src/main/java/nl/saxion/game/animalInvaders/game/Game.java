@@ -113,6 +113,7 @@ public class Game extends ScalableGameScreen {
         hud.draw();
         checkGameOver();
         GameApp.endShapeRendering();
+        GameApp.updateAnimation("ChickenFly");
     }
 
     @Override

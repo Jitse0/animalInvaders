@@ -29,15 +29,23 @@ public class Chicken {
         this.timer = this.fireRate;
         this.hitbox = new Circle(xPos, yPos, size);
         this.game = game;
+
+        GameApp.addSpriteSheet("Chicken", "animations/pixilart-sprite.png",36,24);
+        GameApp.addAnimationFromSpritesheet("ChickenFly", "Chicken", 0.1f, true);
     }
 
     public void drawChicken() {
         moveChicken(speed);
         shoot();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(0,255,0);
-        GameApp.drawCircle(xPos, yPos, size);
-        GameApp.endShapeRendering();
+        //GameApp.startShapeRenderingFilled();
+        //GameApp.setColor(0,255,0);
+        //GameApp.drawTexture("Chicken", xPos, yPos);
+        //GameApp.drawCircle(xPos, yPos, size);
+        //GameApp.endShapeRendering();
+
+        GameApp.startSpriteRendering();
+        GameApp.drawAnimation("ChickenFly", xPos, yPos, (36*4), (24*4));
+        GameApp.endSpriteRendering();
     }
 
     public void moveChicken(int speed) {
