@@ -23,12 +23,14 @@ public class Projectile {
     public Projectile(int xPos, int yPos, int speed, int damage, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
-        this.width = 10;
-        this.height = 20;
+        this.width = 32;
+        this.height = 32;
         this.speed = speed;
         this.damage = damage;
         this.hitbox = new Rectangle(xPos, yPos, width, height);
         this.game = game;
+
+        GameApp.addTexture("Laser", "Photos/laser.png" );
     }
 
     public void drawProjectile() {
@@ -37,10 +39,14 @@ public class Projectile {
         hitEgg();
         hitMilk();
         hitMud();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(255, 0, 0);
-        GameApp.drawRoundedRectCentered(xPos, yPos, width, height, 5);
-        GameApp.endShapeRendering();
+//        GameApp.startShapeRenderingFilled();
+//        GameApp.setColor(255, 0, 0);
+//        GameApp.drawRoundedRectCentered(xPos, yPos, width, height, 5);
+//        GameApp.endShapeRendering();
+
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("Laser", xPos - width/2, yPos, 32, 32);
+        GameApp.endSpriteRendering();
     }
 
     public void moveProjectile() {

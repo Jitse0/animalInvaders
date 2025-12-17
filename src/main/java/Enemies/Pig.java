@@ -29,15 +29,17 @@ public class Pig {
         this.timer = this.fireRate;
         this.hitbox = new Circle(xPos, yPos, size);
         this.game = game;
+
+        GameApp.addSpriteSheet("Pig", "animations/Pig.png",25,37);
+        GameApp.addAnimationFromSpritesheet("Pigmoving", "Pig", 0.1f, true);
     }
 
     public void drawPig() {
         movePig(speed);
         shoot();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(255,255,0);
-        GameApp.drawCircle(xPos, yPos, size);
-        GameApp.endShapeRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawAnimation("Pigmoving", xPos, yPos, (25 * 4), (37 *4));
+        GameApp.endSpriteRendering();
     }
 
     public void movePig(int speed) {

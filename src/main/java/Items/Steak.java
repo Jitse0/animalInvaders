@@ -21,15 +21,15 @@ public class Steak {
         this.hitbox = new Circle(xPos, yPos, size);
         this.yVel = -30;
         this.xVel = (int ) (-15 + Math.random() * 30);
+        GameApp.addTexture("Steak", "Photos/Steak.png");
     }
 
     public void drawSteak() {
         pickUpSteak();
         moveSteak();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(0,0,255);
-        GameApp.drawCircle(xPos, yPos, size);
-        GameApp.endShapeRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("Steak", xPos, yPos, (37), (21));
+        GameApp.endSpriteRendering();
     }
 
     public void moveSteak () {

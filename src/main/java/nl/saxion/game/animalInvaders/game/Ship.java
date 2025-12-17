@@ -27,16 +27,17 @@ public class Ship {
         this.width = 20;
         this.hitbox = new Rectangle(xPos - width / 2, yPos - height / 2, width, height);
         this.game = game;
+        GameApp.addSpriteSheet("Ship", "animations/ship.png",21,25);
+        GameApp.addAnimationFromSpritesheet("ShipFly", "Ship", 0.1f, true);
     }
 
     public void drawShip() {
         moveShip(speed);
         shoot();
         damageTest();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(255, 0, 0);
-        GameApp.drawRoundedRectCentered(xPos, yPos, 20, 40, 5);
-        GameApp.endShapeRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawAnimation("ShipFly", xPos - 63, yPos - 75, (21 * 6), (25 *6));
+        GameApp.endSpriteRendering();
     }
 
     //Snelheid naar rechts en naar boven is lager dan naar links en naar beneden vanwege float > int casting, weet niet wat ik daar aan kan doen
