@@ -56,21 +56,21 @@ public class Projectile {
 
     public void hitEnemy(){
         for (Chicken chicken : game.getEnemies()) {
-            if (GameApp.rectCircleOverlap(hitbox, chicken.getHitbox())) {
+            if (GameApp.rectOverlap(hitbox, chicken.getHitbox())) {
                 game.removeProjectile(this);
                 chicken.takeDamage(damage);
                 break;
             }
         }
         for (Pig pig : game.getPigs()) {
-            if (GameApp.rectCircleOverlap(hitbox, pig.getHitbox())) {
+            if (GameApp.rectOverlap(hitbox, pig.getHitbox())) {
                 game.removeProjectile(this);
                 pig.takeDamage(damage);
                 break;
             }
         }
         for (Cow cow : game.getCows()) {
-            if (GameApp.rectCircleOverlap(hitbox, cow.getHitbox())) {
+            if (GameApp.rectOverlap(hitbox, cow.getHitbox())) {
                 game.removeProjectile(this);
                 cow.takeDamage(damage);
                 break;
@@ -89,7 +89,7 @@ public class Projectile {
     }
     public void hitMilk() {
         for (Milk milk : game.getMilks()) {
-            if (GameApp.rectCircleOverlap(hitbox, milk.getHitbox())) {
+            if (GameApp.rectOverlap(hitbox, milk.getHitbox())) {
                 game.removeProjectile(this);
                 milk.takeDamage();
                 break;
@@ -98,7 +98,7 @@ public class Projectile {
     }
     public void hitMud() {
         for (Mud mud : game.getMuds()) {
-            if (GameApp.rectCircleOverlap(hitbox, mud.getHitbox())) {
+            if (GameApp.rectOverlap(hitbox, mud.getHitbox())) {
                 game.removeProjectile(this);
                 mud.takeDamage();
                 break;

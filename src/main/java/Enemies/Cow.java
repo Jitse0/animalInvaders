@@ -1,6 +1,7 @@
 package Enemies;
 
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import Bullets.Milk;
 import Items.Steak;
@@ -15,7 +16,7 @@ public class Cow {
     private String direction;
     private int fireRate;
     private int timer;
-    private Circle hitbox;
+    private Rectangle hitbox;
     private Game game;
 
 
@@ -29,7 +30,7 @@ public class Cow {
         this.direction = direction;
         this.fireRate =  (int) (fireRate / GameApp.getDeltaTime());
         this.timer = this.fireRate;
-        this.hitbox = new Circle(xPos, yPos, size);
+        this.hitbox = new Rectangle(xPos, yPos, 30 *4, 35 *4);
         this.game = game;
 
         GameApp.addSpriteSheet("Cow", "animations/Cow.png",30,35);
@@ -93,7 +94,7 @@ public class Cow {
         return size;
     }
 
-    public Circle getHitbox() {
+    public Rectangle getHitbox() {
         return hitbox;
     }
 }

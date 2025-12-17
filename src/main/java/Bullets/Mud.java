@@ -1,6 +1,7 @@
 package Bullets;
 
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.game.animalInvaders.game.Ship;
 import nl.saxion.gameapp.GameApp;
@@ -11,7 +12,7 @@ public class Mud {
     private int radius;
     private int speed;
     private int damage;
-    private Circle hitbox;
+    private Rectangle hitbox;
     private Game game;
     private Ship ship;
 
@@ -21,7 +22,7 @@ public class Mud {
         this.radius = radius;
         this.speed = speed;
         this.damage = damage;
-        this.hitbox = new Circle(xPos, yPos, radius);
+        this.hitbox = new Rectangle(xPos, yPos, 37, 21);
         this.game = game;
         this.ship = game.getShip();
         GameApp.addTexture("Mud", "Photos/Mud.png");
@@ -41,7 +42,7 @@ public class Mud {
     }
 
     public void collideWithShip(){
-        if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)){
+        if (GameApp.rectOverlap(game.getShip().getHitbox(), hitbox)){
             game.removeMud(this);
             ship.takeDamage(damage);
         }
@@ -52,7 +53,7 @@ public class Mud {
         game.addPoints(100);
     }
 
-    public Circle getHitbox() {
+    public Rectangle getHitbox() {
         return hitbox;
     }
 }

@@ -1,6 +1,7 @@
 package Bullets;
 
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.game.animalInvaders.game.Ship;
 import nl.saxion.gameapp.GameApp;

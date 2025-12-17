@@ -16,6 +16,9 @@ public class Ship {
     private Rectangle hitbox;
     private Game game;
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
+    private float blinkTimer = 0f;
+    private boolean visible = true;
+    private float blinkSwitchTimer = 0f;
 
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
@@ -35,9 +38,22 @@ public class Ship {
         moveShip(speed);
         shoot();
         damageTest();
-        GameApp.startSpriteRendering();
-        GameApp.drawAnimation("ShipFly", xPos - 63, yPos - 75, (21 * 6), (25 *6));
-        GameApp.endSpriteRendering();
+        if (blinkTimer > 0) {
+            blinkTimer -= GameApp.getDeltaTime();
+            blinkSwitchTimer -= GameApp.getDeltaTime();
+
+            if (blinkSwitchTimer <= 0) {
+                visible = !visible;
+                blinkSwitchTimer = 0.15f;
+            }
+        } else {
+            visible = true;
+        }
+        if (visible) {
+            GameApp.startSpriteRendering();
+            GameApp.drawAnimation("ShipFly", xPos - 63, yPos - 75, 21 * 6, 25 * 6);
+            GameApp.endSpriteRendering();
+        }
     }
 
     //Snelheid naar rechts en naar boven is lager dan naar links en naar beneden vanwege float > int casting, weet niet wat ik daar aan kan doen
@@ -60,12 +76,13 @@ public class Ship {
     public void damageTest() {
         if (GameApp.isKeyJustPressed(Input.Keys.U)) {
             takeDamage(1);
+
         }
     }
 
     public void takeDamage(int damage) {
         this.healthpoints -= damage;
-
+        blinkTimer = 2f;
         if (this.healthpoints <= 0) {
             scoreinputscreen.setHighScore(game.getHighscore());
             scoreinputscreen.setHighscoreScreen(game.getHighscorescreen());

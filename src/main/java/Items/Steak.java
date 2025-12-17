@@ -1,6 +1,7 @@
 package Items;
 
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
 
@@ -10,7 +11,7 @@ public class Steak {
     private int xVel;
     private int yVel;
     private int size;
-    private Circle hitbox;
+    private Rectangle hitbox;
     private Game game;
 
     public Steak(int xPos, int yPos, int size, Game game) {
@@ -18,7 +19,7 @@ public class Steak {
         this.yPos = yPos;
         this.game = game;
         this.size = size;
-        this.hitbox = new Circle(xPos, yPos, size);
+        this.hitbox = new Rectangle(xPos, yPos, 37, 21);
         this.yVel = -30;
         this.xVel = (int ) (-15 + Math.random() * 30);
         GameApp.addTexture("Steak", "Photos/Steak.png");
@@ -39,7 +40,7 @@ public class Steak {
     }
 
     public void pickUpSteak() {
-        if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
+        if (GameApp.rectOverlap(game.getShip().getHitbox(), hitbox)) {
             //add effect
 
             game.removeSteak(this);
