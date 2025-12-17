@@ -17,6 +17,8 @@ public class Chicken {
     private int timer;
     private Circle hitbox;
     private Game game;
+    private int width;
+    private int height;
 
     public Chicken(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = healthpoints;
@@ -29,6 +31,8 @@ public class Chicken {
         this.timer = this.fireRate;
         this.hitbox = new Circle(xPos, yPos, size);
         this.game = game;
+        this.width = 36;
+        this.height = 24;
 
         GameApp.addSpriteSheet("Chicken", "animations/pixilart-sprite.png",36,24);
         GameApp.addAnimationFromSpritesheet("ChickenFly", "Chicken", 0.1f, true);
@@ -37,14 +41,9 @@ public class Chicken {
     public void drawChicken() {
         moveChicken(speed);
         shoot();
-        //GameApp.startShapeRenderingFilled();
-        //GameApp.setColor(0,255,0);
-        //GameApp.drawTexture("Chicken", xPos, yPos);
-        //GameApp.drawCircle(xPos, yPos, size);
-        //GameApp.endShapeRendering();
 
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("ChickenFly", xPos, yPos, (36*4), (24*4));
+        GameApp.drawAnimation("ChickenFly", xPos, yPos, (width*4), (height*4));
         GameApp.endSpriteRendering();
     }
 

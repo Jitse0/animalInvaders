@@ -14,6 +14,8 @@ public class Egg {
     private Circle hitbox;
     private Game game;
     private Ship ship;
+    private int width;
+    private int height;
 
     public Egg(int xPos, int yPos, int radius, int speed, int damage, Game game) {
         this.xPos = xPos;
@@ -24,15 +26,29 @@ public class Egg {
         this.hitbox = new Circle(xPos, yPos, radius);
         this.game = game;
         this.ship = game.getShip();
+        this.width = 19;
+        this.height = 18;
+
+        GameApp.addSpriteSheet("Egg", "animations/bullet_egg.png",19,18);
+        GameApp.addAnimationFromSpritesheet("EggThrow", "Egg", 0.075f, true);
     }
+
 
     public void drawEgg() {
         this.move();
+        GameApp.startSpriteRendering();
+        GameApp.drawAnimation("EggThrow", xPos-((width*4)/2), yPos-((height*4)/2), (width*4), (height*4));
+
+        GameApp.endSpriteRendering();
         collideWithShip();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(100,100,100);
-        GameApp.drawCircle(xPos, yPos, radius);
-        GameApp.endShapeRendering();
+
+
+
+        //GameApp.startShapeRenderingFilled();
+        //GameApp.setColor(100,100,100);
+        //GameApp.drawCircle(xPos, yPos, radius);
+        //GameApp.endShapeRendering();
+
     }
 
     public void move() {
