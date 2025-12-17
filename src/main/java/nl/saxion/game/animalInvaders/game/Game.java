@@ -114,6 +114,9 @@ public class Game extends ScalableGameScreen {
         checkGameOver();
         GameApp.endShapeRendering();
         GameApp.updateAnimation("ChickenFly");
+        GameApp.updateAnimation("Pigmoving");
+        GameApp.updateAnimation("Cowmoving");
+        GameApp.updateAnimation("ShipFly");
     }
 
     @Override

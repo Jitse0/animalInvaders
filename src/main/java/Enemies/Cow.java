@@ -18,6 +18,8 @@ public class Cow {
     private Circle hitbox;
     private Game game;
 
+
+
     public Cow(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = healthpoints;
         this.xPos = xPos;
@@ -29,15 +31,17 @@ public class Cow {
         this.timer = this.fireRate;
         this.hitbox = new Circle(xPos, yPos, size);
         this.game = game;
+
+        GameApp.addSpriteSheet("Cow", "animations/Cow.png",30,35);
+        GameApp.addAnimationFromSpritesheet("Cowmoving", "Cow", 0.1f, true);
     }
 
     public void drawCow() {
         moveCow(speed);
         shoot();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(0,0,255);
-        GameApp.drawCircle(xPos, yPos, size);
-        GameApp.endShapeRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawAnimation("Cowmoving", xPos, yPos, (30 * 4), (35 * 4));
+        GameApp.endSpriteRendering();
     }
 
     public void moveCow(int speed) {

@@ -24,15 +24,15 @@ public class Mud {
         this.hitbox = new Circle(xPos, yPos, radius);
         this.game = game;
         this.ship = game.getShip();
+        GameApp.addTexture("Mud", "Photos/Mud.png");
     }
 
     public void drawMud() {
         this.move();
         collideWithShip();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(300,300,300);
-        GameApp.drawCircle(xPos, yPos, radius);
-        GameApp.endShapeRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("Mud", xPos, yPos, (37), (21));
+        GameApp.endSpriteRendering();
     }
 
     public void move() {
