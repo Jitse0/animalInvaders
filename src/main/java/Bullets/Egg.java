@@ -38,7 +38,7 @@ public class Egg {
     public void drawEgg() {
         this.move();
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("EggThrow", xPos-((width*4)/2), yPos-((height*4)/2), (width*4), (height*4));
+        GameApp.drawAnimation("EggThrow", xPos-((width*2)/2), yPos-((height*2)/2), (width*2), (height*2));
 
         GameApp.endSpriteRendering();
         collideWithShip();
