@@ -26,10 +26,16 @@ public class Bacon {
     public void drawBacon() {
         pickUpBacon();
         moveBacon();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(255,255,0);
-        GameApp.drawCircle(xPos, yPos, size);
-        GameApp.endShapeRendering();
+
+        GameApp.addTexture("Bacon", "Photos/bacon_pig.png");
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("Bacon", xPos,yPos, 16*2, 16*2);
+        GameApp.endSpriteRendering();
+
+//        GameApp.startShapeRenderingFilled();
+//        GameApp.setColor(255,255,0);
+//        GameApp.drawCircle(xPos, yPos, size);
+//        GameApp.endShapeRendering();
     }
 
     public void moveBacon () {
