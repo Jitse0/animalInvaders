@@ -117,7 +117,6 @@ public class Game extends ScalableGameScreen {
         if (!eggs.isEmpty()){
             GameApp.updateAnimation("EggThrow");
         }
-
         GameApp.updateAnimation("Pigmoving");
         GameApp.updateAnimation("Cowmoving");
         GameApp.updateAnimation("ShipFly");

@@ -15,6 +15,7 @@ public class Milk {
     private Game game;
     private Ship ship;
 
+
     public Milk(int xPos, int yPos, int radius, int speed, int damage, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -29,10 +30,11 @@ public class Milk {
     public void drawMilk() {
         this.move();
         collideWithShip();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(200,200,200);
-        GameApp.drawCircle(xPos, yPos, radius);
-        GameApp.endShapeRendering();
+        GameApp.addTexture("Milk", "Photos/Pak_milk.png");
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("Milk", xPos,yPos, 16*4, 19*4);
+        GameApp.endSpriteRendering();
+
     }
 
     public void move() {

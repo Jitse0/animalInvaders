@@ -26,10 +26,11 @@ public class Burger {
     public void drawBurger() {
         pickUpBurger();
         moveBurger();
-        GameApp.startShapeRenderingFilled();
-        GameApp.setColor(0,255,0);
-        GameApp.drawCircle(xPos, yPos, size);
-        GameApp.endShapeRendering();
+
+        GameApp.addTexture("ChickenLeg", "Photos/Chicken_leg4.png");
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("ChickenLeg", xPos,yPos, 16*3, 16*3);
+        GameApp.endSpriteRendering();
     }
 
     public void moveBurger () {
