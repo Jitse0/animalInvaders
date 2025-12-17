@@ -66,7 +66,7 @@ public class Chicken {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addEgg(new Egg(xPos, yPos, 15, 20, 1, game));
+            game.addEgg(new Egg(xPos, yPos, 30, 20, 1, game));
             this.timer = this.fireRate;
         }
         else {
