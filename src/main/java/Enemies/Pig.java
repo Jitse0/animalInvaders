@@ -1,7 +1,6 @@
 package Enemies;
 
 import Bullets.Mud;
-import com.badlogic.gdx.math.Circle;
 import Items.Bacon;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
@@ -63,7 +62,7 @@ public class Pig {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addMud(new Mud(xPos, yPos, 15, 20, 1, game));
+            game.addBullet(new Mud(xPos, yPos, 15, 20, 1, game));
             this.timer = this.fireRate;
         }
         else {
@@ -76,8 +75,8 @@ public class Pig {
         game.addPoints(1500); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
         if (healthpoints <= 0) {
             Bacon bacon = new Bacon(this.xPos, this.yPos, 5, this.game);
-            game.addBacon(bacon);
-            game.removePigs(this);
+            game.addItem(bacon);
+            game.removeEnemy(this);
             GameApp.playSound("PigOink", 1f);
         }
     }

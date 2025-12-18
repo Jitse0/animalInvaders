@@ -1,6 +1,5 @@
 package Enemies;
 
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import Bullets.Milk;
@@ -65,7 +64,7 @@ public class Cow {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addMilk(new Milk(xPos, yPos, 15, 20, 1, game));
+            game.addBullet(new Milk(xPos, yPos, 15, 20, 1, game));
             this.timer = this.fireRate;
         }
         else {
@@ -78,8 +77,8 @@ public class Cow {
         game.addPoints(1500); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
         if (healthpoints <= 0) {
             Steak steak = new Steak(this.xPos, this.yPos, 5, this.game);
-            game.addSteak(steak);
-            game.removeCows(this);
+            game.addItem(steak);
+            game.removeEnemy(this);
             GameApp.playSound("CowMooing", 1f);
         }
     }

@@ -48,7 +48,7 @@ public class Bacon {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
             //add effect
 
-            game.removeBacon(this);
+            game.removeItem(this);
         }
     }
 }
