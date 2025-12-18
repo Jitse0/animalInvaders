@@ -32,6 +32,7 @@ public class Ship {
         this.game = game;
         GameApp.addSpriteSheet("Ship", "animations/ship.png",21,25);
         GameApp.addAnimationFromSpritesheet("ShipFly", "Ship", 0.1f, true);
+        GameApp.addSound("Laser", "audio/laser.mp3");
     }
 
     public void drawShip() {
@@ -130,11 +131,13 @@ public class Ship {
 
         if (GameApp.isKeyJustPressed(Input.Keys.SPACE)) {
             game.addProjectile(new Projectile(xPos, yPos, 600, 1, this.game));
+            GameApp.playSound("Laser", 1f);
             timeSinceShot = 0;
         }
 
         if (GameApp.isKeyPressed(Input.Keys.SPACE) && timeSinceShot >= shootCooldown) {
             game.addProjectile(new Projectile(xPos, yPos, 600, 1, this.game));
+            GameApp.playSound("Laser", 1f);
             timeSinceShot = 0;
         }
     }
@@ -142,7 +145,6 @@ public class Ship {
     public float getOverheatLevel() {
         return overheatLevel;
     }
-
 
     public int getHealthPoints() {
         return healthpoints;

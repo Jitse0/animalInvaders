@@ -37,6 +37,7 @@ public class Chicken {
 
         GameApp.addSpriteSheet("Chicken", "animations/pixilart-sprite.png",36,24);
         GameApp.addAnimationFromSpritesheet("ChickenFly", "Chicken", 0.1f, true);
+        GameApp.addSound("ChickenNoise", "audio/chicken-noise.mp3");
     }
 
     public void drawChicken() {
@@ -82,6 +83,7 @@ public class Chicken {
             Burger burger = new Burger(this.xPos, this.yPos, 5, this.game);
             game.addBurger(burger);
             game.removeChicken(this);
+            GameApp.playSound("ChickenNoise", 1f);
 
         }
     }

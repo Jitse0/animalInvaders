@@ -35,6 +35,7 @@ public class Cow {
 
         GameApp.addSpriteSheet("Cow", "animations/Cow.png",30,35);
         GameApp.addAnimationFromSpritesheet("Cowmoving", "Cow", 0.1f, true);
+        GameApp.addSound("CowMooing", "audio/cow-mooing.mp3");
     }
 
     public void drawCow() {
@@ -79,6 +80,7 @@ public class Cow {
             Steak steak = new Steak(this.xPos, this.yPos, 5, this.game);
             game.addSteak(steak);
             game.removeCows(this);
+            GameApp.playSound("CowMooing", 1f);
         }
     }
 

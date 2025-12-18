@@ -33,6 +33,7 @@ public class Pig {
 
         GameApp.addSpriteSheet("Pig", "animations/Pig.png",25,37);
         GameApp.addAnimationFromSpritesheet("Pigmoving", "Pig", 0.1f, true);
+        GameApp.addSound("PigOink", "audio/pig-oink.mp3");
     }
 
     public void drawPig() {
@@ -77,6 +78,7 @@ public class Pig {
             Bacon bacon = new Bacon(this.xPos, this.yPos, 5, this.game);
             game.addBacon(bacon);
             game.removePigs(this);
+            GameApp.playSound("PigOink", 1f);
         }
     }
 
