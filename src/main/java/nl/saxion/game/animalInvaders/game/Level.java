@@ -36,6 +36,5 @@ public class Level {
         game.addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, game));
     }
     private void level2() {
-        game.addEnemy(new Boss());
     }
 }
