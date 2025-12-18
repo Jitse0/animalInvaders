@@ -113,6 +113,10 @@ public class Game extends ScalableGameScreen {
         hud.draw();
         checkGameOver();
         GameApp.endShapeRendering();
+        updateAnimations();
+    }
+
+    private void updateAnimations() {
         GameApp.updateAnimation("ChickenFly");
         if (!eggs.isEmpty()){
             GameApp.updateAnimation("EggThrow");
@@ -120,6 +124,9 @@ public class Game extends ScalableGameScreen {
         GameApp.updateAnimation("Pigmoving");
         GameApp.updateAnimation("Cowmoving");
         GameApp.updateAnimation("ShipFly");
+        if (ship.getHealthPoints() <= 0) {
+            GameApp.updateAnimation("ShipExplodes");
+        }
     }
 
     @Override
