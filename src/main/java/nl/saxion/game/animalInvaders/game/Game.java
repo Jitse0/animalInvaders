@@ -46,6 +46,7 @@ public class Game extends ScalableGameScreen {
     private Pausemenu pauseMenu = new Pausemenu();
     private Level level;
 
+
     public Game(Highscorescreen highscorescreen) {
         super(1280, 720);
         this.highscorescreen = highscorescreen;
@@ -56,6 +57,8 @@ public class Game extends ScalableGameScreen {
         addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
         addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
         addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
+        GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
+        GameApp.playMusic("GameMusic8-bit", true, 0.6f);
     }
 
     @Override
@@ -126,7 +129,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void hide() {
-
+    GameApp.disposeMusic("GameMusic8-bit");
     }
     private void checkGameOver() {
         if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
@@ -135,6 +138,7 @@ public class Game extends ScalableGameScreen {
             scoreinputscreen.setHighscoreScreen(highscorescreen);
             GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
             GameApp.switchScreen("Scoreinputscreen");
+
             //Hier moet hij naar scoreinput-screen en daarna terug naar main menu.
             //Hierna naar highscore-screen
             //Daarna naar homemenu-screen
