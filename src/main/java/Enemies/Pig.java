@@ -3,6 +3,7 @@ package Enemies;
 import Bullets.Mud;
 import com.badlogic.gdx.math.Circle;
 import Items.Bacon;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
 
@@ -15,7 +16,7 @@ public class Pig {
     private String direction;
     private int fireRate;
     private int timer;
-    private Circle hitbox;
+    private Rectangle hitbox;
     private Game game;
 
     public Pig(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
@@ -27,7 +28,7 @@ public class Pig {
         this.direction = direction;
         this.fireRate =  (int) (fireRate / GameApp.getDeltaTime());
         this.timer = this.fireRate;
-        this.hitbox = new Circle(xPos, yPos, size);
+        this.hitbox = new Rectangle(xPos, yPos, 25 *4, 37 *4);
         this.game = game;
 
         GameApp.addSpriteSheet("Pig", "animations/Pig.png",25,37);
@@ -91,7 +92,7 @@ public class Pig {
         return size;
     }
 
-    public Circle getHitbox() {
+    public Rectangle getHitbox() {
         return hitbox;
     }
 }

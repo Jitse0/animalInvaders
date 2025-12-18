@@ -2,6 +2,7 @@ package Enemies;
 
 import com.badlogic.gdx.math.Circle;
 import Bullets.Egg;
+import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import Items.Burger;
 import nl.saxion.gameapp.GameApp;
@@ -15,7 +16,7 @@ public class Chicken {
     private String direction;
     private int fireRate;
     private int timer;
-    private Circle hitbox;
+    private Rectangle hitbox;
     private Game game;
     private int width;
     private int height;
@@ -29,7 +30,7 @@ public class Chicken {
         this.direction = direction;
         this.fireRate =  (int) (fireRate / GameApp.getDeltaTime());
         this.timer = this.fireRate;
-        this.hitbox = new Circle(xPos, yPos, size);
+        this.hitbox = new Rectangle(xPos, yPos, 36 * 4, 24 * 4);
         this.game = game;
         this.width = 36;
         this.height = 24;
@@ -97,7 +98,7 @@ public class Chicken {
         return size;
     }
 
-    public Circle getHitbox() {
+    public Rectangle getHitbox() {
         return hitbox;
     }
 }
