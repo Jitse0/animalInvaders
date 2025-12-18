@@ -19,7 +19,7 @@ public class Ship {
     private float blinkTimer = 0f;
     private boolean visible = true;
     private float blinkSwitchTimer = 0f;
-
+    private int deathTimer = 60;
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
@@ -32,6 +32,8 @@ public class Ship {
         this.game = game;
         GameApp.addSpriteSheet("Ship", "animations/ship.png",21,25);
         GameApp.addAnimationFromSpritesheet("ShipFly", "Ship", 0.1f, true);
+        GameApp.addSpriteSheet("ShipExplosion", "animations/Ship_explode.png", 30, 32);
+        GameApp.addAnimationFromSpritesheet("ShipExplodes", "ShipExplosion", 0.3f, false);
         GameApp.addSound("Laser", "audio/laser.mp3");
     }
 
@@ -50,11 +52,15 @@ public class Ship {
         } else {
             visible = true;
         }
+        if (healthpoints <= 0) {
+            visible = false;
+        }
         if (visible) {
             GameApp.startSpriteRendering();
-            GameApp.drawAnimation("ShipFly", xPos - 63, yPos - 75, 21 * 6, 25 * 6);
+            GameApp.drawAnimation("ShipFly", xPos - 21*3, yPos - 25*3, 21 * 6, 25 * 6);
             GameApp.endSpriteRendering();
         }
+        death();
     }
 
     //Snelheid naar rechts en naar boven is lager dan naar links en naar beneden vanwege float > int casting, weet niet wat ik daar aan kan doen
@@ -81,14 +87,25 @@ public class Ship {
         }
     }
 
+
     public void takeDamage(int damage) {
         this.healthpoints -= damage;
         blinkTimer = 2f;
+    }
+
+    private void death() {
         if (this.healthpoints <= 0) {
+            speed = 0;
             scoreinputscreen.setHighScore(game.getHighscore());
             scoreinputscreen.setHighscoreScreen(game.getHighscorescreen());
-            GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
-            GameApp.switchScreen("Scoreinputscreen");
+            GameApp.startSpriteRendering();
+            GameApp.drawAnimation("ShipExplodes", xPos - 30*3, yPos - 32*3, 30 * 6, 32 * 6);
+            GameApp.endSpriteRendering();
+            deathTimer--;
+            if (deathTimer <= 0) {
+                GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
+                GameApp.switchScreen("Scoreinputscreen");
+            }
         }
     }
 
@@ -102,6 +119,9 @@ public class Ship {
     private final float OVERHEAT_DURATION = 5f;
 
     private void shoot() {
+        if (healthpoints <=0) {
+            return;
+        }
 
         float delta = GameApp.getDeltaTime();
 
