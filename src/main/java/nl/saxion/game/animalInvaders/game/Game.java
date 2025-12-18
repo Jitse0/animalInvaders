@@ -106,7 +106,6 @@ public class Game extends ScalableGameScreen {
         for (Steak steak : steaks) {
             steak.drawSteak();
         }
-
         ship.drawShip();
         hud.draw();
         checkGameOver();
