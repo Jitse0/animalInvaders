@@ -37,7 +37,7 @@ public class Levelscreen extends ScalableGameScreen {
             }
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0) {
-            GameApp.addScreen("AnimalGame", new Game(highscorescreen));
+            GameApp.addScreen("AnimalGame", new Game(highscorescreen, 1));
             GameApp.switchScreen("AnimalGame");
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {

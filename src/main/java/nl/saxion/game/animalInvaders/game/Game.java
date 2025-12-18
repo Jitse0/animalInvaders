@@ -2,6 +2,7 @@ package nl.saxion.game.animalInvaders.game;
 
 import Bullets.Egg;
 import Bullets.Milk;
+import Enemies.Boss;
 import Enemies.Chicken;
 import Enemies.Cow;
 import Bullets.Mud;
@@ -22,6 +23,7 @@ public class Game extends ScalableGameScreen {
 
     private Ship ship = new Ship(5, 640, 100, this);
     private HUD hud = new HUD(ship, this);
+    private Boss boss;
     private ArrayList<Chicken> chickens = new ArrayList<>();
     private ArrayList<Pig> pigs = new ArrayList<>();
     private ArrayList<Cow> cows = new ArrayList<>();
@@ -44,16 +46,17 @@ public class Game extends ScalableGameScreen {
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
     private Highscorescreen highscorescreen;
     private Pausemenu pauseMenu = new Pausemenu();
-    private Level level;
+    private int level;
 
-    public Game(Highscorescreen highscorescreen) {
+    public Game(Highscorescreen highscorescreen, int level) {
         super(1280, 720);
         this.highscorescreen = highscorescreen;
+        this.level = level;
     }
 
     @Override
     public void show() {
-
+        addEnemy(new Boss(800, 500, this));
     }
 
     @Override
@@ -80,6 +83,7 @@ public class Game extends ScalableGameScreen {
         for (Cow cow : cows) {
             cow.drawCow();
         }
+        boss.drawBoss();
         for (Egg egg : eggs) {
             egg.drawEgg();
         }
@@ -110,14 +114,24 @@ public class Game extends ScalableGameScreen {
     }
 
     private void updateAnimations() {
-        GameApp.updateAnimation("ChickenFly");
+        if (!chickens.isEmpty()) {
+            GameApp.updateAnimation("ChickenFly");
+        }
+
         if (!eggs.isEmpty()){
             GameApp.updateAnimation("EggThrow");
         }
-        GameApp.updateAnimation("Pigmoving");
-        GameApp.updateAnimation("Cowmoving");
-        GameApp.updateAnimation("ShipFly");
-        if (ship.getHealthPoints() <= 0) {
+
+        if (!pigs.isEmpty()) {
+            GameApp.updateAnimation("Pigmoving");
+        }
+        if (!cows.isEmpty()) {
+            GameApp.updateAnimation("Cowmoving");
+        }
+        if (ship != null && ship.getHealthPoints() > 0) {
+            GameApp.updateAnimation("ShipFly");
+        }
+        if (ship != null &&   ship.getHealthPoints() <= 0) {
             GameApp.updateAnimation("ShipExplodes");
         }
     }
@@ -127,16 +141,11 @@ public class Game extends ScalableGameScreen {
 
     }
     private void checkGameOver() {
-        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
-            //GameApp.switchScreen("Levelscreen");
+        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty() && boss == null) {
             scoreinputscreen.setHighScore(highscore);
             scoreinputscreen.setHighscoreScreen(highscorescreen);
             GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
             GameApp.switchScreen("Scoreinputscreen");
-            //Hier moet hij naar scoreinput-screen en daarna terug naar main menu.
-            //Hierna naar highscore-screen
-            //Daarna naar homemenu-screen
-
         }
     }
     public ArrayList<Projectile> getProjectiles() {
@@ -161,6 +170,10 @@ public class Game extends ScalableGameScreen {
     }
     public ArrayList<Cow> getCows() {
         return cows;
+    }
+
+    public Boss getBoss() {
+        return boss;
     }
 
 
@@ -198,6 +211,9 @@ public class Game extends ScalableGameScreen {
     public void addEnemy(Cow cow) {
         cows.add(cow);
     }
+    public void addEnemy(Boss boss) {
+        this.boss = boss;
+    }
 
     public void removeProjectile(Projectile projectile) {
         killedProjectiles.add(projectile);
@@ -210,6 +226,10 @@ public class Game extends ScalableGameScreen {
     }
     public void removeEnemy(Cow cow) {
         cows.remove(cow);
+    }
+
+    public void removeEnemy(Boss boss) {
+        this.boss = null;
     }
     public void removeItem(Burger burger) {
         killedBurgers.add(burger);
