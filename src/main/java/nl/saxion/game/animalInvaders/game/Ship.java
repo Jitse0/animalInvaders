@@ -35,6 +35,7 @@ public class Ship {
         GameApp.addSpriteSheet("ShipExplosion", "animations/Ship_explode.png", 30, 32);
         GameApp.addAnimationFromSpritesheet("ShipExplodes", "ShipExplosion", 0.3f, false);
         GameApp.addSound("Laser", "audio/laser.mp3");
+        GameApp.addSound("explotion", "audio/explosion.mp3");
     }
 
     public void drawShip() {
@@ -100,6 +101,7 @@ public class Ship {
             scoreinputscreen.setHighscoreScreen(game.getHighscorescreen());
             GameApp.startSpriteRendering();
             GameApp.drawAnimation("ShipExplodes", xPos - 30*3, yPos - 32*3, 30 * 6, 32 * 6);
+            GameApp.playSound("explotion", 1f);
             GameApp.endSpriteRendering();
             deathTimer--;
             if (deathTimer <= 0) {
