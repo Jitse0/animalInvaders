@@ -44,6 +44,7 @@ public class Game extends ScalableGameScreen {
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
     private Highscorescreen highscorescreen;
     private Pausemenu pauseMenu = new Pausemenu();
+    private Level level;
 
     public Game(Highscorescreen highscorescreen) {
         super(1280, 720);
@@ -53,8 +54,8 @@ public class Game extends ScalableGameScreen {
     @Override
     public void show() {
         addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
-        addPig(new Pig(1, 300, 680, 20,100, "right", 1, this));
-        addCow(new Cow(1, 100, 680, 20,100, "right", 1, this));
+        addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
+        addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
     }
 
     @Override
@@ -69,13 +70,7 @@ public class Game extends ScalableGameScreen {
         //Veeg het scherm schoon voor het volgende frame
         GameApp.clearScreen();
 
-        killProjectiles();
-        killBurgers();
-        killBacons();
-        killSteaks();
-        killEggs();
-        killMilks();
-        killMuds();
+        kill();
 
         //Teken alle entities, denk aan de volgorde!
         for (Chicken chicken : chickens) {
@@ -160,7 +155,7 @@ public class Game extends ScalableGameScreen {
     }
 
 
-    public ArrayList<Chicken> getEnemies() {
+    public ArrayList<Chicken> getChickens() {
         return chickens;
     }
     public ArrayList<Pig> getPigs() {
@@ -178,103 +173,76 @@ public class Game extends ScalableGameScreen {
     public void addProjectile(Projectile projectile) {
         projectiles.add(projectile);
     }
-    public void addEgg(Egg egg) {
+    public void addBullet(Egg egg) {
         eggs.add(egg);
     }
-    public void addMud(Mud mud) {
+    public void addBullet(Mud mud) {
         muds.add(mud);
     }
-    public void addMilk(Milk milk) {
+    public void addBullet(Milk milk) {
         milks.add(milk);
     }
-    public void addBurger(Burger burger) {
+    public void addItem(Burger burger) {
         burgers.add(burger);
     }
-    public void addBacon(Bacon bacon) {
+    public void addItem(Bacon bacon) {
         bacons.add(bacon);
     }
-    public void addSteak(Steak steak) {
+    public void addItem(Steak steak) {
         steaks.add(steak);
     }
     public void addEnemy(Chicken chicken) {
         chickens.add(chicken);
     }
-    public void addPig(Pig pig) {
+    public void addEnemy(Pig pig) {
         pigs.add(pig);
     }
-    public void addCow(Cow cow) {
+    public void addEnemy(Cow cow) {
         cows.add(cow);
     }
 
     public void removeProjectile(Projectile projectile) {
         killedProjectiles.add(projectile);
     }
-    public void removeChicken(Chicken chicken) {
+    public void removeEnemy(Chicken chicken) {
         chickens.remove(chicken);
     }
-    public void removePigs(Pig pig) {
+    public void removeEnemy(Pig pig) {
         pigs.remove(pig);
     }
-    public void removeCows(Cow cow) {
+    public void removeEnemy(Cow cow) {
         cows.remove(cow);
     }
-    public void removeBurger(Burger burger) {
+    public void removeItem(Burger burger) {
         killedBurgers.add(burger);
     }
-    public void removeBacon(Bacon bacon) {
+    public void removeItem(Bacon bacon) {
         killedBacons.add(bacon);
     }
-    public void removeSteak(Steak steak) {killedSteaks.add(steak);}
-    public void removeEgg(Egg egg){killedEggs.add(egg);}
-    public void removeMilk(Milk milk){killedMilks.add(milk);}
-    public void removeMud(Mud mud){killedMuds.add(mud);}
+    public void removeItem(Steak steak) {killedSteaks.add(steak);}
+    public void removeBullet(Egg egg){killedEggs.add(egg);}
+    public void removeBullet(Milk milk){killedMilks.add(milk);}
+    public void removeBullet(Mud mud){killedMuds.add(mud);}
 
-
-
-
-
-    public void killProjectiles() {
+    public void kill() {
         for (Projectile projectile : killedProjectiles) {
             projectiles.remove(projectile);
         }
-    }
-    public void killEggs(){
         for (Egg egg : killedEggs){
             eggs.remove(egg);
         }
-    }
-    public void killMilks(){
         for (Milk milk : killedMilks){
             milks.remove(milk);
         }
-    }
-    public void killMuds(){
         for (Mud mud : killedMuds){
             muds.remove(mud);
         }
-    }
-    public void addNameHighscores(String name){
-        highscoreNames.add(name);
-    }
-
-    public String showHighscoreNameList(String name ){
-        for (int i = 0; i < highscoreNames.size(); i++) {
-            name = highscoreNames.get(i);
-            System.out.println(name);
-        }return name;
-    }
-
-    public void killBurgers() {
         for (Burger burger : killedBurgers) {
             burgers.remove(burger);
         }
-    }
-    public void killBacons() {
         for (Bacon bacon : killedBacons) {
             bacons.remove(bacon);
         }
-    }
-    public void killSteaks() {
         for (Steak steak : killedSteaks) {
             steaks.remove(steak);
         }

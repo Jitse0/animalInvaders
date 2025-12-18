@@ -1,6 +1,5 @@
 package Items;
 
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
@@ -43,7 +42,7 @@ public class Steak {
         if (GameApp.rectOverlap(game.getShip().getHitbox(), hitbox)) {
             //add effect
 
-            game.removeSteak(this);
+            game.removeItem(this);
         }
     }
 }

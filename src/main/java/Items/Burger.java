@@ -43,7 +43,7 @@ public class Burger {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
             //add effect
 
-            game.removeBurger(this);
+            game.removeItem(this);
         }
     }
 }
