@@ -56,6 +56,11 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void show() {
+        addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
+        addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
+        addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
+        GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
+        GameApp.playMusic("GameMusic8-bit", true, 0.6f);
         addEnemy(new Boss(800, 500, this));
     }
 
@@ -105,7 +110,6 @@ public class Game extends ScalableGameScreen {
         for (Steak steak : steaks) {
             steak.drawSteak();
         }
-
         ship.drawShip();
         hud.draw();
         checkGameOver();
@@ -138,10 +142,11 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void hide() {
-
+    GameApp.disposeMusic("GameMusic8-bit");
     }
     private void checkGameOver() {
-        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty() && boss == null) {
+        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
+            //GameApp.switchScreen("Levelscreen");
             scoreinputscreen.setHighScore(highscore);
             scoreinputscreen.setHighscoreScreen(highscorescreen);
             GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
