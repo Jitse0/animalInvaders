@@ -57,11 +57,13 @@ public class Game extends ScalableGameScreen {
         addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
         GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
         GameApp.playMusic("GameMusic8-bit", true, 0.6f);
+        GameApp.addTexture("Background", "Photos/space_background.png");
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
+
         pauseMenu.update();
 
         if (pauseMenu.isPaused()) {
@@ -78,6 +80,11 @@ public class Game extends ScalableGameScreen {
         killEggs();
         killMilks();
         killMuds();
+
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture("Background", 0, 0, getWorldWidth(), getWorldHeight());
+        GameApp.endSpriteRendering();
+
 
         //Teken alle entities, denk aan de volgorde!
         for (Chicken chicken : chickens) {
