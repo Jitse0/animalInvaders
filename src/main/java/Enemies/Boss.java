@@ -26,19 +26,23 @@ public class Boss {
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
+
         GameApp.addTexture("Mech", "Photos/mech.png");
         GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
-        GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, true);
+        GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, false);
     }
 
     public void drawBoss() {
         moveBoss(speed);
-        GameApp.startSpriteRendering();
-        GameApp.drawTexture("Mech", xPos - width/2, yPos - height/2, width, height);
-        GameApp.endSpriteRendering();
-        GameApp.startSpriteRendering();
-        GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
-        GameApp.endSpriteRendering();
+        if (!firing) {
+            GameApp.startSpriteRendering();
+            GameApp.drawTexture("Mech", xPos - width/2, yPos - height/2, width, height);
+            GameApp.endSpriteRendering();
+        }
+
+//        GameApp.startSpriteRendering();
+//        GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
+//        GameApp.endSpriteRendering();
         shoot();
     }
 
@@ -60,7 +64,7 @@ public class Boss {
     }
 
     public void shoot() {
-            while (firing) {
+        while (firing) {
             GameApp.startSpriteRendering();
             GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
             GameApp.endSpriteRendering();
@@ -72,7 +76,7 @@ public class Boss {
         }
         if (this.timer <= 0) {
             //Center Cannon
-            game.addBullet(new Egg(xPos, yPos - height/2, 30, 20, 1, game));
+            game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
             this.timer = this.fireRate;
             firing = true;
 
