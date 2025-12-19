@@ -60,7 +60,6 @@ public class Game extends ScalableGameScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-
         pauseMenu.update();
 
         if (pauseMenu.isPaused()) {
@@ -121,7 +120,6 @@ public class Game extends ScalableGameScreen {
         GameApp.updateAnimation("Pigmoving");
         GameApp.updateAnimation("Cowmoving");
         GameApp.updateAnimation("ShipFly");
-
     }
 
     @Override

@@ -55,7 +55,7 @@ public class Projectile {
     }
 
     public void hitEnemy(){
-        for (Chicken chicken : game.getEnemies()) {
+        for (Chicken chicken : game.getChickens()) {
             if (GameApp.rectOverlap(hitbox, chicken.getHitbox())) {
                 game.removeProjectile(this);
                 chicken.takeDamage(damage);

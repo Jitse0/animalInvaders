@@ -1,6 +1,5 @@
 package Bullets;
 
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.game.animalInvaders.game.Ship;
@@ -31,9 +30,9 @@ public class Milk {
     public void drawMilk() {
         this.move();
         collideWithShip();
-        GameApp.addTexture("Milk", "Photos/Pak_milk.png");
+        GameApp.addTexture("Milk", "Photos/Milk_bottle.png");
         GameApp.startSpriteRendering();
-        GameApp.drawTexture("Milk", xPos,yPos, 16*2, 19*2);
+        GameApp.drawTexture("Milk", xPos,yPos, (int)(756*0.04), (int)(1568*0.04));
         GameApp.endSpriteRendering();
 
     }
@@ -45,13 +44,13 @@ public class Milk {
 
     public void collideWithShip(){
         if (GameApp.rectOverlap(game.getShip().getHitbox(), hitbox)){
-            game.removeMilk(this);
+            game.removeBullet(this);
             ship.takeDamage(damage);
         }
     }
 
     public void takeDamage() {
-        game.removeMilk(this);
+        game.removeBullet(this);
         game.addPoints(100);
     }
 

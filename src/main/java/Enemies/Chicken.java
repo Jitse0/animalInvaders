@@ -1,6 +1,5 @@
 package Enemies;
 
-import com.badlogic.gdx.math.Circle;
 import Bullets.Egg;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
@@ -37,6 +36,7 @@ public class Chicken {
 
         GameApp.addSpriteSheet("Chicken", "animations/pixilart-sprite.png",36,24);
         GameApp.addAnimationFromSpritesheet("ChickenFly", "Chicken", 0.1f, true);
+        GameApp.addSound("ChickenNoise", "audio/chicken-noise.mp3");
     }
 
     public void drawChicken() {
@@ -67,7 +67,7 @@ public class Chicken {
     public void shoot() {
         if (this.timer <= 0) {
             //Schieten
-            game.addEgg(new Egg(xPos, yPos, 30, 20, 1, game));
+            game.addBullet(new Egg(xPos, yPos, 30, 20, 1, game));
             this.timer = this.fireRate;
         }
         else {
@@ -80,8 +80,9 @@ public class Chicken {
         game.addPoints(1500); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
         if (healthpoints <= 0) {
             Burger burger = new Burger(this.xPos, this.yPos, 5, this.game);
-            game.addBurger(burger);
-            game.removeChicken(this);
+            game.addItem(burger);
+            game.removeEnemy(this);
+            GameApp.playSound("ChickenNoise", 1f);
 
         }
     }
