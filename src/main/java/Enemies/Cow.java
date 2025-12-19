@@ -41,7 +41,7 @@ public class Cow {
         moveCow(speed);
         shoot();
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Cowmoving", xPos, yPos, (30 * 4), (35 * 4));
+        GameApp.drawAnimation("Cowmoving", xPos - 30*2, yPos - 35*2, (30 * 4), (35 * 4));
         GameApp.endSpriteRendering();
     }
 

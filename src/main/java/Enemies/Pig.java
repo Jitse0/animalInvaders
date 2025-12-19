@@ -39,7 +39,7 @@ public class Pig {
         movePig(speed);
         shoot();
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Pigmoving", xPos, yPos, (25 * 4), (37 *4));
+        GameApp.drawAnimation("Pigmoving", xPos - 25*2, yPos - 37*2, (25 * 4), (37 *4));
         GameApp.endSpriteRendering();
     }
 
