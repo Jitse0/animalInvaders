@@ -55,6 +55,8 @@ public class Game extends ScalableGameScreen {
         addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
         addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
         addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
+        GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
+        GameApp.playMusic("GameMusic8-bit", true, 0.6f);
     }
 
     @Override
@@ -124,7 +126,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void hide() {
-
+        GameApp.disposeMusic("GameMusic8-bit");
     }
     private void checkGameOver() {
         if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
