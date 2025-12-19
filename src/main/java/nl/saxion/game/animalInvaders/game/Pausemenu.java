@@ -34,7 +34,7 @@ public class Pausemenu {
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0){
             paused = !paused;
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
-            GameApp.addScreen("AnimalGame", new Game(new Highscorescreen()));
+            GameApp.addScreen("AnimalGame", new Game(new Highscorescreen(), 1));
             GameApp.switchScreen("AnimalGame");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
             GameApp.switchScreen("HomeMenu");
