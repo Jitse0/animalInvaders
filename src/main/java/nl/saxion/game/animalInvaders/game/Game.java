@@ -153,7 +153,7 @@ public class Game extends ScalableGameScreen {
     }
 
 
-    public ArrayList<Chicken> getEnemies() {
+    public ArrayList<Chicken> getChickens() {
         return chickens;
     }
     public ArrayList<Pig> getPigs() {
