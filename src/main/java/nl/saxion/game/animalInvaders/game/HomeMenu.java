@@ -16,6 +16,8 @@ public class HomeMenu extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addSpriteSheet("titleSheet", "animations/title.png",800,196);
+        GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, false);
 
     }
 
@@ -49,7 +51,10 @@ public class HomeMenu extends ScalableGameScreen {
 
         GameApp.startSpriteRendering();
 
+
         GameApp.drawTexture("background", 0, 0, getWorldWidth(), getWorldHeight());
+        GameApp.drawAnimation("titleAnim", (getWorldWidth() - 800) / 2, 400, 800, 196);
+        GameApp.updateAnimation("titleAnim");
 
         if (selectedItem == 0){
             GameApp.drawTextHorizontallyCentered("basic", "Play", getWorldWidth()/2, 350, "white" );

@@ -44,8 +44,6 @@ public class Game extends ScalableGameScreen {
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
     private Highscorescreen highscorescreen;
     private Pausemenu pauseMenu = new Pausemenu();
-    private Level level;
-
 
     public Game(Highscorescreen highscorescreen) {
         super(1280, 720);
@@ -55,10 +53,8 @@ public class Game extends ScalableGameScreen {
     @Override
     public void show() {
         addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
-        addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
-        addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
-        GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
-        GameApp.playMusic("GameMusic8-bit", true, 0.6f);
+        addPig(new Pig(1, 300, 680, 20,100, "right", 1, this));
+        addCow(new Cow(1, 100, 680, 20,100, "right", 1, this));
     }
 
     @Override
@@ -73,7 +69,13 @@ public class Game extends ScalableGameScreen {
         //Veeg het scherm schoon voor het volgende frame
         GameApp.clearScreen();
 
-        kill();
+        killProjectiles();
+        killBurgers();
+        killBacons();
+        killSteaks();
+        killEggs();
+        killMilks();
+        killMuds();
 
         //Teken alle entities, denk aan de volgorde!
         for (Chicken chicken : chickens) {
@@ -106,14 +108,11 @@ public class Game extends ScalableGameScreen {
         for (Steak steak : steaks) {
             steak.drawSteak();
         }
+
         ship.drawShip();
         hud.draw();
         checkGameOver();
         GameApp.endShapeRendering();
-        updateAnimations();
-    }
-
-    private void updateAnimations() {
         GameApp.updateAnimation("ChickenFly");
         if (!eggs.isEmpty()){
             GameApp.updateAnimation("EggThrow");
@@ -121,14 +120,11 @@ public class Game extends ScalableGameScreen {
         GameApp.updateAnimation("Pigmoving");
         GameApp.updateAnimation("Cowmoving");
         GameApp.updateAnimation("ShipFly");
-        if (ship.getHealthPoints() <= 0) {
-            GameApp.updateAnimation("ShipExplodes");
-        }
     }
 
     @Override
     public void hide() {
-    GameApp.disposeMusic("GameMusic8-bit");
+
     }
     private void checkGameOver() {
         if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
@@ -137,7 +133,6 @@ public class Game extends ScalableGameScreen {
             scoreinputscreen.setHighscoreScreen(highscorescreen);
             GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
             GameApp.switchScreen("Scoreinputscreen");
-
             //Hier moet hij naar scoreinput-screen en daarna terug naar main menu.
             //Hierna naar highscore-screen
             //Daarna naar homemenu-screen
@@ -158,7 +153,7 @@ public class Game extends ScalableGameScreen {
     }
 
 
-    public ArrayList<Chicken> getChickens() {
+    public ArrayList<Chicken> getEnemies() {
         return chickens;
     }
     public ArrayList<Pig> getPigs() {
@@ -176,76 +171,103 @@ public class Game extends ScalableGameScreen {
     public void addProjectile(Projectile projectile) {
         projectiles.add(projectile);
     }
-    public void addBullet(Egg egg) {
+    public void addEgg(Egg egg) {
         eggs.add(egg);
     }
-    public void addBullet(Mud mud) {
+    public void addMud(Mud mud) {
         muds.add(mud);
     }
-    public void addBullet(Milk milk) {
+    public void addMilk(Milk milk) {
         milks.add(milk);
     }
-    public void addItem(Burger burger) {
+    public void addBurger(Burger burger) {
         burgers.add(burger);
     }
-    public void addItem(Bacon bacon) {
+    public void addBacon(Bacon bacon) {
         bacons.add(bacon);
     }
-    public void addItem(Steak steak) {
+    public void addSteak(Steak steak) {
         steaks.add(steak);
     }
     public void addEnemy(Chicken chicken) {
         chickens.add(chicken);
     }
-    public void addEnemy(Pig pig) {
+    public void addPig(Pig pig) {
         pigs.add(pig);
     }
-    public void addEnemy(Cow cow) {
+    public void addCow(Cow cow) {
         cows.add(cow);
     }
 
     public void removeProjectile(Projectile projectile) {
         killedProjectiles.add(projectile);
     }
-    public void removeEnemy(Chicken chicken) {
+    public void removeChicken(Chicken chicken) {
         chickens.remove(chicken);
     }
-    public void removeEnemy(Pig pig) {
+    public void removePigs(Pig pig) {
         pigs.remove(pig);
     }
-    public void removeEnemy(Cow cow) {
+    public void removeCows(Cow cow) {
         cows.remove(cow);
     }
-    public void removeItem(Burger burger) {
+    public void removeBurger(Burger burger) {
         killedBurgers.add(burger);
     }
-    public void removeItem(Bacon bacon) {
+    public void removeBacon(Bacon bacon) {
         killedBacons.add(bacon);
     }
-    public void removeItem(Steak steak) {killedSteaks.add(steak);}
-    public void removeBullet(Egg egg){killedEggs.add(egg);}
-    public void removeBullet(Milk milk){killedMilks.add(milk);}
-    public void removeBullet(Mud mud){killedMuds.add(mud);}
+    public void removeSteak(Steak steak) {killedSteaks.add(steak);}
+    public void removeEgg(Egg egg){killedEggs.add(egg);}
+    public void removeMilk(Milk milk){killedMilks.add(milk);}
+    public void removeMud(Mud mud){killedMuds.add(mud);}
 
-    public void kill() {
+
+
+
+
+    public void killProjectiles() {
         for (Projectile projectile : killedProjectiles) {
             projectiles.remove(projectile);
         }
+    }
+    public void killEggs(){
         for (Egg egg : killedEggs){
             eggs.remove(egg);
         }
+    }
+    public void killMilks(){
         for (Milk milk : killedMilks){
             milks.remove(milk);
         }
+    }
+    public void killMuds(){
         for (Mud mud : killedMuds){
             muds.remove(mud);
         }
+    }
+    public void addNameHighscores(String name){
+        highscoreNames.add(name);
+    }
+
+    public String showHighscoreNameList(String name ){
+        for (int i = 0; i < highscoreNames.size(); i++) {
+            name = highscoreNames.get(i);
+            System.out.println(name);
+        }return name;
+    }
+
+    public void killBurgers() {
         for (Burger burger : killedBurgers) {
             burgers.remove(burger);
         }
+    }
+    public void killBacons() {
         for (Bacon bacon : killedBacons) {
             bacons.remove(bacon);
         }
+    }
+    public void killSteaks() {
         for (Steak steak : killedSteaks) {
             steaks.remove(steak);
         }
