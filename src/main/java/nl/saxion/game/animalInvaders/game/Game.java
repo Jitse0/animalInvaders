@@ -145,7 +145,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void hide() {
-    GameApp.disposeMusic("GameMusic8-bit");
+        GameApp.disposeMusic("GameMusic8-bit");
     }
     private void checkGameOver() {
         if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty() && boss == null) {
