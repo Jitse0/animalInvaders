@@ -138,6 +138,9 @@ public class Game extends ScalableGameScreen {
         if (ship != null &&   ship.getHealthPoints() <= 0) {
             GameApp.updateAnimation("ShipExplodes");
         }
+        if (boss != null) {
+            GameApp.updateAnimation("mechFireCenterAnim");
+        }
     }
 
     @Override
@@ -145,7 +148,7 @@ public class Game extends ScalableGameScreen {
     GameApp.disposeMusic("GameMusic8-bit");
     }
     private void checkGameOver() {
-        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty()) {
+        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty() && boss == null) {
             //GameApp.switchScreen("Levelscreen");
             scoreinputscreen.setHighScore(highscore);
             scoreinputscreen.setHighscoreScreen(highscorescreen);

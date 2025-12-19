@@ -11,13 +11,15 @@ public class Boss {
     private int health = 20;
     private int xPos;
     private int yPos;
-    private int height = 196;
+    private int height = 256;
     private int width = 512;
     private int speed = 20;
     private String direction = "right";
     private Game game;
     private int fireRate = (int) (1 / GameApp.getDeltaTime());
     private int timer = fireRate;
+    private int fireAnim = 300;
+    private boolean firing = false;
     private Rectangle hitbox = new Rectangle(xPos, yPos, width/3, 10);
 
     public Boss (int xPos, int yPos, Game game) {
@@ -25,15 +27,19 @@ public class Boss {
         this.yPos = yPos;
         this.game = game;
         GameApp.addTexture("Mech", "Photos/mech.png");
+        GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
+        GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, true);
     }
 
     public void drawBoss() {
         moveBoss(speed);
-        shoot();
-
         GameApp.startSpriteRendering();
         GameApp.drawTexture("Mech", xPos - width/2, yPos - height/2, width, height);
         GameApp.endSpriteRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
+        GameApp.endSpriteRendering();
+        shoot();
     }
 
     public void moveBoss(int speed) {
@@ -54,10 +60,22 @@ public class Boss {
     }
 
     public void shoot() {
+            while (firing) {
+            GameApp.startSpriteRendering();
+            GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
+            GameApp.endSpriteRendering();
+            fireAnim--;
+            if (fireAnim <= 0) {
+                firing = false;
+                fireAnim = 300;
+            }
+        }
         if (this.timer <= 0) {
-            //Schieten
-            game.addBullet(new Egg(xPos, yPos, 30, 20, 1, game));
+            //Center Cannon
+            game.addBullet(new Egg(xPos, yPos - height/2, 30, 20, 1, game));
             this.timer = this.fireRate;
+            firing = true;
+
         }
         else {
             this.timer--;
