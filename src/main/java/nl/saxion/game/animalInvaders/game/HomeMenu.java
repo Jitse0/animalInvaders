@@ -17,8 +17,9 @@ public class HomeMenu extends ScalableGameScreen {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
         GameApp.addSpriteSheet("titleSheet", "animations/title.png",800,196);
-        GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, false);
         GameApp.addSound("select", "audio/menu-button.mp3");
+        GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, true);
+
     }
 
     @Override
