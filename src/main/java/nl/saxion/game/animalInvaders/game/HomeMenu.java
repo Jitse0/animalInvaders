@@ -18,7 +18,7 @@ public class HomeMenu extends ScalableGameScreen {
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
         GameApp.addSpriteSheet("titleSheet", "animations/title.png",800,196);
         GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, false);
-
+        GameApp.addSound("select", "audio/menu-button.mp3");
     }
 
     @Override
@@ -27,8 +27,10 @@ public class HomeMenu extends ScalableGameScreen {
 
         if (GameApp.isKeyJustPressed(Input.Keys.DOWN)){
             selectedItem = (selectedItem + 1) % 4;
+            GameApp.playSound("select",1f);
         }else if (GameApp.isKeyJustPressed(Input.Keys.UP)){
             selectedItem -= 1;
+            GameApp.playSound("select",1f);
             if (selectedItem < 0) {
                 selectedItem = 3;
             }

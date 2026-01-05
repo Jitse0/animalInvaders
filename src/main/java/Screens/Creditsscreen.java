@@ -14,7 +14,7 @@ public class Creditsscreen extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
-
+        GameApp.addSound("select", "audio/menu-button.mp3");
     }
 
     @Override

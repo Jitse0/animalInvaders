@@ -12,6 +12,7 @@ public class Pausemenu {
     }
 
     public void update() {
+        GameApp.addSound("select", "audio/menu-button.mp3");
         if (GameApp.isKeyJustPressed(Input.Keys.ESCAPE)) {
             paused = !paused;
         }
@@ -22,7 +23,9 @@ public class Pausemenu {
     public void draw() {
         if (GameApp.isKeyJustPressed(Input.Keys.DOWN)){
             selectedItem = (selectedItem + 1) % 3;
+            GameApp.playSound("select",1f);
         }else if (GameApp.isKeyJustPressed(Input.Keys.UP)) {
+            GameApp.playSound("select",1f);
             selectedItem -= 1;
             if (selectedItem < 0) {
                 selectedItem = 2;
