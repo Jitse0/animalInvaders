@@ -4,6 +4,7 @@ import Bullets.Mud;
 import Items.Bacon;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
+import nl.saxion.game.animalInvaders.game.Power;
 import nl.saxion.gameapp.GameApp;
 
 public class Pig {
@@ -81,6 +82,10 @@ public class Pig {
             Bacon bacon = new Bacon(this.xPos, this.yPos, 5, this.game);
             game.addItem(bacon);
             game.removeEnemy(this);
+            Power power = new Power(this.xPos, this.yPos, 5, this.game);
+            if (Math.random() < 0.15) {
+                game.addPower(power);
+            }
             GameApp.playSound("PigOink", 1f);
         }
     }
