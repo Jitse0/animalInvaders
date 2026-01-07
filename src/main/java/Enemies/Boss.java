@@ -3,6 +3,7 @@ package Enemies;
 import Bullets.Egg;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
+import nl.saxion.game.animalInvaders.game.Projectile;
 import nl.saxion.gameapp.GameApp;
 
 
@@ -18,7 +19,7 @@ public class Boss {
     private Game game;
     private int fireRate = (int) (1 / GameApp.getDeltaTime());
     private int timer = fireRate;
-    private int fireAnim = 300;
+    private int fireAnim = 8;
     private boolean firing = false;
     private Rectangle hitbox = new Rectangle(xPos, yPos, width/3, 10);
 
@@ -28,16 +29,20 @@ public class Boss {
         this.game = game;
         GameApp.addTexture("Mech", "Photos/mech.png");
         GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
-        GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, true);
+
     }
 
     public void drawBoss() {
         moveBoss(speed);
         GameApp.startSpriteRendering();
-        GameApp.drawTexture("Mech", xPos - width/2, yPos - height/2, width, height);
-        GameApp.endSpriteRendering();
-        GameApp.startSpriteRendering();
-        GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
+        if (firing) {
+            GameApp.drawAnimationCentered("mechFireCenterAnim", xPos, yPos, width, height);
+            GameApp.updateAnimation("mechFireCenterAnim");
+        }
+        else {
+            GameApp.drawTextureCentered("Mech", xPos, yPos, width, height);
+        }
+
         GameApp.endSpriteRendering();
         shoot();
     }
@@ -60,26 +65,22 @@ public class Boss {
     }
 
     public void shoot() {
-            while (firing) {
-            GameApp.startSpriteRendering();
-            GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
-            GameApp.endSpriteRendering();
+       if(timer <= 0) {
+           GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, false);
+           game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
+           timer = fireRate;
+           firing = true;
+       }
+       else {
+           timer--;
+       }
+       if (firing) {
             fireAnim--;
-            if (fireAnim <= 0) {
-                firing = false;
-                fireAnim = 300;
-            }
-        }
-        if (this.timer <= 0) {
-            //Center Cannon
-            game.addBullet(new Egg(xPos, yPos - height/2, 30, 20, 1, game));
-            this.timer = this.fireRate;
-            firing = true;
-
-        }
-        else {
-            this.timer--;
-        }
+       }
+       if (fireAnim <= 0) {
+           firing = false;
+           fireAnim = 8;
+       }
     }
 
     public Rectangle getHitbox () {
