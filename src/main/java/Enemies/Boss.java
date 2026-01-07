@@ -76,6 +76,8 @@ public class Boss {
         }
         if (this.timer <= 0) {
             //Center Cannon
+            //int counter = int getal = random.nextInt(100);
+            //if ()
             game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
             this.timer = this.fireRate;
             firing = true;
