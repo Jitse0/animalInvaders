@@ -1,6 +1,8 @@
 package Enemies;
 
 import Bullets.Egg;
+import Bullets.Milk;
+import Bullets.Mud;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
@@ -20,12 +22,13 @@ public class Boss {
     private int timer = fireRate;
     private int fireAnim = 300;
     private boolean firing = false;
-    private Rectangle hitbox = new Rectangle(xPos, yPos, width/3, 10);
+    private Rectangle hitbox ;
 
     public Boss (int xPos, int yPos, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
+        this.hitbox = new Rectangle(xPos - width/2, yPos - height/2, width, 10);
 
         GameApp.addTexture("Mech", "Photos/mech.png");
         GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
@@ -59,7 +62,7 @@ public class Boss {
             }
             xPos -= speed * GameApp.getDeltaTime();
         }
-        hitbox.setPosition(xPos- width/6, yPos);
+        hitbox.setPosition(xPos - width/2, yPos - 10/2+20);
 
     }
 
@@ -76,9 +79,22 @@ public class Boss {
         }
         if (this.timer <= 0) {
             //Center Cannon
-            game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
-            this.timer = this.fireRate;
-            firing = true;
+            int min = 1;
+            int max = 3;
+            int randomInt = (int)(Math.random() * (max - min + 1)) + min;
+            if (randomInt==1){
+                game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
+                this.timer = this.fireRate;
+                firing = true;
+            } else if (randomInt==2) {
+                game.addBullet(new Milk(xPos, yPos - height/3, 30, 20, 1, game));
+                this.timer = this.fireRate;
+                firing = true;
+            } else if (randomInt==3) {
+                game.addBullet(new Mud(xPos, yPos - height/3, 30, 20, 1, game));
+                this.timer = this.fireRate;
+                firing = true;
+            }
 
         }
         else {
