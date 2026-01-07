@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import Bullets.Milk;
 import Items.Steak;
+import nl.saxion.game.animalInvaders.game.Power;
 import nl.saxion.gameapp.GameApp;
 
 public class Cow {
@@ -83,6 +84,10 @@ public class Cow {
             Steak steak = new Steak(this.xPos, this.yPos, 5, this.game);
             game.addItem(steak);
             game.removeEnemy(this);
+            Power power = new Power(this.xPos, this.yPos, 5, this.game);
+            if (Math.random() < 0.15) {
+                game.addPower(power);
+            }
             GameApp.playSound("CowMooing", 1f);
         }
     }

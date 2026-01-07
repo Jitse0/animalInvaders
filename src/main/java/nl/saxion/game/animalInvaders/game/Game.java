@@ -38,9 +38,11 @@ public class Game extends ScalableGameScreen {
     private ArrayList<Burger> burgers = new ArrayList<>();
     private ArrayList<Bacon> bacons = new ArrayList<>();
     private ArrayList<Steak> steaks = new ArrayList<>();
+    private ArrayList<Power> powers = new ArrayList<>();
     private ArrayList<Burger> killedBurgers = new ArrayList<>();
     private ArrayList<Bacon> killedBacons = new ArrayList<>();
     private ArrayList<Steak> killedSteaks = new ArrayList<>();
+    private ArrayList<Power> killedPowers = new ArrayList<>();
     private int highscore = 0;
     private ArrayList <String> highscoreNames = new ArrayList<>();
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
@@ -116,6 +118,9 @@ public class Game extends ScalableGameScreen {
         }
         for (Steak steak : steaks) {
             steak.drawSteak();
+        }
+        for (Power power : powers) {
+            power.drawPower();
         }
 
         ship.drawShip();
@@ -230,6 +235,9 @@ public class Game extends ScalableGameScreen {
     public void addEnemy(Boss boss) {
         this.boss = boss;
     }
+    public void addPower(Power power) {
+        powers.add(power);
+    }
 
     public void removeProjectile(Projectile projectile) {
         killedProjectiles.add(projectile);
@@ -257,6 +265,7 @@ public class Game extends ScalableGameScreen {
     public void removeBullet(Egg egg){killedEggs.add(egg);}
     public void removeBullet(Milk milk){killedMilks.add(milk);}
     public void removeBullet(Mud mud){killedMuds.add(mud);}
+    public void removePower(Power power){killedPowers.add(power);}
 
     public void kill() {
         for (Projectile projectile : killedProjectiles) {
@@ -279,6 +288,9 @@ public class Game extends ScalableGameScreen {
         }
         for (Steak steak : killedSteaks) {
             steaks.remove(steak);
+        }
+        for (Power power : killedPowers) {
+            powers.remove(power);
         }
     }
     public void addPoints(int score){
