@@ -5,6 +5,7 @@ import Bullets.Milk;
 import Bullets.Mud;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
+import nl.saxion.game.animalInvaders.game.Projectile;
 import nl.saxion.gameapp.GameApp;
 
 
@@ -20,7 +21,7 @@ public class Boss {
     private Game game;
     private int fireRate = (int) (1 / GameApp.getDeltaTime());
     private int timer = fireRate;
-    private int fireAnim = 300;
+    private int fireAnim = 8;
     private boolean firing = false;
     private Rectangle hitbox = new Rectangle(xPos, yPos, width/3, 10);
 
@@ -28,23 +29,32 @@ public class Boss {
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
-
-        GameApp.addTexture("Mech", "Photos/mech.png");
+        GameApp.addSpriteSheet("Mech", "Photos/mech.png", 128, 64);
         GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
-        GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, false);
+        GameApp.addSpriteSheet("chickenPilot", "animations/pixilart-sprite.png", 36, 24);
+        GameApp.addAnimationFromSpritesheet("pilotChicken", "chickenPilot", 0.05f, false);
+        GameApp.addSpriteSheet("cowPilot", "animations/Cow.png", 30, 35);
+        GameApp.addAnimationFromSpritesheet("pilotCow", "cowPilot", 0.05f, false);
+        GameApp.addSpriteSheet("pigPilot", "animations/Pig.png", 25, 37);
+        GameApp.addAnimationFromSpritesheet("pilotPig", "pigPilot", 0.05f, false);
     }
 
     public void drawBoss() {
         moveBoss(speed);
-        if (!firing) {
-            GameApp.startSpriteRendering();
-            GameApp.drawTexture("Mech", xPos - width/2, yPos - height/2, width, height);
-            GameApp.endSpriteRendering();
+        GameApp.startSpriteRendering();
+        if (firing) {
+            GameApp.drawAnimationCentered("mechFireCenterAnim", xPos, yPos, width, height);
+            GameApp.updateAnimation("mechFireCenterAnim");
         }
+        else {
+            GameApp.addAnimationFromSpritesheet("MechStatic", "Mech", 0.05f, false);
+            GameApp.drawAnimationCentered("MechStatic", xPos, yPos, width, height);
+        }
+        GameApp.drawAnimationCentered("pilotChicken", xPos, yPos + height/4);
+        GameApp.drawAnimationCentered("pilotCow", xPos-width/9, yPos + height/4);
+        GameApp.drawAnimationCentered("pilotPig", xPos + width/9, yPos + height/4);
 
-//        GameApp.startSpriteRendering();
-//        GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
-//        GameApp.endSpriteRendering();
+        GameApp.endSpriteRendering();
         shoot();
     }
 
@@ -66,39 +76,22 @@ public class Boss {
     }
 
     public void shoot() {
-        while (firing) {
-            GameApp.startSpriteRendering();
-            GameApp.drawAnimation("mechFireCenterAnim", xPos - width/2, yPos - height/2, width, height);
-            GameApp.endSpriteRendering();
+       if(timer <= 0) {
+           GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, false);
+           game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
+           timer = fireRate;
+           firing = true;
+       }
+       else {
+           timer--;
+       }
+       if (firing) {
             fireAnim--;
-            if (fireAnim <= 0) {
-                firing = false;
-                fireAnim = 300;
-            }
-        }
-        if (this.timer <= 0) {
-            //Center Cannon
-            int min = 1;
-            int max = 3;
-            int randomInt = (int)(Math.random() * (max - min + 1)) + min;
-            if (randomInt==1){
-                game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
-                this.timer = this.fireRate;
-                firing = true;
-            } else if (randomInt==2) {
-                game.addBullet(new Milk(xPos, yPos - height/3, 30, 20, 1, game));
-                this.timer = this.fireRate;
-                firing = true;
-            } else if (randomInt==3) {
-                game.addBullet(new Mud(xPos, yPos - height/3, 30, 20, 1, game));
-                this.timer = this.fireRate;
-                firing = true;
-            }
-
-        }
-        else {
-            this.timer--;
-        }
+       }
+       if (fireAnim <= 0) {
+           firing = false;
+           fireAnim = 8;
+       }
     }
 
     public Rectangle getHitbox () {

@@ -95,7 +95,9 @@ public class Game extends ScalableGameScreen {
         for (Cow cow : cows) {
             cow.drawCow();
         }
-        boss.drawBoss();
+        if (boss != null) {
+            boss.drawBoss();
+        }
         for (Egg egg : eggs) {
             egg.drawEgg();
         }
@@ -147,7 +149,7 @@ public class Game extends ScalableGameScreen {
             GameApp.updateAnimation("ShipExplodes");
         }
         if (boss != null) {
-            GameApp.updateAnimation("mechFireCenterAnim");
+
         }
     }
 
