@@ -77,7 +77,7 @@ public class Boss {
 
     public void shoot() {
        if(timer <= 0) {
-           GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.05f, false);
+           GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.04f, false);
            game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
            timer = fireRate;
            firing = true;
