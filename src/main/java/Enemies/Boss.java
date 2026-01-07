@@ -1,6 +1,8 @@
 package Enemies;
 
 import Bullets.Egg;
+import Bullets.Milk;
+import Bullets.Mud;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.gameapp.GameApp;
@@ -76,11 +78,22 @@ public class Boss {
         }
         if (this.timer <= 0) {
             //Center Cannon
-            //int counter = int getal = random.nextInt(100);
-            //if ()
-            game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
-            this.timer = this.fireRate;
-            firing = true;
+            int min = 1;
+            int max = 3;
+            int randomInt = (int)(Math.random() * (max - min + 1)) + min;
+            if (randomInt==1){
+                game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
+                this.timer = this.fireRate;
+                firing = true;
+            } else if (randomInt==2) {
+                game.addBullet(new Milk(xPos, yPos - height/3, 30, 20, 1, game));
+                this.timer = this.fireRate;
+                firing = true;
+            } else if (randomInt==3) {
+                game.addBullet(new Mud(xPos, yPos - height/3, 30, 20, 1, game));
+                this.timer = this.fireRate;
+                firing = true;
+            }
 
         }
         else {
