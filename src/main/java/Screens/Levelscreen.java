@@ -19,6 +19,7 @@ public class Levelscreen extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addFont("basic1", "fonts/basic.ttf", 75);
 
     }
 
@@ -26,8 +27,10 @@ public class Levelscreen extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
         if (GameApp.isKeyJustPressed(Input.Keys.DOWN)){
+            GameApp.playSound("select", 1f);
             selectedItem = (selectedItem + 1) % 2;
         }else if (GameApp.isKeyJustPressed(Input.Keys.UP)) {
+            GameApp.playSound("select", 1f);
             selectedItem -= 1;
             if (selectedItem < 0) {
                 selectedItem = 1;
@@ -52,16 +55,16 @@ public class Levelscreen extends ScalableGameScreen {
         GameApp.drawTexture("background", 0, 0, getWorldWidth(), getWorldHeight());
 
         if (selectedItem == 0){
-            GameApp.drawTextHorizontallyCentered("basic", "Level 1", getWorldWidth()/2, 600, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Level 1", getWorldWidth()/2, 600, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Level 1", getWorldWidth()/2, 600, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Level 1", getWorldWidth()/2, 600, "white" );
         }
         if (selectedItem == 1){
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Back", 100, 75, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white" );
         }
         GameApp.endSpriteRendering();
 

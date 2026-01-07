@@ -20,6 +20,7 @@ public class Scoreinputscreen extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addFont("basic1", "fonts/basic.ttf", 75);
     }
 
     @Override
@@ -36,9 +37,9 @@ public class Scoreinputscreen extends ScalableGameScreen {
         GameApp.drawTextHorizontallyCentered("basic", "Score: " + highScore, GameApp.getWorldWidth()/2, 400, "white" );
 
         if (selectedItem == 0){
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "white" );
+            GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white" );
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "black" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Back", 100, 75, "white" );
         }
         GameApp.endSpriteRendering();
         if (GameApp.isKeyJustPressed((Input.Keys.ENTER ) )& selectedItem == 0) {

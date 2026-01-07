@@ -15,6 +15,7 @@ public class Optionscreen extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addFont("basic1", "fonts/basic.ttf", 75);
         GameApp.addSound("select", "audio/menu-button.mp3");
     }
 
@@ -58,28 +59,28 @@ public class Optionscreen extends ScalableGameScreen {
         GameApp.drawTexture("background", 0, 0, getWorldWidth(), getWorldHeight());
 
         if (selectedItem == 0){
-            GameApp.drawTextHorizontallyCentered("basic", "Sound", getWorldWidth()/2, 350, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Sound", getWorldWidth()/2, 525, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Sound", getWorldWidth()/2, 350, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Sound", getWorldWidth()/2, 525, "white" );
         }
         if (selectedItem == 1){
-            GameApp.drawTextHorizontallyCentered("basic", "Controls", getWorldWidth()/2, 250, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Controls", getWorldWidth()/2, 425, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Controls", getWorldWidth()/2, 250, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Controls", getWorldWidth()/2, 425, "white" );
         }
         if (selectedItem == 2){
-            GameApp.drawTextHorizontallyCentered("basic", "Credits", getWorldWidth()/2, 150, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Credits", getWorldWidth()/2, 325, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Credits", getWorldWidth()/2, 150, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Credits", getWorldWidth()/2, 325, "white" );
         }
         if (selectedItem == 3){
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Back", 100, 75, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white" );
         }
 
         GameApp.endSpriteRendering();

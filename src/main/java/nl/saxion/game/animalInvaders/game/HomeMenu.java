@@ -16,6 +16,7 @@ public class HomeMenu extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addFont("basic1", "fonts/basic.ttf", 75);
         GameApp.addSpriteSheet("titleSheet", "animations/title.png",800,196);
         GameApp.addSound("select", "audio/menu-button.mp3");
         GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, true);
@@ -56,32 +57,32 @@ public class HomeMenu extends ScalableGameScreen {
 
 
         GameApp.drawTexture("background", 0, 0, getWorldWidth(), getWorldHeight());
-        GameApp.drawAnimation("titleAnim", (getWorldWidth() - 800) / 2, 400, 800, 196);
+        GameApp.drawAnimation("titleAnim", (getWorldWidth() - 800) / 2, 430, 800, 196);
         GameApp.updateAnimation("titleAnim");
 
         if (selectedItem == 0){
-            GameApp.drawTextHorizontallyCentered("basic", "Play", getWorldWidth()/2, 350, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Play", getWorldWidth()/2, 375, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Play", getWorldWidth()/2, 350, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Play", getWorldWidth()/2, 375, "white" );
         }
         if (selectedItem == 1){
-            GameApp.drawTextHorizontallyCentered("basic", "High score (Hall of Fame)", getWorldWidth()/2, 250, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "High score (Hall of Fame)", getWorldWidth()/2, 275, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "High score (Hall of Fame)", getWorldWidth()/2, 250, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "High score (Hall of Fame)", getWorldWidth()/2, 275, "white" );
         }
         if (selectedItem == 2){
-            GameApp.drawTextHorizontallyCentered("basic", "Options", getWorldWidth()/2, 150, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Options", getWorldWidth()/2, 175, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Options", getWorldWidth()/2, 150, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Options", getWorldWidth()/2, 175, "white" );
         }
         if (selectedItem == 3){
-            GameApp.drawTextHorizontallyCentered("basic", "Quit", getWorldWidth()/2, 50, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Quit", getWorldWidth()/2, 75, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Quit", getWorldWidth()/2, 50, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Quit", getWorldWidth()/2, 75, "white" );
         }
 
 
