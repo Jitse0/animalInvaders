@@ -23,13 +23,16 @@ public class Boss {
     private int timer = fireRate;
     private int fireAnim = 8;
     private boolean firing = false;
-    private Rectangle hitbox = new Rectangle(xPos, yPos, width/3, 10);
+    private Rectangle hitbox ;
 
     public Boss (int xPos, int yPos, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
         GameApp.addSpriteSheet("Mech", "Photos/mech.png", 128, 64);
+        this.hitbox = new Rectangle(xPos - width/2, yPos - height/2, width, 10);
+
+        GameApp.addTexture("Mech", "Photos/mech.png");
         GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
         GameApp.addSpriteSheet("chickenPilot", "animations/pixilart-sprite.png", 36, 24);
         GameApp.addAnimationFromSpritesheet("pilotChicken", "chickenPilot", 0.05f, false);
