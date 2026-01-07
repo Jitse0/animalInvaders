@@ -14,6 +14,7 @@ public class Soundscreen extends ScalableGameScreen {
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg" );
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addFont("basic1", "fonts/basic.ttf", 75);
 
     }
 
@@ -31,10 +32,10 @@ public class Soundscreen extends ScalableGameScreen {
         GameApp.drawTexture("background", 0, 0, getWorldWidth(), getWorldHeight());
 
         if (selectedItem == 0){
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "white" );
+            GameApp.drawTextHorizontallyCentered("basic1", "Back", 100, 75, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "black" );
+            GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white" );
         }
         GameApp.endSpriteRendering();
     }
