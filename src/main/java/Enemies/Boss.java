@@ -74,7 +74,7 @@ public class Boss {
             }
             xPos -= speed * GameApp.getDeltaTime();
         }
-        hitbox.setPosition(xPos- width/6, yPos);
+        hitbox.setPosition(xPos- width/2, yPos);
 
     }
 
