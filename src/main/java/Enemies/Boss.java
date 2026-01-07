@@ -27,9 +27,8 @@ public class Boss {
         this.xPos = xPos;
         this.yPos = yPos;
         this.game = game;
-        GameApp.addTexture("Mech", "Photos/mech.png");
+        GameApp.addSpriteSheet("Mech", "Photos/mech.png", 128, 64);
         GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
-
     }
 
     public void drawBoss() {
@@ -40,7 +39,8 @@ public class Boss {
             GameApp.updateAnimation("mechFireCenterAnim");
         }
         else {
-            GameApp.drawTextureCentered("Mech", xPos, yPos, width, height);
+            GameApp.addAnimationFromSpritesheet("MechStatic", "Mech", 0.05f, false);
+            GameApp.drawAnimationCentered("MechStatic", xPos, yPos, width, height);
         }
 
         GameApp.endSpriteRendering();
