@@ -17,6 +17,8 @@ public class Cow {
     private int timer;
     private Rectangle hitbox;
     private Game game;
+    private int width;
+    private int height;
 
 
 
@@ -31,6 +33,8 @@ public class Cow {
         this.timer = this.fireRate;
         this.hitbox = new Rectangle(xPos, yPos, 30 *4, 35 *4);
         this.game = game;
+        this.width= 30;
+        this.height = 35;
 
         GameApp.addSpriteSheet("Cow", "animations/Cow.png",30,35);
         GameApp.addAnimationFromSpritesheet("Cowmoving", "Cow", 0.1f, true);
@@ -41,7 +45,7 @@ public class Cow {
         moveCow(speed);
         shoot();
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Cowmoving", xPos - 30*2, yPos - 35*2, (30 * 4), (35 * 4));
+        GameApp.drawAnimation("Cowmoving", xPos, yPos, (width*4), (height*4));
         GameApp.endSpriteRendering();
     }
 

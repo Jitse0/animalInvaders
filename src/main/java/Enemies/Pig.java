@@ -17,6 +17,8 @@ public class Pig {
     private int timer;
     private Rectangle hitbox;
     private Game game;
+    private int width;
+    private int height;
 
     public Pig(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = healthpoints;
@@ -29,6 +31,8 @@ public class Pig {
         this.timer = this.fireRate;
         this.hitbox = new Rectangle(xPos, yPos, 25 *4, 37 *4);
         this.game = game;
+        this.width= 25;
+        this.height = 37;
 
         GameApp.addSpriteSheet("Pig", "animations/Pig.png",25,37);
         GameApp.addAnimationFromSpritesheet("Pigmoving", "Pig", 0.1f, true);
@@ -39,7 +43,7 @@ public class Pig {
         movePig(speed);
         shoot();
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Pigmoving", xPos - 25*2, yPos - 37*2, (25 * 4), (37 *4));
+        GameApp.drawAnimation("Pigmoving", xPos, yPos, (width * 4), (height *4));
         GameApp.endSpriteRendering();
     }
 

@@ -28,7 +28,7 @@ public class Ship {
         this.yPos = startingY;
         this.height = 40;
         this.width = 20;
-        this.hitbox = new Rectangle(xPos - width / 2, yPos - height / 2, width, height);
+        this.hitbox = new Rectangle(xPos - ((21*4) / 2), yPos - (25 / 2), 21*4, 25);
         this.game = game;
         GameApp.addSpriteSheet("Ship", "animations/ship.png",21,25);
         GameApp.addAnimationFromSpritesheet("ShipFly", "Ship", 0.1f, true);
@@ -78,7 +78,7 @@ public class Ship {
         if (GameApp.isKeyPressed(Input.Keys.DOWN) && yPos > 10 + height / 2) {
             this.yPos -= (speed * GameApp.getDeltaTime());
         }
-        hitbox.setPosition(xPos, yPos);
+        hitbox.setPosition(xPos  - ((21*4) / 2), yPos - (25 / 2));
     }
 
     public void damageTest() {
