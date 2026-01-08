@@ -50,10 +50,13 @@ public class Game extends ScalableGameScreen {
     private Pausemenu pauseMenu = new Pausemenu();
     private int level;
 
+
     public Game(Highscorescreen highscorescreen, int level) {
         super(1280, 720);
         this.highscorescreen = highscorescreen;
         this.level = level;
+        GameApp.addTexture("Power", "Photos/Power.png");
+        GameApp.addTexture("Laser", "Photos/laser.png");
     }
 
     @Override

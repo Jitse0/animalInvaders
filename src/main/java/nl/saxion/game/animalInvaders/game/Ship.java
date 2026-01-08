@@ -20,6 +20,14 @@ public class Ship {
     private boolean visible = true;
     private float blinkSwitchTimer = 0f;
     private int deathTimer = 60;
+    private int laserCount = 1;
+    private boolean slowShoot = false;
+    private boolean fastShoot = false;
+    private float slowShootTimer = 0f;
+    private float fastShootTimer = 0f;
+
+
+
 
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
@@ -36,11 +44,30 @@ public class Ship {
         GameApp.addAnimationFromSpritesheet("ShipExplodes", "ShipExplosion", 0.3f, false);
         GameApp.addSound("Laser", "audio/laser.mp3");
         GameApp.addSound("explotion", "audio/explosion.mp3");
+
+
     }
 
     public void drawShip() {
         moveShip(speed);
+        updateShootEffects();
         shoot();
+        float delta = GameApp.getDeltaTime();
+        if (overheatVisual < overheatLevel) {
+            overheatVisual += OVERHEAT_VISUAL_SPEED * delta;
+            if (overheatVisual > overheatLevel) overheatVisual = overheatLevel;
+        } else if (overheatVisual > overheatLevel) {
+            overheatVisual -= OVERHEAT_VISUAL_SPEED * delta;
+            if (overheatVisual < overheatLevel) overheatVisual = overheatLevel;
+        }
+        if (overheatVisual < 0f) overheatVisual = 0f;
+        if (overheatVisual > 1f) overheatVisual = 1f;
+        if (lifeChangeTimer > 0) {
+            lifeChangeTimer -= GameApp.getDeltaTime();
+            if (lifeChangeTimer <= 0) {
+                lifeChange = 0;
+            }
+        }
         damageTest();
         if (blinkTimer > 0) {
             blinkTimer -= GameApp.getDeltaTime();
@@ -111,66 +138,143 @@ public class Ship {
         }
     }
 
-    private float shootCooldown = 0.3f;
-    private float timeSinceShot = 0;
+    private final float BASE_COOLDOWN = 0.3f;
+    private float shootCooldown = BASE_COOLDOWN;
+    private float timeSinceShot = BASE_COOLDOWN;
     private boolean overheated = false;
     private float overheatTimer = 0;
     private float overheatLevel = 0f;
     private final float HEAT_PER_SECOND = 0.10f;
     private final float COOL_PER_SECOND = 0.20f;
     private final float OVERHEAT_DURATION = 5f;
+    private float overheatVisual = 0f;
+    private final float FAST_COOLDOWN = 0.15f;
+    private final float SLOW_COOLDOWN = 0.8f;
+    private final float OVERHEAT_VISUAL_SPEED = 0.7f;
+    private float timeSinceShootInput = 999f;
+    private int lifeChange = 0;
+    private float lifeChangeTimer = 0;
+
+
 
     private void shoot() {
         if (healthpoints <=0) {
             return;
         }
-
         float delta = GameApp.getDeltaTime();
-
-        if (!overheated && GameApp.isKeyPressed(Input.Keys.SPACE)) {
+        boolean wantsToShoot = GameApp.isKeyPressed(Input.Keys.SPACE) || GameApp.isKeyJustPressed(Input.Keys.SPACE);
+        if (wantsToShoot) {
+            timeSinceShootInput = 0f;
+        } else {
+            timeSinceShootInput += delta;
+        }
+        boolean activelyShooting = GameApp.isKeyPressed(Input.Keys.SPACE) || timeSinceShootInput < 0.12f;
+        if (!overheated && activelyShooting) {
             overheatLevel += HEAT_PER_SECOND * delta;
-            if (overheatLevel > 1f) {
-                overheatLevel = 1f;
-                overheated = true;
-                overheatTimer = 0;
-            }
-        }
-
-        if (!GameApp.isKeyPressed(Input.Keys.SPACE) || overheated) {
+        } else {
             overheatLevel -= COOL_PER_SECOND * delta;
-            if (overheatLevel < 0f) overheatLevel = 0f;
         }
-
+        if (overheatLevel < 0f) overheatLevel = 0f;
+        if (overheatLevel > 1f) overheatLevel = 1f;
+        if (!overheated && overheatLevel >= 1f) {
+            overheated = true;
+            overheatTimer = 0f;
+        }
         if (overheated) {
             overheatTimer += delta;
             if (overheatTimer >= OVERHEAT_DURATION) {
                 overheated = false;
+                overheatLevel = 0f;
             }
             return;
         }
 
         timeSinceShot += delta;
 
-        if (GameApp.isKeyJustPressed(Input.Keys.SPACE)) {
-            game.addProjectile(new Projectile(xPos, yPos, 600, 1, this.game));
+        if (wantsToShoot && timeSinceShot >= shootCooldown) {
+            shootLasers();
             GameApp.playSound("Laser", 1f);
             timeSinceShot = 0;
         }
+    }
 
-        if (GameApp.isKeyPressed(Input.Keys.SPACE) && timeSinceShot >= shootCooldown) {
-            game.addProjectile(new Projectile(xPos, yPos, 600, 1, this.game));
-            GameApp.playSound("Laser", 1f);
-            timeSinceShot = 0;
+    public void applyPower() {
+        int r = (int) (Math.random() * 100);
+
+        if (r < 30) {
+            healthpoints++;
+            lifeChange = +1;
+            lifeChangeTimer = 1f;
+        } else if (r < 60) {
+            if (laserCount < 3) {
+                laserCount++;
+            } else {
+                fastShoot = true;
+                slowShoot = false;
+                fastShootTimer = 5f;
+            }
+
+        } else if (r < 80) {
+            healthpoints--;
+            lifeChange = -1;
+            lifeChangeTimer = 1f;
+        } else if (r < 100){
+            if (laserCount > 1) {
+                laserCount--;
+
+            } else {
+                slowShoot = true;
+                fastShoot = false;
+                slowShootTimer = 5f;
+            }
+        }
+
+        if (healthpoints < 0) healthpoints = 0;
+    }
+
+    private void shootLasers() {
+        int offset = 50;
+
+        if (laserCount == 1) {
+            game.addProjectile(new Projectile(xPos, yPos, 600, 1, game));
+        }
+        if (laserCount == 2) {
+            game.addProjectile(new Projectile(xPos - offset, yPos, 600, 1, game));
+            game.addProjectile(new Projectile(xPos + offset, yPos, 600, 1, game));
+        }
+        if (laserCount >= 3) {
+            game.addProjectile(new Projectile(xPos, yPos, 600, 1, game));
+            game.addProjectile(new Projectile(xPos - offset, yPos, 600, 1, game));
+            game.addProjectile(new Projectile(xPos + offset, yPos, 600, 1, game));
         }
     }
 
     public float getOverheatLevel() {
         return overheatLevel;
     }
+    public float getOverheatVisual() {
+        return overheatVisual;
+    }
+
 
     public int getHealthPoints() {
         return healthpoints;
     }
+    private void updateShootEffects() {
+        float delta = GameApp.getDeltaTime();
+        shootCooldown = BASE_COOLDOWN;
+        if (fastShoot) {
+            fastShootTimer -= delta;
+            shootCooldown = FAST_COOLDOWN;
+            if (fastShootTimer <= 0) fastShoot = false;
+        }
+        if (slowShoot) {
+            slowShootTimer -= delta;
+            shootCooldown = SLOW_COOLDOWN;
+            if (slowShootTimer <= 0) slowShoot = false;
+        }
+    }
+
 
     public Rectangle getHitbox() {
         return hitbox;
@@ -191,5 +295,13 @@ public class Ship {
     public int getHeightShip() {
         return height;
     }
+    public int getLifeChange() {
+        return lifeChange;
+    }
+
+    public float getLifeChangeTimer() {
+        return lifeChangeTimer;
+    }
+
 
 }
