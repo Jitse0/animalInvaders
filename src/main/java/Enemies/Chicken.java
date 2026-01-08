@@ -83,6 +83,10 @@ public class Chicken {
             Burger burger = new Burger(this.xPos, this.yPos, 5, this.game);
             game.addItem(burger);
             game.removeEnemy(this);
+            Power power = new Power(this.xPos, this.yPos, 5, this.game);
+            if (Math.random() < 0.15) {
+                game.addPower(power);
+            }
             GameApp.playSound("ChickenNoise", 1f);
 
         }
