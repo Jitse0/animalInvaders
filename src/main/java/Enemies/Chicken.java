@@ -23,7 +23,7 @@ public class Chicken {
     private int height;
 
     public Chicken(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
-        this.healthpoints = healthpoints;
+        this.healthpoints = 1;
         this.xPos = xPos;
         this.yPos = yPos;
         this.size = size;

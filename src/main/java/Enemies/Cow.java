@@ -25,7 +25,7 @@ public class Cow {
 
 
     public Cow(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
-        this.healthpoints = healthpoints;
+        this.healthpoints = 3;
         this.xPos = xPos;
         this.yPos = yPos;
         this.size = size;
@@ -83,7 +83,7 @@ public class Cow {
             game.addItem(steak);
             game.removeEnemy(this);
             Power power = new Power(this.xPos, this.yPos, 5, this.game);
-            if (Math.random() < 1) {
+            if (Math.random() < 0.15) {
                 game.addPower(power);
             }
             if (!GameSettings.sfxMuted) {
