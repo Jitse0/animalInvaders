@@ -37,6 +37,11 @@ public class Creditsscreen extends ScalableGameScreen {
         } else {
             GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white" );
         }
+
+            GameApp.drawTextHorizontallyCentered("basic1", "Credits", getWorldWidth()/2, 650, "white" );
+            GameApp.drawTextHorizontallyCentered("basic", "Groep 43:", getWorldWidth()/2, 500, "white" );
+            GameApp.drawTextHorizontallyCentered("basic", "Angela      Jitse      Tony", getWorldWidth()/2, 375, "white" );
+
         GameApp.endSpriteRendering();
     }
 
