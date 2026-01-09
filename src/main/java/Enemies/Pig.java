@@ -80,7 +80,7 @@ public class Pig {
             game.addItem(bacon);
             game.removeEnemy(this);
             Power power = new Power(this.xPos, this.yPos, 5, this.game);
-            if (Math.random() < 1) {
+            if (Math.random() < 0.15) {
                 game.addPower(power);
             }
             GameApp.playSound("PigOink", 1f);
