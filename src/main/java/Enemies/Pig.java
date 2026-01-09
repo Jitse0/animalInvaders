@@ -22,7 +22,7 @@ public class Pig {
     private int height;
 
     public Pig(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
-        this.healthpoints = healthpoints;
+        this.healthpoints = 2;
         this.xPos = xPos;
         this.yPos = yPos;
         this.size = size;

@@ -24,7 +24,7 @@ public class Cow {
 
 
     public Cow(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
-        this.healthpoints = healthpoints;
+        this.healthpoints = 3;
         this.xPos = xPos;
         this.yPos = yPos;
         this.size = size;
