@@ -14,6 +14,7 @@ import Screens.Highscorescreen;
 import Screens.Scoreinputscreen;
 import nl.saxion.gameapp.*;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
+import nl.saxion.game.animalInvaders.game.GameSettings;
 
 
 import java.util.ArrayList;
@@ -81,6 +82,13 @@ public class Game extends ScalableGameScreen {
         GameApp.addTexture("Milk", "Photos/Milk_bottle.png");
         GameApp.addSpriteSheet("Egg", "animations/bullet_egg.png",19,18);
         GameApp.addAnimationFromSpritesheet("EggThrow", "Egg", 0.075f, true);
+        GameApp.addSpriteSheet("Ship", "animations/ship.png",21,25);
+        GameApp.addAnimationFromSpritesheet("ShipFly", "Ship", 0.1f, true);
+        GameApp.addSpriteSheet("ShipExplosion", "animations/Ship_explode.png", 30, 32);
+        GameApp.addAnimationFromSpritesheet("ShipExplodes", "ShipExplosion", 0.3f, false);
+        GameApp.addSound("Laser", "audio/laser.mp3");
+        GameApp.addSound("explotion", "audio/explosion.mp3");
+        GameApp.addSound("select", "audio/menu-button.mp3");
     }
 
     @Override
@@ -115,7 +123,6 @@ public class Game extends ScalableGameScreen {
         GameApp.startSpriteRendering();
         GameApp.drawTexture("Background", 0, 0, getWorldWidth(), getWorldHeight());
         GameApp.endSpriteRendering();
-
 
         //Teken alle entities, denk aan de volgorde!
         for (Chicken chicken : chickens) {
@@ -190,7 +197,7 @@ public class Game extends ScalableGameScreen {
 
     @Override
     public void hide() {
-        GameApp.disposeMusic("GameMusic8-bit");
+        GameApp.stopMusic("GameMusic8-bit");
     }
     private void checkGameOver() {
         if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty() && boss == null) {

@@ -22,7 +22,7 @@ public class Highscorescreen extends ScalableGameScreen {
     @Override
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg");
-        GameApp.addFont("basic", "fonts/basic.ttf", 50);
+        GameApp.addFont("basic", "fonts/basic.ttf", 75);
 
     }
 
@@ -44,9 +44,9 @@ public class Highscorescreen extends ScalableGameScreen {
         drawScores();
 
         if (selectedItem == 0) {
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "white");
+            GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white");
         } else {
-            GameApp.drawTextHorizontallyCentered("basic", "Back", 75, 75, "black");
+            GameApp.drawTextHorizontallyCentered("basic", "Back", 100, 75, "white");
         }
         GameApp.endSpriteRendering();
     }

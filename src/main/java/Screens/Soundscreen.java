@@ -5,6 +5,8 @@ import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.game.animalInvaders.game.Ship;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
+import nl.saxion.game.animalInvaders.game.GameSettings;
+
 
 public class Soundscreen extends ScalableGameScreen {
     int selectedItem = 0;
@@ -20,6 +22,8 @@ public class Soundscreen extends ScalableGameScreen {
         GameApp.addTexture("background", "Photos/Background.jpg");
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
         GameApp.addFont("basic1", "fonts/basic.ttf", 75);
+        GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
+
 
     }
 
@@ -61,6 +65,7 @@ public class Soundscreen extends ScalableGameScreen {
         } else if (GameApp.isKeyJustPressed(Input.Keys.SPACE) && selectedItem == 2) {
             // back
             GameApp.switchScreen("Optionscreen");
+            selectedItem = 0;
         }
 
 

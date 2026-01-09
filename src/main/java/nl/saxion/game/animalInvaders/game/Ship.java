@@ -35,13 +35,6 @@ public class Ship {
         this.width = 20;
         this.hitbox = new Rectangle(xPos - ((21*4) / 2), yPos - (25 / 2), 21*4, 25);
         this.game = game;
-        GameApp.addSpriteSheet("Ship", "animations/ship.png",21,25);
-        GameApp.addAnimationFromSpritesheet("ShipFly", "Ship", 0.1f, true);
-        GameApp.addSpriteSheet("ShipExplosion", "animations/Ship_explode.png", 30, 32);
-        GameApp.addAnimationFromSpritesheet("ShipExplodes", "ShipExplosion", 0.3f, false);
-        GameApp.addSound("Laser", "audio/laser.mp3");
-        GameApp.addSound("explotion", "audio/explosion.mp3");
-
 
     }
 
@@ -124,7 +117,9 @@ public class Ship {
             scoreinputscreen.setHighscoreScreen(game.getHighscorescreen());
             GameApp.startSpriteRendering();
             GameApp.drawAnimation("ShipExplodes", xPos - 30*3, yPos - 32*3, 30 * 6, 32 * 6);
-            GameApp.playSound("explotion", 1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("explotion", 1f);
+            }
             GameApp.endSpriteRendering();
             deathTimer--;
             if (deathTimer <= 0) {
@@ -192,7 +187,9 @@ public class Ship {
 
         if (wantsToShoot && timeSinceShot >= shootCooldown) {
             shootLasers();
-            GameApp.playSound("Laser", 1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("Laser", 1f);
+            }
             timeSinceShot = 0;
         }
         if (fireMode == FireMode.FAST) {

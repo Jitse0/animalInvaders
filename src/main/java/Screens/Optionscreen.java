@@ -3,6 +3,7 @@ package Screens;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
+import nl.saxion.game.animalInvaders.game.GameSettings;
 
 public class Optionscreen extends ScalableGameScreen {
 
@@ -24,10 +25,14 @@ public class Optionscreen extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
         if (GameApp.isKeyJustPressed(Input.Keys.DOWN)){
-            GameApp.playSound("select", 1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("select", 1f);
+            }
             selectedItem = (selectedItem + 1) % 4;
         }else if (GameApp.isKeyJustPressed(Input.Keys.UP)) {
-            GameApp.playSound("select", 1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("select", 1f);
+            }
             selectedItem -= 1;
             if (selectedItem < 0) {
                 selectedItem = 3;

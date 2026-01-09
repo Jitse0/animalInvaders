@@ -30,10 +30,14 @@ public class HomeMenu extends ScalableGameScreen {
 
         if (GameApp.isKeyJustPressed(Input.Keys.DOWN)){
             selectedItem = (selectedItem + 1) % 4;
-            GameApp.playSound("select",1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("select", 1f);
+            }
         }else if (GameApp.isKeyJustPressed(Input.Keys.UP)){
             selectedItem -= 1;
-            GameApp.playSound("select",1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("select", 1f);
+            }
             if (selectedItem < 0) {
                 selectedItem = 3;
             }
@@ -43,16 +47,24 @@ public class HomeMenu extends ScalableGameScreen {
 
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0){
-             GameApp.playSound("confirm",1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("confirm", 1f);
+            }
              GameApp.switchScreen("Levelscreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
-            GameApp.playSound("confirm",1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("confirm", 1f);
+            }
             GameApp.switchScreen("Highscorescreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
-            GameApp.playSound("confirm",1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("confirm", 1f);
+            }
             GameApp.switchScreen("Optionscreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 3) {
-            GameApp.playSound("confirm",1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("confirm", 1f);
+            }
             GameApp.quit();
         }
 
