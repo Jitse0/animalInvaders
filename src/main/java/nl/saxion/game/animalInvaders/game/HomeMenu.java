@@ -19,6 +19,7 @@ public class HomeMenu extends ScalableGameScreen {
         GameApp.addFont("basic1", "fonts/basic.ttf", 75);
         GameApp.addSpriteSheet("titleSheet", "animations/title.png",800,196);
         GameApp.addSound("select", "audio/menu-button.mp3");
+        GameApp.addSound("confirm", "audio/confirm.mp3");
         GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, true);
 
     }
@@ -42,12 +43,16 @@ public class HomeMenu extends ScalableGameScreen {
 
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0){
+             GameApp.playSound("confirm",1f);
              GameApp.switchScreen("Levelscreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
+            GameApp.playSound("confirm",1f);
             GameApp.switchScreen("Highscorescreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
+            GameApp.playSound("confirm",1f);
             GameApp.switchScreen("Optionscreen");
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 3) {
+            GameApp.playSound("confirm",1f);
             GameApp.quit();
         }
 
@@ -84,11 +89,7 @@ public class HomeMenu extends ScalableGameScreen {
         } else {
             GameApp.drawTextHorizontallyCentered("basic", "Quit", getWorldWidth()/2, 75, "white" );
         }
-
-
         GameApp.endSpriteRendering();
-
-
     }
 
 
