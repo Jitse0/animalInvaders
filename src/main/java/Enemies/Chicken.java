@@ -4,6 +4,7 @@ import Bullets.Egg;
 import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import Items.Burger;
+import nl.saxion.game.animalInvaders.game.Power;
 import nl.saxion.gameapp.GameApp;
 
 public class Chicken {

@@ -30,7 +30,7 @@ public class Projectile {
         this.hitbox = new Rectangle(xPos, yPos, 5, height);
         this.game = game;
 
-        GameApp.addTexture("Laser", "Photos/laser.png" );
+
     }
 
     public void drawProjectile() {
@@ -46,6 +46,7 @@ public class Projectile {
 //        GameApp.drawRect(hitbox.getX(), hitbox.getY(), hitbox.getWidth(),hitbox.getHeight());
 //        GameApp.endShapeRendering();
     }
+
 
     public void moveProjectile() {
         yPos += speed * GameApp.getDeltaTime();
