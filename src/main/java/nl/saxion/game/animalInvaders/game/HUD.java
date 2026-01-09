@@ -47,7 +47,7 @@ public class HUD {
             if (ship.getLifeChange() > 0) {
                 GameApp.drawTextHorizontallyCentered("basic1", "+", 20, 80, "green");
             } else if (ship.getLifeChange() < 0) {
-                GameApp.drawTextHorizontallyCentered("basic2", "-", 20, 85, "red");
+                GameApp.drawTextHorizontallyCentered("basic2", "-", 20, 95, "red");
             }
         }
         GameApp.endSpriteRendering();

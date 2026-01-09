@@ -32,14 +32,6 @@ public class Boss {
         GameApp.addSpriteSheet("Mech", "Photos/mech.png", 128, 64);
         this.hitbox = new Rectangle(xPos - width/2, yPos - height/2, width, 10);
 
-        GameApp.addTexture("Mech", "Photos/mech.png");
-        GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
-        GameApp.addSpriteSheet("chickenPilot", "animations/pixilart-sprite.png", 36, 24);
-        GameApp.addAnimationFromSpritesheet("pilotChicken", "chickenPilot", 0.05f, false);
-        GameApp.addSpriteSheet("cowPilot", "animations/Cow.png", 30, 35);
-        GameApp.addAnimationFromSpritesheet("pilotCow", "cowPilot", 0.05f, false);
-        GameApp.addSpriteSheet("pigPilot", "animations/Pig.png", 25, 37);
-        GameApp.addAnimationFromSpritesheet("pilotPig", "pigPilot", 0.05f, false);
     }
 
     public void drawBoss() {

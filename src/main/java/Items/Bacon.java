@@ -27,7 +27,7 @@ public class Bacon {
         pickUpBacon();
         moveBacon();
 
-        GameApp.addTexture("Bacon", "Photos/bacon_pig.png");
+
         GameApp.startSpriteRendering();
         GameApp.drawTexture("Bacon", xPos,yPos, 16*2, 16*2);
         GameApp.endSpriteRendering();

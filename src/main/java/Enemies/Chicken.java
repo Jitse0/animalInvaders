@@ -35,9 +35,6 @@ public class Chicken {
         this.width = 36;
         this.height = 24;
 
-        GameApp.addSpriteSheet("Chicken", "animations/pixilart-sprite.png",36,24);
-        GameApp.addAnimationFromSpritesheet("ChickenFly", "Chicken", 0.1f, true);
-        GameApp.addSound("ChickenNoise", "audio/chicken-noise.mp3");
     }
 
     public void drawChicken() {

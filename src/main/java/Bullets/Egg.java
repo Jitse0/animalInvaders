@@ -29,8 +29,6 @@ public class Egg {
         this.width = 19;
         this.height = 18;
 
-        GameApp.addSpriteSheet("Egg", "animations/bullet_egg.png",19,18);
-        GameApp.addAnimationFromSpritesheet("EggThrow", "Egg", 0.075f, true);
     }
 
 

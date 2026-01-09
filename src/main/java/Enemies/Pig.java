@@ -35,9 +35,6 @@ public class Pig {
         this.width= 25;
         this.height = 37;
 
-        GameApp.addSpriteSheet("Pig", "animations/Pig.png",25,37);
-        GameApp.addAnimationFromSpritesheet("Pigmoving", "Pig", 0.1f, true);
-        GameApp.addSound("PigOink", "audio/pig-oink.mp3");
     }
 
     public void drawPig() {
@@ -83,7 +80,7 @@ public class Pig {
             game.addItem(bacon);
             game.removeEnemy(this);
             Power power = new Power(this.xPos, this.yPos, 5, this.game);
-            if (Math.random() < 0.15) {
+            if (Math.random() < 1) {
                 game.addPower(power);
             }
             GameApp.playSound("PigOink", 1f);

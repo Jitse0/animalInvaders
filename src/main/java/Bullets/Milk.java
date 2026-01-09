@@ -30,7 +30,6 @@ public class Milk {
     public void drawMilk() {
         this.move();
         collideWithShip();
-        GameApp.addTexture("Milk", "Photos/Milk_bottle.png");
         GameApp.startSpriteRendering();
         GameApp.drawTexture("Milk", xPos,yPos, (int)(756*0.04), (int)(1568*0.04));
         GameApp.endSpriteRendering();

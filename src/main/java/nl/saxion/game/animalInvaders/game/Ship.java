@@ -21,10 +21,7 @@ public class Ship {
     private float blinkSwitchTimer = 0f;
     private int deathTimer = 60;
     private int laserCount = 1;
-    private boolean slowShoot = false;
-    private boolean fastShoot = false;
-    private float slowShootTimer = 0f;
-    private float fastShootTimer = 0f;
+
 
 
 
@@ -50,7 +47,6 @@ public class Ship {
 
     public void drawShip() {
         moveShip(speed);
-        updateShootEffects();
         shoot();
         float delta = GameApp.getDeltaTime();
         if (overheatVisual < overheatLevel) {
@@ -154,6 +150,9 @@ public class Ship {
     private float timeSinceShootInput = 999f;
     private int lifeChange = 0;
     private float lifeChangeTimer = 0;
+    private enum FireMode { NORMAL, FAST, SLOW }
+    private FireMode fireMode = FireMode.NORMAL;
+
 
 
 
@@ -196,6 +195,15 @@ public class Ship {
             GameApp.playSound("Laser", 1f);
             timeSinceShot = 0;
         }
+        if (fireMode == FireMode.FAST) {
+            shootCooldown = FAST_COOLDOWN;
+        }
+        else if (fireMode == FireMode.SLOW) {
+            shootCooldown = SLOW_COOLDOWN;
+        } else {
+            shootCooldown = BASE_COOLDOWN;
+        }
+
     }
 
     public void applyPower() {
@@ -209,23 +217,18 @@ public class Ship {
             if (laserCount < 3) {
                 laserCount++;
             } else {
-                fastShoot = true;
-                slowShoot = false;
-                fastShootTimer = 5f;
+                fireMode = FireMode.FAST;   // blijvend sneller
             }
 
         } else if (r < 80) {
             healthpoints--;
             lifeChange = -1;
             lifeChangeTimer = 1f;
-        } else if (r < 100){
+        } else if (r < 100) {
             if (laserCount > 1) {
                 laserCount--;
-
             } else {
-                slowShoot = true;
-                fastShoot = false;
-                slowShootTimer = 5f;
+                fireMode = FireMode.SLOW;
             }
         }
 
@@ -260,21 +263,6 @@ public class Ship {
     public int getHealthPoints() {
         return healthpoints;
     }
-    private void updateShootEffects() {
-        float delta = GameApp.getDeltaTime();
-        shootCooldown = BASE_COOLDOWN;
-        if (fastShoot) {
-            fastShootTimer -= delta;
-            shootCooldown = FAST_COOLDOWN;
-            if (fastShootTimer <= 0) fastShoot = false;
-        }
-        if (slowShoot) {
-            slowShootTimer -= delta;
-            shootCooldown = SLOW_COOLDOWN;
-            if (slowShootTimer <= 0) slowShoot = false;
-        }
-    }
-
 
     public Rectangle getHitbox() {
         return hitbox;

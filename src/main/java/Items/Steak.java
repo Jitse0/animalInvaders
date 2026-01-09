@@ -21,7 +21,7 @@ public class Steak {
         this.hitbox = new Rectangle(xPos, yPos, 37, 21);
         this.yVel = -30;
         this.xVel = (int ) (-15 + Math.random() * 30);
-        GameApp.addTexture("Steak", "Photos/Steak.png");
+
     }
 
     public void drawSteak() {

@@ -37,9 +37,6 @@ public class Cow {
         this.width= 30;
         this.height = 35;
 
-        GameApp.addSpriteSheet("Cow", "animations/Cow.png",30,35);
-        GameApp.addAnimationFromSpritesheet("Cowmoving", "Cow", 0.1f, true);
-        GameApp.addSound("CowMooing", "audio/cow-mooing.mp3");
     }
 
     public void drawCow() {
@@ -85,7 +82,7 @@ public class Cow {
             game.addItem(steak);
             game.removeEnemy(this);
             Power power = new Power(this.xPos, this.yPos, 5, this.game);
-            if (Math.random() < 0.15) {
+            if (Math.random() < 1) {
                 game.addPower(power);
             }
             GameApp.playSound("CowMooing", 1f);

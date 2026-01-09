@@ -24,7 +24,6 @@ public class Mud {
         this.hitbox = new Rectangle(xPos, yPos, 37, 21);
         this.game = game;
         this.ship = game.getShip();
-        GameApp.addTexture("Mud", "Photos/Mud.png");
     }
 
     public void drawMud() {

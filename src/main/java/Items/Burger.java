@@ -27,7 +27,7 @@ public class Burger {
         pickUpBurger();
         moveBurger();
 
-        GameApp.addTexture("ChickenLeg", "Photos/Chicken_leg4.png");
+
         GameApp.startSpriteRendering();
         GameApp.drawTexture("ChickenLeg", xPos,yPos, 16*3, 16*3);
         GameApp.endSpriteRendering();

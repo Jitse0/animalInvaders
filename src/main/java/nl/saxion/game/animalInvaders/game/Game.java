@@ -57,6 +57,30 @@ public class Game extends ScalableGameScreen {
         this.level = level;
         GameApp.addTexture("Power", "Photos/Power.png");
         GameApp.addTexture("Laser", "Photos/laser.png");
+        GameApp.addTexture("Bacon", "Photos/bacon_pig.png");
+        GameApp.addTexture("ChickenLeg", "Photos/Chicken_leg4.png");
+        GameApp.addTexture("Steak", "Photos/Steak.png");
+        GameApp.addSpriteSheet("Pig", "animations/Pig.png",25,37);
+        GameApp.addAnimationFromSpritesheet("Pigmoving", "Pig", 0.1f, true);
+        GameApp.addSound("PigOink", "audio/pig-oink.mp3");
+        GameApp.addSpriteSheet("Cow", "animations/Cow.png",30,35);
+        GameApp.addAnimationFromSpritesheet("Cowmoving", "Cow", 0.1f, true);
+        GameApp.addSound("CowMooing", "audio/cow-mooing.mp3");
+        GameApp.addSpriteSheet("Chicken", "animations/pixilart-sprite.png",36,24);
+        GameApp.addAnimationFromSpritesheet("ChickenFly", "Chicken", 0.1f, true);
+        GameApp.addSound("ChickenNoise", "audio/chicken-noise.mp3");
+        GameApp.addTexture("Mech", "Photos/mech.png");
+        GameApp.addSpriteSheet("mechFireCenter", "animations/mechFiringCenter.png", 128, 64);
+        GameApp.addSpriteSheet("chickenPilot", "animations/pixilart-sprite.png", 36, 24);
+        GameApp.addAnimationFromSpritesheet("pilotChicken", "chickenPilot", 0.05f, false);
+        GameApp.addSpriteSheet("cowPilot", "animations/Cow.png", 30, 35);
+        GameApp.addAnimationFromSpritesheet("pilotCow", "cowPilot", 0.05f, false);
+        GameApp.addSpriteSheet("pigPilot", "animations/Pig.png", 25, 37);
+        GameApp.addAnimationFromSpritesheet("pilotPig", "pigPilot", 0.05f, false);
+        GameApp.addTexture("Mud", "Photos/Mud.png");
+        GameApp.addTexture("Milk", "Photos/Milk_bottle.png");
+        GameApp.addSpriteSheet("Egg", "animations/bullet_egg.png",19,18);
+        GameApp.addAnimationFromSpritesheet("EggThrow", "Egg", 0.075f, true);
     }
 
     @Override
