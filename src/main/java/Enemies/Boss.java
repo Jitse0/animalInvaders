@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.game.animalInvaders.game.Projectile;
 import nl.saxion.gameapp.GameApp;
+import nl.saxion.game.animalInvaders.game.GameSettings;
 
 
 

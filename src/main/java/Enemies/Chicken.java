@@ -6,6 +6,7 @@ import nl.saxion.game.animalInvaders.game.Game;
 import Items.Burger;
 import nl.saxion.game.animalInvaders.game.Power;
 import nl.saxion.gameapp.GameApp;
+import nl.saxion.game.animalInvaders.game.GameSettings;
 
 public class Chicken {
     private int healthpoints;
@@ -84,8 +85,9 @@ public class Chicken {
             if (Math.random() < 0.15) {
                 game.addPower(power);
             }
-            GameApp.playSound("ChickenNoise", 1f);
-
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("ChickenNoise", 1f);
+            }
         }
     }
 

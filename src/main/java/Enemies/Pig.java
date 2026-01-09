@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import nl.saxion.game.animalInvaders.game.Game;
 import nl.saxion.game.animalInvaders.game.Power;
 import nl.saxion.gameapp.GameApp;
+import nl.saxion.game.animalInvaders.game.GameSettings;
 
 public class Pig {
     private int healthpoints;
@@ -83,7 +84,9 @@ public class Pig {
             if (Math.random() < 1) {
                 game.addPower(power);
             }
-            GameApp.playSound("PigOink", 1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("PigOink", 1f);
+            }
         }
     }
 

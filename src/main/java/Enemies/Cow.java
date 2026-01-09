@@ -6,6 +6,7 @@ import Bullets.Milk;
 import Items.Steak;
 import nl.saxion.game.animalInvaders.game.Power;
 import nl.saxion.gameapp.GameApp;
+import nl.saxion.game.animalInvaders.game.GameSettings;
 
 public class Cow {
     private int healthpoints;
@@ -85,7 +86,9 @@ public class Cow {
             if (Math.random() < 1) {
                 game.addPower(power);
             }
-            GameApp.playSound("CowMooing", 1f);
+            if (!GameSettings.sfxMuted) {
+                GameApp.playSound("CowMooing", 1f);
+            }
         }
     }
 

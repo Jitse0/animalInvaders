@@ -88,8 +88,11 @@ public class Game extends ScalableGameScreen {
         addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
         addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
         addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
-        GameApp.addMusic("GameMusic8-bit", "audio/Game_Background_music.mp3");
-        GameApp.playMusic("GameMusic8-bit", true, 0.6f);
+        if (!GameSettings.musicMuted) {
+            GameApp.playMusic("GameMusic8-bit", true, 1f);
+        } else {
+            GameApp.stopMusic("GameMusic8-bit"); // voor de zekerheid
+        }
         addEnemy(new Boss(800, 500, this));
         GameApp.addTexture("Background", "Photos/space_background.png");
     }
