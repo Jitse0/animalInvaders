@@ -56,25 +56,26 @@ public class Pausemenu {
         GameApp.startSpriteRendering();
         GameApp.addFont("pause", "fonts/basic.ttf", 45);
         GameApp.addFont("options", "fonts/basic.ttf", 25);
+        GameApp.addFont("options1", "fonts/basic.ttf", 35);
         GameApp.drawTextHorizontallyCentered("pause", "Paused", GameApp.getWorldWidth() / 2, 450, "white");
 
         if (selectedItem == 0){
-            GameApp.drawTextHorizontallyCentered("options", "Resume", GameApp.getWorldWidth()/2, 390, "white" );
+            GameApp.drawTextHorizontallyCentered("options1", "Resume", GameApp.getWorldWidth()/2, 390, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("options", "Resume", GameApp.getWorldWidth()/2, 390, "black" );
+            GameApp.drawTextHorizontallyCentered("options", "Resume", GameApp.getWorldWidth()/2, 390, "white" );
         }
         if (selectedItem == 1){
-            GameApp.drawTextHorizontallyCentered("options", "Restart", GameApp.getWorldWidth()/2, 350, "white" );
+            GameApp.drawTextHorizontallyCentered("options1", "Restart", GameApp.getWorldWidth()/2, 350, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("options", "Restart", GameApp.getWorldWidth()/2, 350, "black" );
+            GameApp.drawTextHorizontallyCentered("options", "Restart", GameApp.getWorldWidth()/2, 350, "white" );
         }
         if (selectedItem == 2){
-            GameApp.drawTextHorizontallyCentered("options", "Quit", GameApp.getWorldWidth()/2, 310, "white" );
+            GameApp.drawTextHorizontallyCentered("options1", "Quit", GameApp.getWorldWidth()/2, 310, "white" );
 
         } else {
-            GameApp.drawTextHorizontallyCentered("options", "Quit", GameApp.getWorldWidth()/2, 310 , "black" );
+            GameApp.drawTextHorizontallyCentered("options", "Quit", GameApp.getWorldWidth()/2, 310 , "white" );
         }
         GameApp.endSpriteRendering();
     }
