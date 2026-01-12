@@ -21,6 +21,10 @@ public class Chicken {
     private Game game;
     private int width;
     private int height;
+    private float targetX, targetY;
+    private boolean arrived = false;
+    private float entrySpeed = 250f;
+
 
     public Chicken(int healthpoints, int xPos, int yPos, int size, int speed, String direction, int fireRate, Game game) {
         this.healthpoints = 1;
@@ -31,7 +35,7 @@ public class Chicken {
         this.direction = direction;
         this.fireRate =  (int) (fireRate / GameApp.getDeltaTime());
         this.timer = this.fireRate;
-        this.hitbox = new Rectangle(xPos, yPos, 36 * 4, 24 * 4);
+        this.hitbox = new Rectangle(xPos, yPos, 36 *3, 24 * 3);
         this.game = game;
         this.width = 36;
         this.height = 24;
@@ -39,37 +43,38 @@ public class Chicken {
     }
 
     public void drawChicken() {
-        moveChicken(speed);
-        shoot();
+        moveToTarget();     // eerst binnen vliegen
+
+        if (arrived) {
+            shoot();        // pas schieten als hij op plek is
+            // moveChicken(speed);  // NIET meer bewegen na arrival
+        }
 
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("ChickenFly", xPos, yPos, (width*4), (height*4));
+        GameApp.drawAnimation("ChickenFly", xPos, yPos, (width * 3), (height * 3));
         GameApp.endSpriteRendering();
+
+        hitbox.setPosition(xPos, yPos);
+        // AFTER hitbox.setPosition(xPos, yPos);
+        if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
+            game.getShip().takeDamage(1);
+        }
+
     }
 
-    public void moveChicken(int speed) {
-        if (direction.equals("right")) {
-            if (xPos > GameApp.getWorldWidth() - 10) {
-                direction = "left";
-            }
-            xPos += speed * GameApp.getDeltaTime();
-        }
-        else if (direction.equals("left")) {
-            if (xPos < 10) {
-                direction = "right";
-            }
-            xPos -= speed * GameApp.getDeltaTime();
-        }
-        hitbox.setPosition(xPos, yPos);
-    }
 
     public void shoot() {
+        if (!arrived) return; // (als je dit wil: pas schieten als hij op plek is)
+
         if (this.timer <= 0) {
-            //Schieten
-            game.addBullet(new Egg(xPos, yPos, 30, 20, 1, game));
+
+            // alleen schieten als game het toestaat
+            if (game.tryEnemyShoot()) {
+                game.addBullet(new Egg(xPos, yPos, 30, 20, 1, game));
+            }
+
             this.timer = this.fireRate;
-        }
-        else {
+        } else {
             this.timer--;
         }
     }
@@ -106,4 +111,36 @@ public class Chicken {
     public Rectangle getHitbox() {
         return hitbox;
     }
+    public void setTarget(float tx, float ty) {
+        targetX = tx;
+        targetY = ty;
+        arrived = false;
+    }
+
+    private void moveToTarget() {
+        if (arrived) return;
+
+        float dt = GameApp.getDeltaTime();
+
+        float dx = targetX - xPos;
+        float dy = targetY - yPos;
+
+        float dist = (float)Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 5f) {
+            xPos = (int) targetX;
+            yPos = (int) targetY;
+            arrived = true;
+            return;
+        }
+
+        float vx = (dx / dist) * entrySpeed;
+        float vy = (dy / dist) * entrySpeed;
+
+        xPos += vx * dt;
+        yPos += vy * dt;
+    }
+
+
+
 }

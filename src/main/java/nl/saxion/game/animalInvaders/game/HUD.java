@@ -22,11 +22,10 @@ public class HUD {
         GameApp.addColor("white", 255, 255, 255);
         GameApp.drawRoundedRect(-10, -10, 205, 55, 10, "white");
         GameApp.drawRoundedRect(-10, -10, 200, 50, 10, "hudcolor");
-        GameApp.drawRoundedRect(-10, 625, 340, 60 , 10, "white");
-        GameApp.drawRoundedRect(-10, 625, 350, 100, 10, "hudcolor");
+        GameApp.drawRoundedRect(-10, 675, 330, 100, 10, "hudcolor");
 
         float level = ship.getOverheatVisual();
-        int barX = 125;
+        int barX = 110;
         int barY = 700;
         float barWidth = 200f;
         float barHeight = 10f;

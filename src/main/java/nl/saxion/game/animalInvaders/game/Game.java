@@ -17,6 +17,8 @@ import nl.saxion.gameapp.screens.ScalableGameScreen;
 import nl.saxion.game.animalInvaders.game.GameSettings;
 
 
+
+
 import java.util.ArrayList;
 
 
@@ -50,6 +52,11 @@ public class Game extends ScalableGameScreen {
     private Highscorescreen highscorescreen;
     private Pausemenu pauseMenu = new Pausemenu();
     private int level;
+    private Level1Waves waves;
+    private int enemyShotsLeft = 2;
+    private float enemyShotWindowTimer = 0f;
+    private static final float ENEMY_SHOT_WINDOW = 1.5f;
+
 
 
     public Game(Highscorescreen highscorescreen, int level) {
@@ -90,21 +97,24 @@ public class Game extends ScalableGameScreen {
         GameApp.addSound("explotion", "audio/explosion.mp3");
         GameApp.addSound("select", "audio/menu-button.mp3");
         GameApp.addMusic("GameMusic8-bit", "audio/GameMusic8-bit.mp3");
+        waves = new Level1Waves(this);
+
     }
 
     @Override
+
     public void show() {
-        addEnemy(new Chicken(1, 640, 620, 20,100, "right", 1, this));
-        addEnemy(new Pig(1, 300, 680, 20,100, "right", 1, this));
-        addEnemy(new Cow(1, 100, 680, 20,100, "right", 1, this));
+        GameApp.addTexture("Background", "Photos/space_background.png");
+
         if (!GameSettings.musicMuted) {
             GameApp.playMusic("GameMusic8-bit", true, 1f);
         } else {
-            GameApp.stopMusic("GameMusic8-bit"); // voor de zekerheid
+            GameApp.stopMusic("GameMusic8-bit");
         }
-        addEnemy(new Boss(800, 500, this));
-        GameApp.addTexture("Background", "Photos/space_background.png");
+
+        waves.start();
     }
+
 
     @Override
     public void render(float delta) {
@@ -120,7 +130,7 @@ public class Game extends ScalableGameScreen {
         GameApp.clearScreen();
 
         kill();
-
+        waves.update();
         GameApp.startSpriteRendering();
         GameApp.drawTexture("Background", 0, 0, getWorldWidth(), getWorldHeight());
         GameApp.endSpriteRendering();
@@ -165,7 +175,8 @@ public class Game extends ScalableGameScreen {
 
         ship.drawShip();
         hud.draw();
-        checkGameOver();
+        waves.drawWaveText();
+
         GameApp.endShapeRendering();
         updateAnimations();
     }
@@ -200,15 +211,7 @@ public class Game extends ScalableGameScreen {
     public void hide() {
         GameApp.stopMusic("GameMusic8-bit");
     }
-    private void checkGameOver() {
-        if (chickens.isEmpty() & pigs.isEmpty() && cows.isEmpty() && boss == null) {
-            //GameApp.switchScreen("Levelscreen");
-            scoreinputscreen.setHighScore(highscore);
-            scoreinputscreen.setHighscoreScreen(highscorescreen);
-            GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
-            GameApp.switchScreen("Scoreinputscreen");
-        }
-    }
+
     public ArrayList<Projectile> getProjectiles() {
         return projectiles;
     }
@@ -342,4 +345,30 @@ public class Game extends ScalableGameScreen {
     public Highscorescreen getHighscorescreen(){
         return highscorescreen;
     }
+    public void finishLevel() {
+        scoreinputscreen.setHighScore(highscore);
+        scoreinputscreen.setHighscoreScreen(highscorescreen);
+        GameApp.addScreen("Scoreinputscreen", scoreinputscreen);
+        GameApp.switchScreen("Scoreinputscreen");
+    }
+    public boolean tryEnemyShoot() {
+
+        enemyShotWindowTimer += GameApp.getDeltaTime();
+
+
+        if (enemyShotWindowTimer >= ENEMY_SHOT_WINDOW) {
+            enemyShotWindowTimer = 0f;
+            enemyShotsLeft = 2;
+        }
+
+
+        if (enemyShotsLeft <= 0) return false;
+
+        enemyShotsLeft--;
+        return true;
+    }
+
+
+
+
 }

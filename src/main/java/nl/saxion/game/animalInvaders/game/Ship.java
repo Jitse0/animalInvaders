@@ -57,7 +57,6 @@ public class Ship {
                 lifeChange = 0;
             }
         }
-        damageTest();
         if (blinkTimer > 0) {
             blinkTimer -= GameApp.getDeltaTime();
             blinkSwitchTimer -= GameApp.getDeltaTime();
@@ -97,15 +96,11 @@ public class Ship {
         hitbox.setPosition(xPos  - ((21*4) / 2), yPos - (25 / 2));
     }
 
-    public void damageTest() {
-        if (GameApp.isKeyJustPressed(Input.Keys.U)) {
-            takeDamage(1);
 
-        }
-    }
 
 
     public void takeDamage(int damage) {
+        if (blinkTimer > 0f) return;
         this.healthpoints -= damage;
         blinkTimer = 2f;
     }
