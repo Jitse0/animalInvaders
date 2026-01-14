@@ -31,14 +31,17 @@ public class Milk {
         this.move();
         collideWithShip();
         GameApp.startSpriteRendering();
-        GameApp.drawTexture("Milk", xPos,yPos, (int)(756*0.04), (int)(1568*0.04));
+        GameApp.drawTexture("Milk", xPos- 9,yPos - 31, (int)(756*0.04), (int)(1568*0.04));
         GameApp.endSpriteRendering();
 
     }
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
-        hitbox.setPosition(xPos, yPos);
+        if (this.yPos < 1) {
+            game.removeBullet(this);
+        }
+        hitbox.setPosition(xPos - 16, yPos - 19);
     }
 
     public void collideWithShip(){

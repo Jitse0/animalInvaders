@@ -30,13 +30,16 @@ public class Mud {
         this.move();
         collideWithShip();
         GameApp.startSpriteRendering();
-        GameApp.drawTexture("Mud", xPos, yPos, (37), (21));
+        GameApp.drawTexture("Mud", xPos - 18, yPos - 10, (37), (21));
         GameApp.endSpriteRendering();
     }
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
-        hitbox.setPosition(xPos, yPos);
+        if (this.yPos < 1) {
+            game.removeBullet(this);
+        }
+        hitbox.setPosition(xPos - 18, yPos - 10);
     }
 
     public void collideWithShip(){

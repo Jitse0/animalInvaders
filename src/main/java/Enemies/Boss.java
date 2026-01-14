@@ -74,7 +74,16 @@ public class Boss {
     public void shoot() {
        if(timer <= 0) {
            GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.04f, false);
-           game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
+           switch (game.getLevel()) {
+               case (1):
+                   game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 1, game));
+               case (2):
+                   game.addBullet(new Mud(xPos, yPos - height/3, 30, 20, 1, game));
+                   game.addBullet(new Milk(xPos - width/2 + width/20, yPos - height/3, 30, 20, 1, game));
+                   game.addBullet(new Egg(xPos + width/2 - width/20, yPos - height/3, 30, 20, 1, game));
+
+               default: game.addBullet(new Mud(xPos, yPos - height/3, 30, 20, 1, game));
+           }
            timer = fireRate;
            firing = true;
        }

@@ -6,7 +6,7 @@ import Enemies.Cow;
 import Enemies.Pig;
 import nl.saxion.gameapp.GameApp;
 
-public class Level1Waves {
+public class Waves {
 
     private final Game game;
     private int level;
@@ -37,7 +37,7 @@ public class Level1Waves {
     private float waveTextTimer = 0f;
     private String waveText = "";
 
-    public Level1Waves(Game game, int level) {
+    public Waves(Game game, int level) {
         this.game = game;
         this.level = level;
         this.WORLD_W = (int) game.getWorldWidth();
@@ -212,7 +212,8 @@ public class Level1Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        spawnGrid(2, 8);
+                        spawnGrid(1, 2);
+                        spawnBoss();
                         return true;
                     }
                     if (group == 2) {

@@ -53,10 +53,10 @@ public class Cow {
         }
 
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Cowmoving", xPos, yPos, (width * 3), (height * 3));
+        GameApp.drawAnimation("Cowmoving", xPos - 45, yPos - 54, (width * 3), (height * 3));
         GameApp.endSpriteRendering();
 
-        hitbox.setPosition(xPos, yPos);
+        hitbox.setPosition(xPos - 45, yPos - 54);
         if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
             game.getShip().takeDamage(1);
         }

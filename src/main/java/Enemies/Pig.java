@@ -51,10 +51,10 @@ public class Pig {
         }
 
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Pigmoving", xPos, yPos, (width * 3), (height * 3));
+        GameApp.drawAnimation("Pigmoving", xPos -37, yPos -55, (width * 3), (height * 3));
         GameApp.endSpriteRendering();
 
-        hitbox.setPosition(xPos, yPos);
+        hitbox.setPosition(xPos -37, yPos -55);
         if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
             game.getShip().takeDamage(1);
         }
@@ -66,7 +66,7 @@ public class Pig {
         if (this.timer <= 0) {
 
             if (game.tryEnemyShoot()) {
-                game.addBullet(new Mud(xPos, yPos, 15, 20, 1, game));
+                game.addBullet(new Mud(xPos, yPos, 15, 60, 1, game));
             }
             this.timer = this.fireRate;
         } else {
