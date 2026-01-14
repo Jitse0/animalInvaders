@@ -22,10 +22,10 @@ public class HUD {
         GameApp.addColor("white", 255, 255, 255);
         GameApp.drawRoundedRect(-10, -10, 205, 55, 10, "white");
         GameApp.drawRoundedRect(-10, -10, 200, 50, 10, "hudcolor");
-        GameApp.drawRoundedRect(-10, 675, 330, 100, 10, "hudcolor");
+        GameApp.drawRoundedRect(-10, 675, 350, 100, 10, "hudcolor");
 
         float level = ship.getOverheatVisual();
-        int barX = 110;
+        int barX = 130;
         int barY = 700;
         float barWidth = 200f;
         float barHeight = 10f;
@@ -39,7 +39,7 @@ public class HUD {
 
         GameApp.startSpriteRendering();
 
-        GameApp.drawTextHorizontallyCentered("basic", "Score: " + game.getHighscore(), 50, 710, "white");
+        GameApp.drawTextHorizontallyCentered("basic", "Score: " + game.getHighscore(), 70, 710, "white");
         GameApp.drawTextHorizontallyCentered("basic", "" + ship.getHealthPoints(), 40, 30, "white");
         GameApp.drawTexture("heart", 5, -5, 30, 60);
         GameApp.drawTexture("meat", 40, -5, 30, 60);
