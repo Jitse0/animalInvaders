@@ -42,6 +42,7 @@ public class HUD {
         GameApp.drawTextHorizontallyCentered("basic", "Score: " + game.getHighscore(), 50, 710, "white");
         GameApp.drawTextHorizontallyCentered("basic", "" + ship.getHealthPoints(), 40, 30, "white");
         GameApp.drawTexture("heart", 5, -5, 30, 60);
+        GameApp.drawTexture("meat", 40, -5, 30, 60);
         if (ship.getLifeChangeTimer() > 0) {
             if (ship.getLifeChange() > 0) {
                 GameApp.drawTextHorizontallyCentered("basic1", "+", 20, 80, "green");

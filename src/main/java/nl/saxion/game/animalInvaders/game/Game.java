@@ -99,6 +99,7 @@ public class Game extends ScalableGameScreen {
         GameApp.addSound("confirm", "audio/confirm.mp3");
         GameApp.addAnimationFromSpritesheet("titleAnim", "titleSheet", 0.1f, true);
         GameApp.addTexture("heart", "Photos/heart.png");
+        GameApp.addTexture("meat", "Photos/meat.png");
         waves = new Waves(this, this.level);
     }
 
