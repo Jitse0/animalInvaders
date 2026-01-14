@@ -47,7 +47,7 @@ public class Game extends ScalableGameScreen {
     private ArrayList <String> highscoreNames = new ArrayList<>();
     private Scoreinputscreen scoreinputscreen = new Scoreinputscreen();
     private Highscorescreen highscorescreen;
-    private Pausemenu pauseMenu = new Pausemenu();
+    private Pausemenu pauseMenu = new Pausemenu(this);
     private int level;
     private Waves waves;
     private int enemyShotsLeft = 2;

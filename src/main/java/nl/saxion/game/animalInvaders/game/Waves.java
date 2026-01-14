@@ -569,4 +569,7 @@ public class Waves {
         spawnCircle(10);
         spawnSideColumns(4);
     }
+    public int getlevel(){
+        return level;
+    }
 }
