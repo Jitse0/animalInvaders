@@ -212,8 +212,7 @@ public class Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        //spawnGrid(2, 9);
-                        spawnBoss();
+                        spawnGrid(2, 9);
                         return true;
                     }
                     if (group == 2) {
@@ -319,8 +318,7 @@ public class Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        //spawnGrid(2, 9);
-                        spawnBoss();
+                        spawnGrid(2, 9);
                         return true;
                     }
                     if (group == 2) {
