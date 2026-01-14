@@ -62,13 +62,14 @@ public class Cow {
         }
     }
     public void aim() {
-        if (game.getShip().getxPosShip() < xPos - game.getWorldWidth()/2) {
+        int reach = (int) (game.getWorldWidth()/8);
+        if (game.getShip().getxPosShip() < xPos - reach) {
             direction = "l";
         }
-        if (xPos - game.getWorldWidth()/2 <= game.getShip().getxPosShip() && game.getShip().getxPosShip() <= xPos + game.getWorldWidth()/2 ) {
+        if (xPos - reach <= game.getShip().getxPosShip() && game.getShip().getxPosShip() <= xPos + reach ) {
             direction = "n";
         }
-        if (game.getShip().getxPosShip() > xPos + game.getWorldWidth()/2) {
+        if (game.getShip().getxPosShip() > xPos + reach) {
             direction = "r";
         }
     }
