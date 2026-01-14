@@ -14,9 +14,6 @@ import Screens.Highscorescreen;
 import Screens.Scoreinputscreen;
 import nl.saxion.gameapp.*;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
-import nl.saxion.game.animalInvaders.game.GameSettings;
-
-
 
 
 import java.util.ArrayList;
@@ -52,7 +49,7 @@ public class Game extends ScalableGameScreen {
     private Highscorescreen highscorescreen;
     private Pausemenu pauseMenu = new Pausemenu();
     private int level;
-    private Level1Waves waves;
+    private Waves waves;
     private int enemyShotsLeft = 2;
     private float enemyShotWindowTimer = 0f;
     private static final float ENEMY_SHOT_WINDOW = 1.5f;
@@ -97,7 +94,7 @@ public class Game extends ScalableGameScreen {
         GameApp.addSound("explotion", "audio/explosion.mp3");
         GameApp.addSound("select", "audio/menu-button.mp3");
         GameApp.addMusic("GameMusic8-bit", "audio/GameMusic8-bit.mp3");
-        waves = new Level1Waves(this, this.level);
+        waves = new Waves(this, this.level);
     }
 
     @Override
@@ -242,6 +239,9 @@ public class Game extends ScalableGameScreen {
 
     public Ship getShip() {
         return ship;
+    }
+    public int getLevel() {
+        return level;
     }
 
     public void addProjectile(Projectile projectile) {

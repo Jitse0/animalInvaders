@@ -10,17 +10,19 @@ public class Milk {
     private int yPos;
     private int radius;
     private int speed;
+    private String direction;
     private int damage;
     private Rectangle hitbox;
     private Game game;
     private Ship ship;
 
 
-    public Milk(int xPos, int yPos, int radius, int speed, int damage, Game game) {
+    public Milk(int xPos, int yPos, int radius, int speed, String direction, int damage, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.radius = radius;
         this.speed = speed;
+        this.direction = direction;
         this.damage = damage;
         this.hitbox = new Rectangle(xPos, yPos, 16 *2, 19*2);
         this.game = game;
@@ -31,14 +33,22 @@ public class Milk {
         this.move();
         collideWithShip();
         GameApp.startSpriteRendering();
-        GameApp.drawTexture("Milk", xPos,yPos, (int)(756*0.04), (int)(1568*0.04));
+        GameApp.drawTexture("Milk", xPos- 9,yPos - 31, (int)(756*0.04), (int)(1568*0.04));
         GameApp.endSpriteRendering();
 
     }
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
-        hitbox.setPosition(xPos, yPos);
+        switch (direction) {
+            case ("l"): this.xPos -= 60 * GameApp.getDeltaTime();
+            case ("r"): this.xPos += 60 * GameApp.getDeltaTime();
+            default: break;
+        }
+        if (this.yPos < 1) {
+            game.removeBullet(this);
+        }
+        hitbox.setPosition(xPos - 16, yPos - 19);
     }
 
     public void collideWithShip(){

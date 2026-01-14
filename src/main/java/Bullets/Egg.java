@@ -35,22 +35,18 @@ public class Egg {
     public void drawEgg() {
         this.move();
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("EggThrow", xPos-((width*2)/2), yPos-((height*2)/2), (width*2), (height*2));
+        GameApp.drawAnimation("EggThrow", xPos-width, yPos-height, (width*2), (height*2));
 
         GameApp.endSpriteRendering();
         collideWithShip();
-
-
-
-        //GameApp.startShapeRenderingFilled();
-        //GameApp.setColor(100,100,100);
-        //GameApp.drawCircle(xPos, yPos, radius);
-        //GameApp.endShapeRendering();
 
     }
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
+        if (this.yPos < 1) {
+            game.removeBullet(this);
+        }
         hitbox.setPosition(xPos, yPos);
     }
 

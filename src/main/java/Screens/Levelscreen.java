@@ -31,16 +31,16 @@ public class Levelscreen extends ScalableGameScreen {
             if (!GameSettings.sfxMuted) {
                 GameApp.playSound("select", 1f);
             }
-            selectedItem = (selectedItem + 1) % 3;
+            selectedItem = (selectedItem + 1) % 4;
         }else if (GameApp.isKeyJustPressed(Input.Keys.UP)) {
             if (!GameSettings.sfxMuted) {
                 GameApp.playSound("select", 1f);
             }
             selectedItem -= 1;
             if (selectedItem < 0) {
-                selectedItem = 2;
+                selectedItem = 3;
             }
-            if (selectedItem > 3) {
+            if (selectedItem > 4) {
                 selectedItem = 0;
             }
         }
@@ -53,6 +53,10 @@ public class Levelscreen extends ScalableGameScreen {
             GameApp.switchScreen("AnimalGame");
         }
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
+            GameApp.addScreen("AnimalGame", new Game(highscorescreen, 3));
+            GameApp.switchScreen("AnimalGame");
+        }
+        if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 3) {
             GameApp.switchScreen("HomeMenu");
             selectedItem = 0;
         }
@@ -76,6 +80,12 @@ public class Levelscreen extends ScalableGameScreen {
             GameApp.drawTextHorizontallyCentered("basic", "Level 2", getWorldWidth()/2, 450, "white" );
         }
         if (selectedItem == 2){
+            GameApp.drawTextHorizontallyCentered("basic1", "Level 3", getWorldWidth()/2, 300, "white" );
+
+        } else {
+            GameApp.drawTextHorizontallyCentered("basic", "Level 3", getWorldWidth()/2, 300, "white" );
+        }
+        if (selectedItem == 3){
             GameApp.drawTextHorizontallyCentered("basic1", "Back", 100, 75, "white" );
 
         } else {

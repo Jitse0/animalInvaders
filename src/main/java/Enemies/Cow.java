@@ -53,12 +53,24 @@ public class Cow {
         }
 
         GameApp.startSpriteRendering();
-        GameApp.drawAnimation("Cowmoving", xPos, yPos, (width * 3), (height * 3));
+        GameApp.drawAnimation("Cowmoving", xPos - 45, yPos - 54, (width * 3), (height * 3));
         GameApp.endSpriteRendering();
 
-        hitbox.setPosition(xPos, yPos);
+        hitbox.setPosition(xPos - 45, yPos - 54);
         if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
             game.getShip().takeDamage(1);
+        }
+    }
+    public void aim() {
+        int reach = (int) (game.getWorldWidth()/8);
+        if (game.getShip().getxPosShip() < xPos - reach) {
+            direction = "l";
+        }
+        if (xPos - reach <= game.getShip().getxPosShip() && game.getShip().getxPosShip() <= xPos + reach ) {
+            direction = "n";
+        }
+        if (game.getShip().getxPosShip() > xPos + reach) {
+            direction = "r";
         }
     }
 
@@ -68,7 +80,8 @@ public class Cow {
         if (this.timer <= 0) {
 
             if (game.tryEnemyShoot()) {
-                game.addBullet(new Milk(xPos, yPos, 15, 20, 1, game));
+                aim();
+                game.addBullet(new Milk(xPos, yPos, 15, 20,direction ,1, game));
             }
             this.timer = this.fireRate;
         } else {
