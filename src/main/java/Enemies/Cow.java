@@ -97,7 +97,7 @@ public class Cow {
             game.addItem(steak);
             game.removeEnemy(this);
             Power power = new Power(this.xPos, this.yPos, 5, this.game);
-            if (Math.random() < 0.15) {
+            if (Math.random() < 0.1) {
                 game.addPower(power);
             }
             if (!GameSettings.sfxMuted) {

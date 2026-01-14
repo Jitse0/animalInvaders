@@ -206,10 +206,12 @@ public class Ship {
             lifeChange = +1;
             lifeChangeTimer = 1f;
         } else if (r < 60) {
-            if (laserCount < 3) {
+            if (fireMode == FireMode.SLOW) {
+                fireMode = FireMode.NORMAL;
+            } else if (laserCount < 3) {
                 laserCount++;
-            } else {
-                fireMode = FireMode.FAST;   // blijvend sneller
+            } else if (fireMode == FireMode.NORMAL) {
+                fireMode = FireMode.FAST;
             }
 
         } else if (r < 80) {
@@ -217,9 +219,11 @@ public class Ship {
             lifeChange = -1;
             lifeChangeTimer = 1f;
         } else if (r < 100) {
-            if (laserCount > 1) {
+            if (fireMode == FireMode.FAST) {
+                fireMode = FireMode.NORMAL;
+            } else if (laserCount > 1) {
                 laserCount--;
-            } else {
+            } else if (fireMode == FireMode.NORMAL) {
                 fireMode = FireMode.SLOW;
             }
         }

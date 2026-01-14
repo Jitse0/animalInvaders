@@ -11,7 +11,7 @@ public class HUD {
         GameApp.addFont("basic", "fonts/basic.ttf", 20);
         GameApp.addFont("basic1", "fonts/basic.ttf", 40);
         GameApp.addFont("basic2", "fonts/basic.ttf", 70);
-        GameApp.addTexture("heart", "Photos/heart.png");
+
     }
 
     public void draw() {
