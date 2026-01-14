@@ -12,9 +12,6 @@ public class Soundscreen extends ScalableGameScreen {
         super(1280, 720);
     }
 
-
-
-
     @Override
     public void show() {
         GameApp.addTexture("background", "Photos/Background.jpg");

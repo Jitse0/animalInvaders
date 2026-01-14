@@ -62,7 +62,9 @@ public class Waves {
         if (waveTextTimer > 0f) waveTextTimer -= dt;
 
         if (bossFight) {
-            if (game.getBoss() == null) game.finishLevel();
+            if (game.getBoss() == null)
+                game.finishLevel();
+            GameApp.stopMusic("finalboss");
             return;
         }
 
@@ -199,6 +201,9 @@ public class Waves {
 
                 case 9:
                     if (group == 1) {
+                        GameApp.addMusic("finalboss","audio/boss_time.mp3");
+                        GameApp.stopMusic("GameMusic8-bit");
+                        GameApp.playMusic("finalboss", true, 1f);
                         spawnFinal();
                         spawnBoss();
                         return true;
@@ -563,5 +568,8 @@ public class Waves {
         spawnGrid(4, 6);
         spawnCircle(10);
         spawnSideColumns(4);
+    }
+    public int getlevel(){
+        return level;
     }
 }

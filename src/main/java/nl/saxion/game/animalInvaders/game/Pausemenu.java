@@ -6,6 +6,8 @@ import nl.saxion.gameapp.GameApp;
 public class Pausemenu {
     int selectedItem = 0;
     private boolean paused = false;
+    private Waves waves;
+    private Game game;
 
     public boolean isPaused() {
         return paused;
@@ -17,7 +19,9 @@ public class Pausemenu {
         }
     }
 
-    public Pausemenu() {}
+    public Pausemenu(Game game) {
+        this.game = game;
+    }
 
     public void draw() {
         if (GameApp.isKeyJustPressed(Input.Keys.DOWN)){
@@ -40,8 +44,10 @@ public class Pausemenu {
         if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 0){
             paused = !paused;
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 1) {
-            GameApp.addScreen("AnimalGame", new Game(new Highscorescreen(), 1));
+            int level = game.getLevel();
+            GameApp.addScreen("AnimalGame", new Game(new Highscorescreen(), level));
             GameApp.switchScreen("AnimalGame");
+
         } else if (GameApp.isKeyJustPressed((Input.Keys.SPACE ) )& selectedItem == 2) {
             GameApp.switchScreen("HomeMenu");
         }
