@@ -10,17 +10,19 @@ public class Milk {
     private int yPos;
     private int radius;
     private int speed;
+    private String direction;
     private int damage;
     private Rectangle hitbox;
     private Game game;
     private Ship ship;
 
 
-    public Milk(int xPos, int yPos, int radius, int speed, int damage, Game game) {
+    public Milk(int xPos, int yPos, int radius, int speed, String direction, int damage, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.radius = radius;
         this.speed = speed;
+        this.direction = direction;
         this.damage = damage;
         this.hitbox = new Rectangle(xPos, yPos, 16 *2, 19*2);
         this.game = game;
@@ -38,6 +40,11 @@ public class Milk {
 
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
+        switch (direction) {
+            case ("l"): this.xPos -= 20 * GameApp.getDeltaTime();
+            case ("r"): this.xPos += 20 * GameApp.getDeltaTime();
+            default: break;
+        }
         if (this.yPos < 1) {
             game.removeBullet(this);
         }

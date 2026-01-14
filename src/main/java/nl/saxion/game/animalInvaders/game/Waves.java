@@ -212,7 +212,114 @@ public class Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        spawnGrid(1, 2);
+                        //spawnGrid(2, 9);
+                        spawnBoss();
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnScatter(12);
+                        return true;
+                    }
+                    return false;
+
+                case 2:
+                    if (group == 1) {
+                        spawnGrid(5, 4);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnV(8);
+                        return true;
+                    }
+                    return false;
+
+                case 3:
+                    if (group == 1) {
+                        spawnSideColumns(8);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnArc(16);
+                        return true;
+                    }
+                    return false;
+
+                case 4:
+                    if (group == 1) {
+                        spawnZigZag(3, 3);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnV(12);
+                        return true;
+                    }
+                    return false;
+
+                case 5:
+                    if (group == 1) {
+                        spawnCircle(10);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnGrid(5, 5);
+                        return true;
+                    }
+                    return false;
+
+                case 6:
+                    if (group == 1) {
+                        spawnZigZag(4, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnSideColumns(6);
+                        return true;
+                    }
+                    return false;
+
+                case 7:
+                    if (group == 1) {
+                        spawnWaves(6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnCircle(14);
+                        return true;
+                    }
+                    return false;
+
+                case 8:
+                    if (group == 1) {
+                        spawnGrid(5, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnArc(16);
+                        return true;
+                    }
+                    return false;
+
+                case 9:
+                    if (group == 1) {
+                        spawnBoss();
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnSideColumns(8);
+                        spawnBoss();
+                        return true;
+                    }
+                    return false;
+
+            }
+        }
+
+        //Level 3
+        if (this.level == 3) {
+            switch (wave) {
+                case 1:
+                    if (group == 1) {
+                        //spawnGrid(2, 9);
                         spawnBoss();
                         return true;
                     }

@@ -61,6 +61,17 @@ public class Cow {
             game.getShip().takeDamage(1);
         }
     }
+    public void aim() {
+        if (game.getShip().getxPosShip() < xPos - 20) {
+            direction = "l";
+        }
+        if (xPos - 20 <= game.getShip().getxPosShip() && game.getShip().getxPosShip() <= xPos + 20 ) {
+            direction = "n";
+        }
+        if (game.getShip().getxPosShip() > xPos + 20) {
+            direction = "r";
+        }
+    }
 
     public void shoot() {
         if (!arrived) return;
@@ -68,7 +79,8 @@ public class Cow {
         if (this.timer <= 0) {
 
             if (game.tryEnemyShoot()) {
-                game.addBullet(new Milk(xPos, yPos, 15, 20, 1, game));
+                aim();
+                game.addBullet(new Milk(xPos, yPos, 15, 20,direction ,1, game));
             }
             this.timer = this.fireRate;
         } else {
