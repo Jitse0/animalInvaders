@@ -36,6 +36,9 @@ public class Burger {
     public void moveBurger () {
         this.xPos += xVel * GameApp.getDeltaTime();
         this.yPos += yVel * GameApp.getDeltaTime();
+        if(xPos < 1 || xPos > game.getWorldWidth() - 1 || yPos < 1) {
+            game.removeItem(this);
+        }
         hitbox.setPosition(xPos, yPos);
     }
 
