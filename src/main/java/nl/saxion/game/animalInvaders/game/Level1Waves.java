@@ -9,6 +9,7 @@ import nl.saxion.gameapp.GameApp;
 public class Level1Waves {
 
     private final Game game;
+    private int level;
 
     private int wave = 0;
     private int group = 0;
@@ -36,8 +37,9 @@ public class Level1Waves {
     private float waveTextTimer = 0f;
     private String waveText = "";
 
-    public Level1Waves(Game game) {
+    public Level1Waves(Game game, int level) {
         this.game = game;
+        this.level = level;
         this.WORLD_W = (int) game.getWorldWidth();
         this.WORLD_H = (int) game.getWorldHeight();
     }
@@ -104,57 +106,219 @@ public class Level1Waves {
 
     private boolean spawnNextGroup() {
         group++;
+        //Level 1
+        if (this.level == 1) {
+            switch (wave) {
+                case 1:
+                    if (group == 1) {
+                        spawnGrid(3, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnCircle(10);
+                        return true;
+                    }
+                    return false;
 
-        switch (wave) {
-            case 1:
-                if (group == 1) { spawnGrid(3, 6); return true; }
-                if (group == 2) { spawnCircle(10); return true; }
-                return false;
+                case 2:
+                    if (group == 1) {
+                        spawnV(11);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnGrid(4, 5);
+                        return true;
+                    }
+                    return false;
 
-            case 2:
-                if (group == 1) { spawnV(11); return true; }
-                if (group == 2) { spawnGrid(4, 5); return true; }
-                return false;
+                case 3:
+                    if (group == 1) {
+                        spawnSideColumns(5);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnScatter(10);
+                        return true;
+                    }
+                    return false;
 
-            case 3:
-                if (group == 1) { spawnSideColumns(5); return true; }
-                if (group == 2) { spawnScatter(10); return true; }
-                return false;
+                case 4:
+                    if (group == 1) {
+                        spawnArc(12);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnGrid(4, 6);
+                        return true;
+                    }
+                    return false;
 
-            case 4:
-                if (group == 1) { spawnArc(12); return true; }
-                if (group == 2) { spawnGrid(4, 6); return true; }
-                return false;
+                case 5:
+                    if (group == 1) {
+                        spawnCircle(12);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnGrid(5, 5);
+                        return true;
+                    }
+                    return false;
 
-            case 5:
-                if (group == 1) { spawnCircle(12); return true; }
-                if (group == 2) { spawnGrid(5, 5); return true; }
-                return false;
+                case 6:
+                    if (group == 1) {
+                        spawnZigZag(4, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnSideColumns(6);
+                        return true;
+                    }
+                    return false;
 
-            case 6:
-                if (group == 1) { spawnZigZag(4, 6); return true; }
-                if (group == 2) { spawnSideColumns(6); return true; }
-                return false;
+                case 7:
+                    if (group == 1) {
+                        spawnWaves(6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnCircle(14);
+                        return true;
+                    }
+                    return false;
 
-            case 7:
-                if (group == 1) { spawnWaves(6); return true; }
-                if (group == 2) { spawnCircle(14); return true; }
-                return false;
+                case 8:
+                    if (group == 1) {
+                        spawnGrid(5, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnArc(14);
+                        return true;
+                    }
+                    return false;
 
-            case 8:
-                if (group == 1) { spawnGrid(5, 6); return true; }
-                if (group == 2) { spawnArc(14); return true; }
-                return false;
+                case 9:
+                    if (group == 1) {
+                        spawnFinal();
+                        spawnBoss();
+                        return true;
+                    }
+                    return false;
+            }
+        }
 
-            case 9:
-                if (group == 1) { spawnFinal(); return true; }
-                return false;
+        //Level 2
+        if (this.level == 2) {
+            switch (wave) {
+                case 1:
+                    if (group == 1) {
+                        spawnGrid(2, 8);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnScatter(12);
+                        return true;
+                    }
+                    return false;
+
+                case 2:
+                    if (group == 1) {
+                        spawnGrid(5, 4);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnV(8);
+                        return true;
+                    }
+                    return false;
+
+                case 3:
+                    if (group == 1) {
+                        spawnSideColumns(8);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnArc(16);
+                        return true;
+                    }
+                    return false;
+
+                case 4:
+                    if (group == 1) {
+                        spawnZigZag(3, 3);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnV(12);
+                        return true;
+                    }
+                    return false;
+
+                case 5:
+                    if (group == 1) {
+                        spawnCircle(10);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnGrid(5, 5);
+                        return true;
+                    }
+                    return false;
+
+                case 6:
+                    if (group == 1) {
+                        spawnZigZag(4, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnSideColumns(6);
+                        return true;
+                    }
+                    return false;
+
+                case 7:
+                    if (group == 1) {
+                        spawnWaves(6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnCircle(14);
+                        return true;
+                    }
+                    return false;
+
+                case 8:
+                    if (group == 1) {
+                        spawnGrid(5, 6);
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnArc(16);
+                        return true;
+                    }
+                    return false;
+
+                case 9:
+                    if (group == 1) {
+                        spawnBoss();
+                        return true;
+                    }
+                    if (group == 2) {
+                        spawnSideColumns(8);
+                        spawnBoss();
+                        return true;
+                    }
+                    return false;
+
+            }
         }
         return false;
     }
 
     private void startBoss() {
         bossFight = true;
+    }
+    private void spawnBoss() {
         game.addEnemy(new Boss(WORLD_W / 2, 520, game));
     }
 

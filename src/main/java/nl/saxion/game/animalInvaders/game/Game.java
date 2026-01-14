@@ -97,8 +97,7 @@ public class Game extends ScalableGameScreen {
         GameApp.addSound("explotion", "audio/explosion.mp3");
         GameApp.addSound("select", "audio/menu-button.mp3");
         GameApp.addMusic("GameMusic8-bit", "audio/GameMusic8-bit.mp3");
-        waves = new Level1Waves(this);
-
+        waves = new Level1Waves(this, this.level);
     }
 
     @Override
