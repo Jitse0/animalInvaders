@@ -34,6 +34,10 @@ public class Power {
     public void move() {
         this.xPos += xVel * GameApp.getDeltaTime();
         this.yPos += yVel * GameApp.getDeltaTime();
+        if(xPos < 1 || xPos > game.getWorldWidth() - 1 || yPos < 1) {
+            game.removePower(this);
+        }
+        hitbox.setPosition(xPos, yPos);
         hitbox.setPosition(xPos, yPos);
     }
 

@@ -14,7 +14,7 @@ public class HomeMenu extends ScalableGameScreen {
 
     @Override
     public void show() {
-        GameApp.addTexture("background", "Photos/Background.jpg" );
+
         GameApp.addFont("basic", "fonts/basic.ttf", 50);
         GameApp.addFont("basic1", "fonts/basic.ttf", 75);
         GameApp.addSpriteSheet("titleSheet", "animations/title.png",800,196);
