@@ -41,8 +41,8 @@ public class Milk {
     public void move() {
         this.yPos -= speed * GameApp.getDeltaTime();
         switch (direction) {
-            case ("l"): this.xPos -= 20 * GameApp.getDeltaTime();
-            case ("r"): this.xPos += 20 * GameApp.getDeltaTime();
+            case ("l"): this.xPos -= 60 * GameApp.getDeltaTime();
+            case ("r"): this.xPos += 60 * GameApp.getDeltaTime();
             default: break;
         }
         if (this.yPos < 1) {
