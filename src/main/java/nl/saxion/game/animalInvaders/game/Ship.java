@@ -28,7 +28,7 @@ public class Ship {
 
 
 
-
+//this is ship
     public Ship(int healthpoints, int startingX, int startingY, Game game) {
         this.healthpoints = healthpoints;
         this.speed = 250; //Niet te laag maken, want dan kan hij niet meer naar boven en naar rechts
