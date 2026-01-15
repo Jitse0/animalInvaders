@@ -91,7 +91,7 @@ public class Cow {
 
     public void takeDamage(int damage) {
         healthpoints -= damage;
-        game.addPoints(1500); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
+        game.addPoints(2000); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
         if (healthpoints <= 0) {
             Steak steak = new Steak(this.xPos, this.yPos, 5, this.game);
             game.addItem(steak);

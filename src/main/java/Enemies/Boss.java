@@ -112,6 +112,7 @@ public class Boss {
         health -= damage;
 
         if (health <=0) {
+            game.addPoints(200000);
             game.removeEnemy(this);
         }
     }

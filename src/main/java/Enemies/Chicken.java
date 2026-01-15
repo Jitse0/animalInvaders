@@ -81,7 +81,7 @@ public class Chicken {
 
     public void takeDamage(int damage) {
         healthpoints -= damage;
-        game.addPoints(1500); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
+        game.addPoints(1000); // hier staat het aantal punten wat je er bij krijgt voor het raken van de enemy
         if (healthpoints <= 0) {
             Burger burger = new Burger(this.xPos, this.yPos, 5, this.game);
             game.addItem(burger);

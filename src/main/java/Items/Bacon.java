@@ -53,6 +53,7 @@ public class Bacon {
     public void pickUpBacon() {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
             game.addMeat(1);
+            game.addPoints(50);
             //add effect
 
             game.removeItem(this);
