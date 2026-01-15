@@ -1,5 +1,8 @@
 package nl.saxion.game.animalInvaders.game;
 
+import Items.Bacon;
+import Items.Burger;
+import Items.Steak;
 import Screens.Highscorescreen;
 import Screens.Scoreinputscreen;
 import com.badlogic.gdx.Input;
@@ -75,6 +78,7 @@ public class Ship {
             GameApp.startSpriteRendering();
             GameApp.drawAnimation("ShipFly", xPos - 21*3, yPos - 25*3, 21 * 6, 25 * 6);
             GameApp.endSpriteRendering();
+
         }
         death();
     }
@@ -259,6 +263,7 @@ public class Ship {
     public int getHealthPoints() {
         return healthpoints;
     }
+
 
     public Rectangle getHitbox() {
         return hitbox;

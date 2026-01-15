@@ -13,6 +13,7 @@ public class Steak {
     private Rectangle hitbox;
     private Game game;
 
+
     public Steak(int xPos, int yPos, int size, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -43,6 +44,7 @@ public class Steak {
 
     public void pickUpSteak() {
         if (GameApp.rectOverlap(game.getShip().getHitbox(), hitbox)) {
+            game.addMeat(1);
             //add effect
 
             game.removeItem(this);

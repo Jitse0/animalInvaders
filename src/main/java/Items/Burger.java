@@ -13,6 +13,7 @@ public class Burger {
     private Circle hitbox;
     private Game game;
 
+
     public Burger(int xPos, int yPos, int size, Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -44,6 +45,7 @@ public class Burger {
 
     public void pickUpBurger() {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
+            game.addMeat(1);
             //add effect
 
             game.removeItem(this);

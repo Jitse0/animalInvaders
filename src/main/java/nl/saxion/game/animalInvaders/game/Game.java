@@ -53,6 +53,7 @@ public class Game extends ScalableGameScreen {
     private int enemyShotsLeft = 2;
     private float enemyShotWindowTimer = 0f;
     private static final float ENEMY_SHOT_WINDOW = 1.5f;
+    private int meat = 0;
 
 
 
@@ -371,6 +372,13 @@ public class Game extends ScalableGameScreen {
 
         enemyShotsLeft--;
         return true;
+    }
+    public void addMeat(int amount) {
+        meat += amount;
+    }
+
+    public int getMeat() {
+        return meat;
     }
 
 

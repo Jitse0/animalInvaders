@@ -2,6 +2,7 @@ package Items;
 
 import com.badlogic.gdx.math.Circle;
 import nl.saxion.game.animalInvaders.game.Game;
+import nl.saxion.game.animalInvaders.game.Ship;
 import nl.saxion.gameapp.GameApp;
 
 public class Bacon {
@@ -12,6 +13,8 @@ public class Bacon {
     private int size;
     private Circle hitbox;
     private Game game;
+
+
 
     public Bacon(int xPos, int yPos, int size, Game game) {
         this.xPos = xPos;
@@ -49,6 +52,7 @@ public class Bacon {
 
     public void pickUpBacon() {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
+            game.addMeat(1);
             //add effect
 
             game.removeItem(this);
