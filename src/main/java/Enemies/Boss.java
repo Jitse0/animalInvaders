@@ -17,7 +17,7 @@ public class Boss {
     private int yPos;
     private int height = 256;
     private int width = 512;
-    private int speed = 20;
+    private int speed = 60;
     private String direction = "right";
     private Game game;
     private int fireRate = (int) (1 / GameApp.getDeltaTime());
@@ -56,13 +56,13 @@ public class Boss {
 
     public void moveBoss(int speed) {
         if (direction.equals("right")) {
-            if (xPos > GameApp.getWorldWidth() - 10) {
+            if (xPos > GameApp.getWorldWidth() - 10 - width/2) {
                 direction = "left";
             }
             xPos += speed * GameApp.getDeltaTime();
         }
         else if (direction.equals("left")) {
-            if (xPos < 10) {
+            if (xPos < 10 + width/2) {
                 direction = "right";
             }
             xPos -= speed * GameApp.getDeltaTime();
@@ -75,19 +75,19 @@ public class Boss {
        if(timer <= 0) {
            GameApp.addAnimationFromSpritesheet("mechFireCenterAnim", "mechFireCenter", 0.04f, false);
            if (game.getLevel() == 1) {
-               game.addBullet(new Egg(xPos, yPos - height / 3, 30, 20, 2, game));
+               game.addBullet(new Egg(xPos, yPos - height / 3, 30, 3, 2, game));
            }
            if (game.getLevel() == 2) {
                game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 2, game));
-               game.addBullet(new Milk(xPos - width/2 + width/20, yPos - height/3, 30, 20,"n", 1, game));
-               game.addBullet(new Milk(xPos + width/2 - width/20, yPos - height/3, 30, 20, "n", 1, game));
+               game.addBullet(new Milk(xPos - width/2 + width/20, yPos - height/3, 30, 3,"n", 1, game));
+               game.addBullet(new Milk(xPos + width/2 - width/20, yPos - height/3, 30, 3, "n", 1, game));
            }
            if (game.getLevel() == 3) {
                game.addBullet(new Egg(xPos, yPos - height/3, 30, 20, 2, game));
-               game.addBullet(new Mud(xPos - width/2 + width/20, yPos - height/3, 30, 80, 1, game));
-               game.addBullet(new Mud(xPos + width/2 - width/20, yPos - height/3, 30, 80, 1, game));
-               game.addBullet(new Milk(xPos, yPos - height/3, 30, 20,"l" , 1, game));
-               game.addBullet(new Milk(xPos, yPos - height/3, 30, 20, "r", 1, game));
+               game.addBullet(new Mud(xPos - width/2 + width/20, yPos - height/3, 30, 5, 1, game));
+               game.addBullet(new Mud(xPos + width/2 - width/20, yPos - height/3, 30, 5, 1, game));
+               game.addBullet(new Milk(xPos, yPos - height/3, 30, 3,"l" , 1, game));
+               game.addBullet(new Milk(xPos, yPos - height/3, 30, 3, "r", 1, game));
            }
            timer = fireRate;
            firing = true;
