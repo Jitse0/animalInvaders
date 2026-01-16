@@ -39,7 +39,7 @@ public class Milk {
     }
 
     public void move() {
-        this.yPos -= speed * GameApp.getDeltaTime();
+        this.yPos -= speed ;
         switch (direction) {
             case ("l"): this.xPos -= 60 * GameApp.getDeltaTime();
             case ("r"): this.xPos += 60 * GameApp.getDeltaTime();

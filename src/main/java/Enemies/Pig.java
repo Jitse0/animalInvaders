@@ -55,9 +55,7 @@ public class Pig {
         GameApp.endSpriteRendering();
 
         hitbox.setPosition(xPos -37, yPos -55);
-        if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
-            game.getShip().takeDamage(1);
-        }
+
     }
 
     public void shoot() {
@@ -66,7 +64,7 @@ public class Pig {
         if (this.timer <= 0) {
 
             if (game.tryEnemyShoot()) {
-                game.addBullet(new Mud(xPos, yPos, 15, 60, 1, game));
+                game.addBullet(new Mud(xPos, yPos, 15, 3, 1, game));
             }
             this.timer = this.fireRate;
         } else {

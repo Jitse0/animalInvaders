@@ -55,11 +55,6 @@ public class Chicken {
         GameApp.endSpriteRendering();
 
         hitbox.setPosition(xPos - 54, yPos - 36);
-        // AFTER hitbox.setPosition(xPos, yPos);
-        if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
-            game.getShip().takeDamage(1);
-        }
-
     }
 
 
@@ -70,7 +65,7 @@ public class Chicken {
 
             // alleen schieten als game het toestaat
             if (game.tryEnemyShoot()) {
-                game.addBullet(new Egg(xPos, yPos, 30, 20, 2, game));
+                game.addBullet(new Egg(xPos, yPos, 30, 3, 2, game));
             }
 
             this.timer = this.fireRate;

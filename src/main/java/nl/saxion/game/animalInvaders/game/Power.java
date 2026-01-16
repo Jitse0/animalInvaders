@@ -42,11 +42,9 @@ public class Power {
     }
 
     private void pickUpPower() {
-        if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
-
+        if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)){
             game.getShip().applyPower();
             game.removePower(this);
-
         }
     }
 }

@@ -45,8 +45,6 @@ public class Steak {
     public void pickUpSteak() {
         if (GameApp.rectOverlap(game.getShip().getHitbox(), hitbox)) {
             game.addMeat(1);
-            //add effect
-
             game.removeItem(this);
         }
     }

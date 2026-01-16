@@ -57,9 +57,6 @@ public class Cow {
         GameApp.endSpriteRendering();
 
         hitbox.setPosition(xPos - 45, yPos - 54);
-        if (GameApp.rectOverlap(hitbox, game.getShip().getHitbox())) {
-            game.getShip().takeDamage(1);
-        }
     }
     public void aim() {
         int reach = (int) (game.getWorldWidth()/8);
@@ -81,7 +78,7 @@ public class Cow {
 
             if (game.tryEnemyShoot()) {
                 aim();
-                game.addBullet(new Milk(xPos, yPos, 15, 20,direction ,1, game));
+                game.addBullet(new Milk(xPos, yPos, 15, 3,direction ,1, game));
             }
             this.timer = this.fireRate;
         } else {

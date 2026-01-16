@@ -43,7 +43,7 @@ public class Egg {
     }
 
     public void move() {
-        this.yPos -= speed * GameApp.getDeltaTime();
+        this.yPos -= speed ;
         if (this.yPos < 1) {
             game.removeBullet(this);
         }
