@@ -46,6 +46,7 @@ public class Burger {
     public void pickUpBurger() {
         if (GameApp.rectCircleOverlap(game.getShip().getHitbox(), hitbox)) {
             game.addMeat(1);
+            game.addPoints(50);
             game.removeItem(this);
         }
     }
