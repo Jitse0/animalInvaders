@@ -113,51 +113,51 @@ public class Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        spawnGrid(3, 6);
+                        spawnWaves(7);
                         return true;
                     }
                     if (group == 2) {
-                        spawnCircle(10);
+                        spawnArc(7);
                         return true;
                     }
                     return false;
 
                 case 2:
                     if (group == 1) {
-                        spawnV(11);
+                        spawnV(9);
                         return true;
                     }
                     if (group == 2) {
-                        spawnGrid(4, 5);
+                        spawnGrid(2, 3);
                         return true;
                     }
                     return false;
 
                 case 3:
                     if (group == 1) {
-                        spawnSideColumns(5);
+                        spawnWaves(1);
                         return true;
                     }
                     if (group == 2) {
-                        spawnScatter(10);
+                        spawnV(5);
                         return true;
                     }
                     return false;
 
                 case 4:
                     if (group == 1) {
-                        spawnArc(12);
+                        spawnArc(5);
                         return true;
                     }
                     if (group == 2) {
-                        spawnGrid(4, 6);
+                        spawnGrid(2, 6);
                         return true;
                     }
                     return false;
 
                 case 5:
                     if (group == 1) {
-                        spawnCircle(12);
+                        spawnZigZag(1, 5);
                         return true;
                     }
                     if (group == 2) {
@@ -168,11 +168,12 @@ public class Waves {
 
                 case 6:
                     if (group == 1) {
-                        spawnZigZag(4, 6);
+                        spawnZigZag(2, 6);
                         return true;
                     }
                     if (group == 2) {
-                        spawnSideColumns(6);
+                        spawnV(3);
+                        spawnSideColumns(2);
                         return true;
                     }
                     return false;
@@ -183,18 +184,19 @@ public class Waves {
                         return true;
                     }
                     if (group == 2) {
-                        spawnCircle(14);
+                        spawnGrid(1, 3);
+                        spawnSideColumns(4);
                         return true;
                     }
                     return false;
 
                 case 8:
                     if (group == 1) {
-                        spawnGrid(5, 6);
+                        spawnGrid(2, 6);
                         return true;
                     }
                     if (group == 2) {
-                        spawnArc(14);
+                        spawnArc(7);
                         return true;
                     }
                     return false;
@@ -204,7 +206,6 @@ public class Waves {
                         GameApp.addMusic("finalboss","audio/boss_time.mp3");
                         GameApp.stopMusic("GameMusic8-bit");
                         GameApp.playMusic("finalboss", true, 1f);
-                        spawnFinal();
                         spawnBoss();
                         return true;
                     }
@@ -217,40 +218,41 @@ public class Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        spawnGrid(2, 9);
+                        spawnGrid(2, 7);
                         return true;
                     }
                     if (group == 2) {
-                        spawnScatter(12);
+                        spawnZigZag(2, 7);
                         return true;
                     }
                     return false;
 
                 case 2:
                     if (group == 1) {
-                        spawnGrid(5, 4);
+                        spawnGrid(3, 4);
                         return true;
                     }
                     if (group == 2) {
-                        spawnV(8);
+                        spawnV(7);
                         return true;
                     }
                     return false;
 
                 case 3:
                     if (group == 1) {
-                        spawnSideColumns(8);
+                        spawnZigZag(2, 7);
                         return true;
                     }
                     if (group == 2) {
-                        spawnArc(16);
+                        spawnArc(5);
+                        spawnSideColumns(6);
                         return true;
                     }
                     return false;
 
                 case 4:
                     if (group == 1) {
-                        spawnZigZag(3, 3);
+                        spawnZigZag(2, 5);
                         return true;
                     }
                     if (group == 2) {
@@ -261,44 +263,45 @@ public class Waves {
 
                 case 5:
                     if (group == 1) {
-                        spawnCircle(10);
+                        spawnArc(7);
                         return true;
                     }
                     if (group == 2) {
-                        spawnGrid(5, 5);
+                        spawnGrid(3, 5);
                         return true;
                     }
                     return false;
 
                 case 6:
                     if (group == 1) {
-                        spawnZigZag(4, 6);
+                        spawnZigZag(3, 6);
                         return true;
                     }
                     if (group == 2) {
-                        spawnSideColumns(6);
+                        spawnSideColumns(4);
+                        spawnArc(3);
                         return true;
                     }
                     return false;
 
                 case 7:
                     if (group == 1) {
-                        spawnWaves(6);
+                        spawnWaves(3);
                         return true;
                     }
                     if (group == 2) {
-                        spawnCircle(14);
+                        spawnV(7);
                         return true;
                     }
                     return false;
 
                 case 8:
                     if (group == 1) {
-                        spawnGrid(5, 6);
+                        spawnGrid(3, 6);
                         return true;
                     }
                     if (group == 2) {
-                        spawnArc(16);
+                        spawnArc(9);
                         return true;
                     }
                     return false;
@@ -306,11 +309,7 @@ public class Waves {
                 case 9:
                     if (group == 1) {
                         spawnBoss();
-                        return true;
-                    }
-                    if (group == 2) {
-                        spawnSideColumns(8);
-                        spawnBoss();
+                        spawnSideColumns(4);
                         return true;
                     }
                     return false;
@@ -323,104 +322,115 @@ public class Waves {
             switch (wave) {
                 case 1:
                     if (group == 1) {
-                        spawnGrid(2, 9);
+                        spawnGrid(3, 7);
                         return true;
                     }
                     if (group == 2) {
-                        spawnScatter(12);
+                        spawnWaves(2);
                         return true;
                     }
                     return false;
 
                 case 2:
                     if (group == 1) {
-                        spawnGrid(5, 4);
+                        spawnZigZag(3, 7);
                         return true;
                     }
                     if (group == 2) {
-                        spawnV(8);
+                        spawnV(7);
                         return true;
                     }
                     return false;
 
                 case 3:
                     if (group == 1) {
-                        spawnSideColumns(8);
+                        spawnSideColumns(6);
+                        spawnArc(3);
                         return true;
                     }
                     if (group == 2) {
-                        spawnArc(16);
+                        spawnArc(7);
                         return true;
                     }
                     return false;
 
                 case 4:
                     if (group == 1) {
-                        spawnZigZag(3, 3);
+                        spawnZigZag(3, 5);
                         return true;
                     }
                     if (group == 2) {
-                        spawnV(12);
+                        spawnV(7);
                         return true;
                     }
                     return false;
 
                 case 5:
                     if (group == 1) {
-                        spawnCircle(10);
+                        spawnZigZag(3, 6);
                         return true;
                     }
                     if (group == 2) {
-                        spawnGrid(5, 5);
+                        spawnGrid(2, 5);
+                        spawnSideColumns(6);
                         return true;
                     }
                     return false;
 
                 case 6:
                     if (group == 1) {
-                        spawnZigZag(4, 6);
+                        spawnZigZag(3, 6);
                         return true;
                     }
                     if (group == 2) {
                         spawnSideColumns(6);
+                        spawnArc(3);
                         return true;
+                    }
+                    if (group == 3) {
+                        spawnArc(7);
                     }
                     return false;
 
                 case 7:
                     if (group == 1) {
-                        spawnWaves(6);
+                        spawnWaves(3);
                         return true;
                     }
                     if (group == 2) {
-                        spawnCircle(14);
+                        spawnZigZag(3, 5);
+                        spawnSideColumns(6);
                         return true;
+                    }
+                    if (group == 3) {
+                        spawnGrid(3, 5);
                     }
                     return false;
 
                 case 8:
                     if (group == 1) {
-                        spawnGrid(5, 6);
+                        spawnWaves(3);
                         return true;
                     }
                     if (group == 2) {
-                        spawnArc(16);
+                        spawnArc(9);
+                        return true;
+                    }
+                    if (group == 3) {
+                        spawnZigZag(3, 3);
+                        spawnSideColumns(6);
                         return true;
                     }
                     return false;
 
                 case 9:
                     if (group == 1) {
-                        spawnBoss();
-                        return true;
-                    }
-                    if (group == 2) {
-                        spawnSideColumns(8);
+                        spawnSideColumns(4);
+                        spawnGrid(1,3);
                         spawnBoss();
                         return true;
                     }
                     return false;
-
             }
         }
         return false;
@@ -491,19 +501,21 @@ public class Waves {
         }
     }
 
-    private void spawnCircle(int amount) {
-        int cx = WORLD_W / 2;
-        int cy = 520;
-        int radius = 260;
+//    private void spawnCircle(int amount) {
+//        int cx = WORLD_W / 2;
+//        int cy = 520;
+//        int radius = 260;
+//
+//        for (int i = 0; i < amount; i++) {
+//            double a = Math.PI * 2 * i / amount;
+//            int tx = (int)(cx + Math.cos(a) * radius);
+//            int ty = (int)(cy + Math.sin(a) * radius) - (i % 3) * SAFE_H;
+//            spawnEnemy(tx, offTop(), tx, ty, i);
+//        }
+//    }
 
-        for (int i = 0; i < amount; i++) {
-            double a = Math.PI * 2 * i / amount;
-            int tx = (int)(cx + Math.cos(a) * radius);
-            int ty = (int)(cy + Math.sin(a) * radius) - (i % 3) * SAFE_H;
-            spawnEnemy(tx, offTop(), tx, ty, i);
-        }
-    }
 
+    //5, 7 of 9 enemies
     private void spawnArc(int amount) {
         int cx = WORLD_W / 2;
         int cy = 520;
@@ -516,7 +528,7 @@ public class Waves {
             spawnEnemy(tx, offTop(), tx, ty, i);
         }
     }
-
+    //6 enemies
     private void spawnSideColumns(int count) {
         for (int i = 0; i < count; i++) {
             int ty = MAX_Y - i * SAFE_H;
@@ -525,14 +537,16 @@ public class Waves {
         }
     }
 
-    private void spawnScatter(int amount) {
-        for (int i = 0; i < amount; i++) {
-            int tx = MIN_X + (i % 5) * SAFE_W;
-            int ty = MAX_Y - (i / 5) * SAFE_H;
-            spawnEnemy(tx, offTop(), tx, ty, i);
-        }
-    }
+    //max 15
+//    private void spawnScatter(int amount) {
+//        for (int i = 0; i < amount; i++) {
+//            int tx = MIN_X + (i % 5) * SAFE_W;
+//            int ty = MAX_Y - (i / 5) * SAFE_H;
+//            spawnEnemy(tx, offTop(), tx, ty, i);
+//        }
+//    }
 
+    //oneven, max 9
     private void spawnV(int amount) {
         int cx = WORLD_W / 2;
         for (int i = 0; i < amount; i++) {
@@ -543,6 +557,7 @@ public class Waves {
         }
     }
 
+    //max 3 rows, max 7 cols
     private void spawnZigZag(int rows, int cols) {
         int startX = (WORLD_W - (cols - 1) * SAFE_W) / 2;
         for (int r = 0; r < rows; r++) {
@@ -555,6 +570,7 @@ public class Waves {
         }
     }
 
+    //max 7 cols
     private void spawnWaves(int cols) {
         int startX = (WORLD_W - (cols - 1) * SAFE_W) / 2;
         for (int c = 0; c < cols; c++) {
@@ -562,12 +578,6 @@ public class Waves {
             spawnEnemy(tx, offTop(), tx, MAX_Y, c);
             spawnEnemy(tx, offTop(), tx, MAX_Y - SAFE_H, c + 10);
         }
-    }
-
-    private void spawnFinal() {
-        spawnGrid(4, 6);
-        spawnCircle(10);
-        spawnSideColumns(4);
     }
     public int getlevel(){
         return level;
