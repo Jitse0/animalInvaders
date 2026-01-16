@@ -55,6 +55,10 @@ public class Pig {
         GameApp.endSpriteRendering();
 
         hitbox.setPosition(xPos -37, yPos -55);
+        if (game.getShip().getHitbox().overlaps(this.hitbox)) {
+            game.getShip().takeDamage(1);
+
+        }
 
     }
 

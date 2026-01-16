@@ -260,6 +260,7 @@ public class Ship {
     }
 
 
+
     public int getHealthPoints() {
         return healthpoints;
     }

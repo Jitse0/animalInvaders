@@ -52,6 +52,10 @@ public class Boss {
 
         GameApp.endSpriteRendering();
         shoot();
+        if (game.getShip().getHitbox().overlaps(this.hitbox)) {
+            game.getShip().takeDamage(1);
+
+        }
     }
 
     public void moveBoss(int speed) {

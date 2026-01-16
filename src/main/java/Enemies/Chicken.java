@@ -55,6 +55,10 @@ public class Chicken {
         GameApp.endSpriteRendering();
 
         hitbox.setPosition(xPos - 54, yPos - 36);
+        if (game.getShip().getHitbox().overlaps(this.hitbox)) {
+            game.getShip().takeDamage(1);
+
+        }
     }
 
 
@@ -135,6 +139,7 @@ public class Chicken {
         xPos += vx * dt;
         yPos += vy * dt;
     }
+
 
 
 

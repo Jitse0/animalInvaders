@@ -57,6 +57,10 @@ public class Cow {
         GameApp.endSpriteRendering();
 
         hitbox.setPosition(xPos - 45, yPos - 54);
+        if (game.getShip().getHitbox().overlaps(this.hitbox)) {
+            game.getShip().takeDamage(1);
+
+        }
     }
     public void aim() {
         int reach = (int) (game.getWorldWidth()/8);
